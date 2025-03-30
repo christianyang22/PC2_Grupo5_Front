@@ -1,0 +1,255 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url("/img/fondopantalla.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.encabezado {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.logo-usuario {
+  display: flex;
+  align-items: center;
+}
+
+.icono-carrito {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+.navegacion {
+  display: flex;
+  gap: 15px;
+}
+
+.navegacion a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navegacion a:hover {
+  color: #007bff;
+}
+
+.contenido-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding-top: 80px;
+  min-height: 85vh;
+}
+
+/* ====== REGISTRO MÁS PEQUEÑO ====== */
+.register-container {
+  display: flex;
+  width: 650px; /* Reducido de 900px a 650px */
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-top: 10px;
+  height: auto;
+  padding: 20px;
+}
+
+.register-image {
+  width: 40%;
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-image img {
+  max-width: 70%;
+}
+
+.register-form {
+  width: 60%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.register-title {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.register-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.register-group label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.register-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.register-button {
+  width: 100%;
+  padding: 10px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.register-button:hover {
+  background: #333;
+}
+
+/* ====== FOOTER ====== */
+.pie-pagina {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  padding: 15px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  margin-top: 130px;
+}
+
+.contenedor-pie {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.seccion-pie {
+  width: 22%;
+  padding: 3px;
+  text-align: center;
+}
+
+.iconos-redes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.iconos-redes a img {
+  width: 18px;
+  height: 18px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .contenido-principal {
+    min-height: 75vh;
+  }
+
+  .register-container {
+    width: 80%;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .register-image {
+    width: 100%;
+    background: gray;
+    padding: 15px 0;
+  }
+
+  .register-form {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .register-group {
+    width: 100%;
+  }
+
+  .register-title {
+    font-size: 20px;
+  }
+
+  .register-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .pie-pagina {
+    font-size: 10px;
+    padding: 10px 0;
+    margin-top: 60px;
+  }
+
+  .seccion-pie {
+    width: 100%;
+    text-align: center;
+    padding: 2px 0;
+  }
+
+  .iconos-redes {
+    gap: 10px;
+  }
+
+  .iconos-redes a img {
+    width: 16px;
+    height: 16px;
+  }
+}

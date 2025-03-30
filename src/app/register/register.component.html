@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click&Shop - Registro</title>
+  </head>
+  <body>
+    <header class="encabezado">
+      <div class="logo-usuario">
+        <img src="img/carrito.png" alt="Carrito" class="icono-carrito" />
+        <h1 class="titulo">Click&Shop</h1>
+      </div>
+      <nav class="navegacion">
+        <a href="/home">Inicio</a>
+        <a href="/productos">Productos</a>
+      </nav>
+    </header>
+    
+    <main class="contenido-principal">
+      <div class="register-container">
+        <div class="register-image">
+          <img src="img/carrito.png" alt="Carrito de compras" />
+        </div>
+        <div class="register-form">
+          <h2 class="register-title">Regístrate</h2>
+          <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+            <div class="register-group">
+              <label for="usuario">Usuario</label>
+              <input type="text" id="usuario" name="usuario" [(ngModel)]="registerData.usuario" required>
+            </div>
+            <div class="register-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" [(ngModel)]="registerData.nombre" required>
+            </div>
+            <div class="register-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" [(ngModel)]="registerData.apellido" required>
+            </div>
+            <div class="register-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" [(ngModel)]="registerData.email" required>
+            </div>
+            <div class="register-group">
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" name="password" [(ngModel)]="registerData.password" required>
+            </div>
+            <div class="register-group">
+              <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+              <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" [(ngModel)]="registerData.fecha_nacimiento" required>
+            </div>
+            <button type="submit" class="register-button">Registrarse</button>
+          </form>
+          <div *ngIf="errorMessages.length > 0" class="error-popup">
+            <ul>
+              <li *ngFor="let msg of errorMessages">{{ msg }}</li>
+            </ul>
+          </div>
+          <div class="register-options">
+            <a>¿Ya tienes cuenta? <a href="/home" class="register-options-inicio">Inicia sesión</a></a>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Sobre Nosotros</h4>
+          <p>Quiénes somos</p>
+          <p>Contacto</p>
+          <p>Política de privacidad</p>
+          <p>Términos y condiciones</p>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Ayuda</h4>
+          <p>Preguntas frecuentes</p>
+          <p>Soporte</p>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Redes Sociales</h4>
+          <div class="iconos-redes">
+            <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="img/x.png" alt="Twitter" /></a>
+            <a href="#"><img src="img/instagram.png" alt="Instagram" /></a>
+          </div>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Contacto</h4>
+          <p class="contacto-pie">Teléfono: +34 0000000000</p>
+          <p class="contacto-pie">
+            Email:
+            <a href="mailto:clickshop@gmail.com">clickshop&#64;gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="pie-inferior">
+        <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

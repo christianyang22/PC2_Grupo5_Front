@@ -1,0 +1,179 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor {
+  flex: 1 0 auto; 
+  padding: 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/img/fondopantalla.jpg") no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.6;
+  z-index: -3;
+}
+
+.barra {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.contenedor_fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.margen_derecho {
+  margin-right: 10px;
+}
+
+.marca {
+  display: flex;
+  margin-right: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  margin-left: 0;
+}
+
+.lista_navegacion {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin-left: auto;
+}
+
+.elemento_navegacion {
+  margin: 0 10px;
+}
+
+.enlace_navegacion {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+
+.enlace_navegacion.activo {
+  font-weight: bold;
+}
+
+.fila_supermercados {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  flex-wrap: wrap;
+  gap: 30px;               
+  margin-top: 50px;
+  text-align: center;
+}
+
+.columna_supermercado {
+  padding: 10px;
+}
+
+.logo_supermercado {
+  max-height: 100px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.pie-pagina {
+
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  text-align: center;
+  margin-top: 80px;
+  padding: 1px 20;    
+  width: 100%;
+  font-size: 0.8rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor-pie {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.seccion-pie {
+  width: 22%;
+  min-width: 150px;
+  padding: 5px;
+  text-align: left;
+}
+
+.titulo-pie {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.lista-pie li {
+  margin-bottom: 5px;
+}
+
+.lista-pie li a {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.lista-pie li a:hover {
+  color: #007bff;
+}
+
+.contacto-pie {
+  margin: 5px 0;
+}
+
+.iconos-redes {
+  display: flex;
+  gap: 35px;
+}
+
+.iconos-redes a img {
+  width: 20px;
+  height: 20px;
+}
+
+.iconos-redes a img:hover {
+  opacity: 0.7;
+}
+
+.pie-inferior {
+  margin-top: 10px;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .contenedor-pie {
+    flex-direction: column;
+    align-items: center;
+  }
+  .seccion-pie {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
