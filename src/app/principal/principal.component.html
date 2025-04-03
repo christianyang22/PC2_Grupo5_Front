@@ -1,0 +1,73 @@
+<div class="fondo-desenfocado"></div>
+<div class="superposicion-fondo"></div>
+
+<header class="encabezado">
+  <div class="logo-usuario">
+    <img src="img/carrito.png" alt="Carrito" class="icono-carrito" />
+    <h1 class="titulo">Click&Shop</h1>
+  </div>
+</header>
+
+<main class="contenido-principal-principal">
+  <section class="info-principal">
+    <p class="descripcion">
+      Simplifica tus compras con comparación de precios, filtros por supermercado,
+      información nutricional y recomendaciones personalizadas.
+    </p>
+    <p class="lema">
+      <em>"Tu mercado inteligente al alcance de un click"</em>
+    </p>
+    <div class="buscador">
+      <input type="text" placeholder="🔍 Buscar productos" />
+    </div>
+  </section>
+
+  <section class="cuadrícula-productos">
+    <div *ngIf="productosFiltrados.length === 0">No se encontraron productos.</div>
+  
+    <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
+      <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" 
+           alt="{{ producto.nombre }}" 
+           width="150">
+      <h3>{{ producto.nombre }}</h3>
+      <p>Supermercado: {{ producto.supermercado }}</p>
+      <p>Precio: {{ producto.precio }} €</p>
+    </div>
+  </section>
+</main>
+
+<footer class="pie-pagina">
+  <div class="contenedor-pie">
+    <div class="seccion-pie">
+      <h4 class="titulo-pie">Sobre Nosotros</h4>
+      <ul class="lista-pie">
+        <li><a href="#">Quiénes somos</a></li>
+      </ul>
+    </div>
+    <div class="seccion-pie">
+      <h4 class="titulo-pie">Ayuda</h4>
+      <ul class="lista-pie">
+        <li><a href="#">Preguntas frecuentes</a></li>
+        <li><a href="#">Soporte</a></li>
+      </ul>
+    </div>
+    <div class="seccion-pie">
+      <h4 class="titulo-pie">Redes Sociales</h4>
+      <div class="iconos-redes">
+        <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="/img/x.png" alt="Twitter" /></a>
+        <a href="#"><img src="/img/instagram.png" alt="Instagram" /></a>
+      </div>
+    </div>
+    <div class="seccion-pie">
+      <h4 class="titulo-pie">Contacto</h4>
+      <p class="contacto-pie">Teléfono: +34 0000000000</p>
+      <p class="contacto-pie">
+        Email: <a href="mailto:clickshopgmail.com">clickshopgmail.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="pie-inferior">
+    <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
+  </div>
+</footer>
