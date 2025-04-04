@@ -1,38 +1,41 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { AuthService } from '../servicios/auth-service.service';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgIf, NgFor } from '@angular/common';
+import { HomeService } from './home.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-principal',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, NgIf, NgFor],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  loginData = {
-    usuario: '',
-    password: ''
-  };
+export class HomeComponent implements OnInit {
 
-  errorMessages: string[] = [];
+  productosCarrusel: any[] = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(private productosService: HomeService) {}
 
-  onLogin(): void {
-    this.authService.login(this.loginData.usuario, this.loginData.password).subscribe(
-      response => {
-        console.log('Login exitoso:', response);
-        
-        localStorage.setItem('usuario', JSON.stringify({ usuario: this.loginData.usuario }));
+  ngOnInit(): void {
+    this.cargarProductosParaCarrusel();
+  }
 
-        window.location.href = '/productos';
+  cargarProductosParaCarrusel() {
+    this.productosService.obtenerProductos(1).subscribe({
+      next: (data: any) => {
+        console.log("Productos del carrusel:", data);
+
+        if (data && data.data && Array.isArray(data.data)) {
+          const mezclados = data.data.sort(() => Math.random() - 0.5);
+          this.productosCarrusel = mezclados.slice(0, 10);
+        } else {
+          console.warn('No se han encontrado productos válidos.');
+          this.productosCarrusel = []; 
+        }
       },
-      error => {
-        console.error('Error en login:', error);
-        this.errorMessages = ['Credenciales incorrectas.'];
+      error: (err) => {
+        console.error('❌ Error al cargar productos del carrusel:', err);
+        this.productosCarrusel = []; 
       }
-    );
+    });
   }
 }

@@ -1,71 +1,109 @@
-<div class="fondo-desenfocado"></div>
-<div class="superposicion-fondo"></div>
-
-<header class="encabezado">
-  <div class="logo-usuario">
-    <img src="img/carrito.png" alt="Carrito" class="icono-carrito" />
-    <h1 class="titulo">Click&Shop</h1>
-  </div>
-</header>
-
-<main class="contenido-principal-principal">
-  <section class="info-principal">
-    <p class="descripcion">
-      Simplifica tus compras con comparación de precios, filtros por supermercado,
-      información nutricional y recomendaciones personalizadas.
-    </p>
-    <p class="lema">
-      <em>"Tu mercado inteligente al alcance de un click"</em>
-    </p>
-    <div class="buscador">
-      <input type="text" placeholder="🔍 Buscar productos" />
-    </div>
-  </section>
-
-  <!-- Carrusel de Productos -->
-  <section class="carrusel-productos" *ngIf="productosCarrusel.length > 0">
-    <div class="carrusel-track">
-      <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
-        <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}">
-        <p class="nombre">{{ producto.nombre }}</p>
-        <p class="precio">{{ producto.precio }} €</p>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click&Shop - Inicio de Sesión</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="fondo-desenfocado"></div>
+    <div class="superposicion-fondo"></div>
+    <header class="encabezado">
+      <div class="logo-usuario">
+        <img src="img/carrito.png" alt="Carrito" class="icono-carrito" />
+        <h1 class="titulo">Click&Shop</h1>
       </div>
-    </div>
-  </section>
-</main>
+      <nav class="navegacion">
+        <a href="/productos">Productos</a>
+      </nav>
+    </header>
 
-<footer class="pie-pagina">
-  <div class="contenedor-pie">
-    <div class="seccion-pie">
-      <h4 class="titulo-pie">Sobre Nosotros</h4>
-      <ul class="lista-pie">
-        <li><a href="#">Quiénes somos</a></li>
-      </ul>
-    </div>
-    <div class="seccion-pie">
-      <h4 class="titulo-pie">Ayuda</h4>
-      <ul class="lista-pie">
-        <li><a href="#">Preguntas frecuentes</a></li>
-        <li><a href="#">Soporte</a></li>
-      </ul>
-    </div>
-    <div class="seccion-pie">
-      <h4 class="titulo-pie">Redes Sociales</h4>
-      <div class="iconos-redes">
-        <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="/img/x.png" alt="Twitter" /></a>
-        <a href="#"><img src="/img/instagram.png" alt="Instagram" /></a>
+    <main class="contenido-principal">
+      <div class="login-container">
+        <div class="login-image">
+          <img src="img/carrito.png" alt="Carrito de compras" />
+        </div>
+        <div class="login-form">
+          <h2 class="login-title">Iniciar Sesión</h2>
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+            <div class="login-group">
+              <label for="usuario">Usuario</label>
+              <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                class="campo"
+                placeholder="Ingrese su usuario"
+                [(ngModel)]="loginData.usuario"
+                required
+              />
+            </div>
+            <div class="login-group">
+              <label for="password">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="campo"
+                placeholder="Ingrese su contraseña"
+                [(ngModel)]="loginData.password"
+                required
+              />
+            </div>
+            <button type="submit" class="login-button">Ingresar</button>
+          </form>
+          <div *ngIf="errorMessages.length > 0" class="error-popup">
+            <ul>
+              <li *ngFor="let msg of errorMessages">{{ msg }}</li>
+            </ul>
+          </div>
+          <div class="login-options">
+            <a>¿No tienes cuenta? <a href="/register" class="register-click">Regístrate</a></a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="seccion-pie">
-      <h4 class="titulo-pie">Contacto</h4>
-      <p class="contacto-pie">Teléfono: +34 0000000000</p>
-      <p class="contacto-pie">
-        Email: <a href="mailto:clickshopgmail.com">clickshopgmail.com</a>
-      </p>
-    </div>
-  </div>
-  <div class="pie-inferior">
-    <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
-  </div>
-</footer>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Sobre Nosotros</h4>
+          <ul class="lista-pie">
+            <li><a href="#">Quiénes somos</a></li>
+
+          </ul>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Ayuda</h4>
+          <ul class="lista-pie">
+            <li><a href="#">Preguntas frecuentes</a></li>
+            <li><a href="#">Soporte</a></li>
+          </ul>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Redes Sociales</h4>
+          <div class="iconos-redes">
+            <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="img/x.png" alt="Twitter" /></a>
+            <a href="#"><img src="img/instagram.png" alt="Instagram" /></a>
+          </div>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Contacto</h4>
+          <p class="contacto-pie">Teléfono: +34 0000000000</p>
+          <p class="contacto-pie">
+            Email:
+            <a href="mailto:clickshop@gmail.com">clickshop&#64;gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="pie-inferior">
+        <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

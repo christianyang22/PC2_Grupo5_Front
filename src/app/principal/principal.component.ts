@@ -1,71 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgIf, NgFor } from '@angular/common';
-import { ProductosService } from '../productos/productos.service';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../servicios/auth-service.service';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule, NgIf, NgFor],
+  imports: [FormsModule, CommonModule],
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.scss']
 })
-export class PrincipalComponent implements OnInit {
+export class PrincipalComponent{
+  loginData = {
+    usuario: '',
+    password: ''
+  };
 
-  productosCarrusel: any[] = [];
+  errorMessages: string[] = [];
 
-  constructor(private productosService: ProductosService) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.cargarProductosParaCarrusel();
-  }
+  onLogin(): void {
+    this.authService.login(this.loginData.usuario, this.loginData.password).subscribe(
+      response => {
+        console.log('Login exitoso:', response);
+        
+        localStorage.setItem('usuario', JSON.stringify({ usuario: this.loginData.usuario }));
 
-  cargarProductosParaCarrusel() {
-    this.productosService.obtenerProductos(1).subscribe({
-      next: (data: any) => {
-        console.log("✅ Productos del carrusel:", data);
-
-        if (data && data.data && Array.isArray(data.data)) {
-          const mezclados = data.data.sort(() => Math.random() - 0.5);
-          this.productosCarrusel = mezclados.slice(0, 10);
-        } else {
-          console.warn('⚠️ Datos inesperados, usando productos de prueba.');
-          this.ponerProductosDePrueba();
-        }
+        window.location.href = '/productos';
       },
-      error: (err) => {
-        console.error('❌ Error al cargar productos del carrusel:', err);
-        this.ponerProductosDePrueba();
+      error => {
+        console.error('Error en login:', error);
+        this.errorMessages = ['Credenciales incorrectas.'];
       }
-    });
-  }
-
-  ponerProductosDePrueba() {
-    this.productosCarrusel = [
-      {
-        nombre: 'Jamón York',
-        precio: 2.50,
-        link_imagen: 'assets/placeholder.jpg'
-      },
-      {
-        nombre: 'Leche Entera',
-        precio: 1.15,
-        link_imagen: 'assets/placeholder.jpg'
-      },
-      {
-        nombre: 'Huevos',
-        precio: 1.75,
-        link_imagen: 'assets/placeholder.jpg'
-      },
-      {
-        nombre: 'Arroz Integral',
-        precio: 1.35,
-        link_imagen: 'assets/placeholder.jpg'
-      },
-      {
-        nombre: 'Aceite de Oliva',
-        precio: 3.99,
-        link_imagen: 'assets/placeholder.jpg'
-      }
-    ];
+    );
   }
 }
