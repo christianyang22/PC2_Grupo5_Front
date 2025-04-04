@@ -22,16 +22,14 @@
     </div>
   </section>
 
-  <section class="cuadrícula-productos">
-    <div *ngIf="productosFiltrados.length === 0">No se encontraron productos.</div>
-  
-    <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
-      <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" 
-           alt="{{ producto.nombre }}" 
-           width="150">
-      <h3>{{ producto.nombre }}</h3>
-      <p>Supermercado: {{ producto.supermercado }}</p>
-      <p>Precio: {{ producto.precio }} €</p>
+  <!-- Carrusel de Productos -->
+  <section class="carrusel-productos" *ngIf="productosCarrusel.length > 0">
+    <div class="carrusel-track">
+      <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
+        <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}">
+        <p class="nombre">{{ producto.nombre }}</p>
+        <p class="precio">{{ producto.precio }} €</p>
+      </div>
     </div>
   </section>
 </main>
