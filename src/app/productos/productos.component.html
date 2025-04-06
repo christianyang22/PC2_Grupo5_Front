@@ -13,17 +13,39 @@
     <div class="contenedor">
       <nav class="barra navegacion">
         <div class="contenedor_fluid">
-          <img src="img/carrito.png" alt="carrito" width="30" height="30" class="margen_derecho">
-          <a class="marca" href="/home">Click&Shop</a>
+          <img src="img/carrito.png" alt="carrito" width="30" height="30" class="margen_derecho" />
+          <a class="marca" routerLink="/home">Click&Shop</a>
           <div class="colapsar" id="menu">
             <ul class="lista_navegacion">
-              <li class="elemento_navegacion"><a class="enlace_navegacion" href="/home">Inicio</a></li>
-              <li class="elemento_navegacion"><a class="enlace_navegacion" href="/productos">Productos</a></li>
-              <li class="elemento_navegacion"><a class="enlace_navegacion activo" href="/supermercados">Supermercados</a></li>
-              <li class="elemento_navegacion"><a class="enlace_navegacion" href="#">Favoritos</a></li>
-              <li class="elemento_navegacion"><a class="enlace_navegacion" href="#">Filtros</a></li>
-                      <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
+              <li class="elemento_navegacion"><a class="enlace_navegacion" routerLink="/home">Inicio</a></li>
+  
+              <!-- Cliente -->
+              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/productos">Productos</a>
+              </li>
+              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/supermercados">Supermercados</a>
+              </li>
+              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/filtros">Filtros</a>
+              </li>
+              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/favoritos">Favoritos</a>
+              </li>
+  
+              <!-- Admin -->
+              <li *ngIf="rolUsuario === 1" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/admin-panel">Panel Admin</a>
+              </li>
+  
+              <!-- Cierre de sesión -->
+              <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
                 <button class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+              </li>
+  
+              <!-- Mostrar si no está logueado -->
+              <li *ngIf="!usuarioAutenticado" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/principal">Iniciar Sesión</a>
               </li>
             </ul>
           </div>
@@ -31,6 +53,7 @@
       </nav>
     </div>
   </header>
+  
   
 
 <main>

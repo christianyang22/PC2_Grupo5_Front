@@ -4,6 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../servicios/auth-service.service';
+
 
 
 interface Producto {
@@ -32,29 +34,39 @@ export class ProductosComponent implements OnInit {
   itemsPorPagina: number = 30;
   usuarioAutenticado: boolean = false;
   
-  constructor(private productosService: ProductosService, private router: Router) {}
+  rolUsuario: number | null = null;
 
+  constructor(
+    private productosService: ProductosService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
+  
   ngOnInit(): void {
     this.verificarSesion();
   }
 
   verificarSesion() {
-    const usuario = localStorage.getItem('usuario');
-    
-    if (!usuario) {
-      this.router.navigate(['/login']); 
-    } else {
-      this.usuarioAutenticado = true;
-      this.cargarProductos();
-
-    }
+    const token = this.authService.getToken();
+    this.usuarioAutenticado = !!token;
+  
+    this.authService.getUser().subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/principal']);
+      } else {
+        this.rolUsuario = user.rol;
+        this.cargarProductos();
+      }
+    });
   }
+  
 
   cerrarSesion() {
-    localStorage.removeItem('usuario'); 
+    this.authService.logout();
     this.usuarioAutenticado = false;
-    this.router.navigate(['/home']);
+    this.rolUsuario = null;
   }
+  
 
   cargarProductos() {
     this.productos = []; 
