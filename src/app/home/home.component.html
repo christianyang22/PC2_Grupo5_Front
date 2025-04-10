@@ -11,32 +11,34 @@
 
     <div class="fondo-desenfocado"></div>
     <div class="superposicion-fondo"></div>
-
     <header class="encabezado">
         <div class="logo-usuario">
             <img src="img/carrito.png" alt="Carrito" class="icono-carrito" />
             <h1 class="titulo">Click&Shop</h1>
         </div>
         <nav class="navegacion">
-            <a href="/principal" class="nav-principal">Principal</a>
+            <a href="/principal" class="nav-principal">Login</a>
         </nav>
     </header>
-
     <main class="contenido-principal-principal">
-        <section class="info-principal">
-            <p class="descripcion">
-                Simplifica tus compras con comparación de precios, filtros por supermercado,
-                información nutricional y recomendaciones personalizadas.
-            </p>
-            <p class="lema">
-                <em>"Tu mercado inteligente al alcance de un click"</em>
-            </p>
-            <div class="buscador">
-                <input type="text" placeholder="🔍 Buscar productos" />
-            </div>
-        </section>
+        <div class="fondo-transparente">
+            <section class="info-principal">
+                <p class="descripcion">
+                    Simplifica tus compras con comparación de precios, filtros por supermercado,
+                    información nutricional y recomendaciones personalizadas.
+                </p>
+                <p class="lema">
+                    <em>"De la lista a la mesa con tan sólo un click"</em>
+                </p>
+            </section>
 
-        <!-- Carrusel de Productos -->
+            <div class="buscador">
+                <a href="/productos">
+                    <button class="btn-productos">Productos</button>
+                </a>
+            </div>
+        </div>
+
         <section class="carrusel-productos" *ngIf="productosCarrusel.length > 0">
             <div class="carrusel-track">
                 <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
@@ -47,6 +49,34 @@
             </div>
         </section>
     </main>
+
+    <section class="seccion-lateral espaciado-seccion">
+        <div class="contenido-lateral">
+            <h3 class="titulo-seccion">Compara online</h3>
+            <p class="descripcion-seccion">
+                Encuentra los mejores precios de tus productos favoritos en un sólo lugar.
+            </p>
+        </div>
+        <div class="imagen-lateral">
+            <img src="img/comparar-precios.jpg" alt="comparar" style="width: 40%; height: auto;" />
+        </div>
+    </section>
+
+    <section class="seccion-lateral espaciado-seccion seccion-invertida">
+        <div class="imagen-lateral">
+            <img src="img/compra-inteligente.jpg" alt="Compra inteligente" style="width: 40%; height: auto;" />
+        </div>
+        <div class="contenido-lateral">
+            <h3 class="titulo-seccion">Consejos para comprar inteligentemente</h3>
+            <ul class="lista-consejos">
+                <li>Ahorro de dinero al encontrar el mejor precio disponible.</li>
+                <li>Ahorro de tiempo al evitar visitar múltiples sitios.</li>
+                <li>Acceso a reseñas y calificaciones de productos.</li>
+                <li>Información clara sobre costos de envío y disponibilidad.</li>
+                <li>Posibilidad de configurar alertas de precio.</li>
+            </ul>
+        </div>
+    </section>
 
     <footer class="pie-pagina">
         <div class="contenedor-pie">
