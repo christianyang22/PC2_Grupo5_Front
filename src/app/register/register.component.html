@@ -16,53 +16,95 @@
         <a href="/productos">Productos</a>
       </nav>
     </header>
-    
+
     <main class="contenido-principal">
-      <div class="register-container">
-        <div class="register-image">
-          <img src="img/carrito.png" alt="Carrito de compras" />
-        </div>
+      <div class="register-form-container">
         <div class="register-form">
-          <h2 class="register-title">Regístrate</h2>
+          <h2 class="register-title">Crea tu cuenta</h2>
+          <p class="register-subtitle">Regístrate para comenzar a comprar</p>
           <form (ngSubmit)="onRegister()" #registerForm="ngForm">
             <div class="register-group">
               <label for="usuario">Usuario</label>
-              <input type="text" id="usuario" name="usuario" [(ngModel)]="registerData.usuario" required>
+              <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                [(ngModel)]="registerData.usuario"
+                placeholder="Ej. maria21"
+                required
+              />
             </div>
             <div class="register-group">
               <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" name="nombre" [(ngModel)]="registerData.nombre" required>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                [(ngModel)]="registerData.nombre"
+                placeholder="Tu nombre"
+                required
+              />
             </div>
             <div class="register-group">
               <label for="apellido">Apellido</label>
-              <input type="text" id="apellido" name="apellido" [(ngModel)]="registerData.apellido" required>
+              <input
+                type="text"
+                id="apellido"
+                name="apellido"
+                [(ngModel)]="registerData.apellido"
+                placeholder="Tu apellido"
+                required
+              />
             </div>
             <div class="register-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" [(ngModel)]="registerData.email" required>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="registerData.email"
+                placeholder="tucorreo@ejemplo.com"
+                required
+              />
             </div>
             <div class="register-group">
               <label for="password">Contraseña</label>
-              <input type="password" id="password" name="password" [(ngModel)]="registerData.password" required>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                [(ngModel)]="registerData.password"
+                placeholder="********"
+                required
+              />
             </div>
             <div class="register-group">
               <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-              <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" [(ngModel)]="registerData.fecha_nacimiento" required>
+              <input
+                type="date"
+                id="fecha_nacimiento"
+                name="fecha_nacimiento"
+                [(ngModel)]="registerData.fecha_nacimiento"
+                required
+              />
             </div>
             <button type="submit" class="register-button">Registrarse</button>
           </form>
+
           <div *ngIf="errorMessages.length > 0" class="error-popup">
             <ul>
               <li *ngFor="let msg of errorMessages">{{ msg }}</li>
             </ul>
           </div>
+
           <div class="register-options">
-            <a>¿Ya tienes cuenta? <a href="/home" class="register-options-inicio">Inicia sesión</a></a>
+            ¿Ya tienes cuenta?
+            <a href="/home" class="register-options-inicio">Inicia sesión</a>
           </div>
         </div>
       </div>
     </main>
-    
+
     <footer class="pie-pagina">
       <div class="contenedor-pie">
         <div class="seccion-pie">
