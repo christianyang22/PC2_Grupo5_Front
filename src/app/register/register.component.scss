@@ -24,7 +24,7 @@ body::before {
   top: 0;
   width: 100%;
   background: white;
-  padding: 15px 30px;
+  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,13 +38,13 @@ body::before {
 }
 
 .icono-carrito {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
 }
 
 .titulo {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #333;
   font-weight: bold;
   margin: 0;
@@ -72,184 +72,149 @@ body::before {
   align-items: center;
   flex-grow: 1;
   padding-top: 80px;
-  min-height: 85vh;
+  min-height: 100vh;
 }
 
-/* ====== REGISTRO MÁS PEQUEÑO ====== */
-.register-container {
+.register-form-container {
+  background: rgba(255, 255, 255, 0.95);
+  width: 400px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
   display: flex;
-  width: 650px; /* Reducido de 900px a 650px */
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin: auto;
-  margin-top: 10px;
-  height: auto;
-  padding: 20px;
-}
-
-.register-image {
-  width: 40%;
-  background: gray;
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.register-image img {
-  max-width: 70%;
-}
-
 .register-form {
-  width: 60%;
-  padding: 30px;
+  width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .register-title {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 22px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.register-subtitle {
+  font-size: 13px;
+  color: #666;
   margin-bottom: 15px;
 }
 
 .register-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 8px;
-}
+  text-align: left;
+  margin-bottom: 12px;
 
-.register-group label {
-  font-weight: 500;
-  margin-bottom: 5px;
-  font-size: 14px;
-}
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #444;
+    font-size: 13px;
+  }
 
-.register-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
+  input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-size: 13px;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+    background: white;
+    outline: none;
+  }
 }
 
 .register-button {
-  width: 100%;
   padding: 10px;
-  background: #000;
-  color: #fff;
+  border-radius: 8px;
+  background: linear-gradient(to right, #007bff, #00c6ff);
   border: none;
-  cursor: pointer;
+  color: white;
+  font-weight: 600;
   font-size: 14px;
-  margin-top: 10px;
-  border-radius: 4px;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
+  margin-top: 8px;
 }
 
 .register-button:hover {
-  background: #333;
+  background: linear-gradient(to right, #0056b3, #009edc);
 }
 
-/* ====== FOOTER ====== */
+.register-options {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #444;
+}
+
+.register-options-inicio {
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-options-inicio:hover {
+  color: #0056b3;
+}
+
 .pie-pagina {
   width: 100%;
   background: rgba(255, 255, 255, 0.9);
   color: #000;
-  padding: 15px 0;
+  padding: 12px 0;
   text-align: center;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 12px;
-  margin-top: 130px;
+  margin-top: 90px;
+  font-size: 11px;
 }
 
 .contenedor-pie {
   display: flex;
   justify-content: space-between;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
   flex-wrap: wrap;
-  align-items: center;
-  padding: 5px 0;
 }
 
 .seccion-pie {
   width: 22%;
-  padding: 3px;
   text-align: center;
 }
 
 .iconos-redes {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .iconos-redes a img {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
-/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  .contenido-principal {
-    min-height: 75vh;
-  }
-
-  .register-container {
-    width: 80%;
-    flex-direction: column;
-    padding: 15px;
-  }
-
-  .register-image {
-    width: 100%;
-    background: gray;
-    padding: 15px 0;
-  }
-
-  .register-form {
-    width: 100%;
+  .register-form-container {
+    width: 90%;
     padding: 20px;
-  }
-
-  .register-group {
-    width: 100%;
-  }
-
-  .register-title {
-    font-size: 20px;
-  }
-
-  .register-button {
-    font-size: 14px;
-    padding: 8px;
   }
 
   .pie-pagina {
     font-size: 10px;
-    padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 50px;
   }
 
   .seccion-pie {
     width: 100%;
-    text-align: center;
-    padding: 2px 0;
-  }
-
-  .iconos-redes {
-    gap: 10px;
-  }
-
-  .iconos-redes a img {
-    width: 16px;
-    height: 16px;
+    padding: 5px 0;
   }
 }

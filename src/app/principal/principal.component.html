@@ -12,6 +12,7 @@
   <body>
     <div class="fondo-desenfocado"></div>
     <div class="superposicion-fondo"></div>
+
     <header class="encabezado">
       <div class="logo-usuario">
         <img src="img/carrito.png" alt="Carrito" class="icono-carrito" />
@@ -23,12 +24,13 @@
     </header>
 
     <main class="contenido-principal">
-      <div class="login-container">
-        <div class="login-image">
+      <div class="login-container shadow-lg">
+        <div class="login-image d-none d-md-flex">
           <img src="img/carrito.png" alt="Carrito de compras" />
         </div>
         <div class="login-form">
-          <h2 class="login-title">Iniciar Sesión</h2>
+          <h2 class="login-title">Bienvenido de nuevo</h2>
+          <p class="login-subtitle">Inicia sesión para disfrutar ventajas!</p>
           <form (ngSubmit)="onLogin()" #loginForm="ngForm">
             <div class="login-group">
               <label for="usuario">Usuario</label>
@@ -37,7 +39,7 @@
                 id="usuario"
                 name="usuario"
                 class="campo"
-                placeholder="Ingrese su usuario"
+                placeholder="ej. juan123"
                 [(ngModel)]="loginData.usuario"
                 required
               />
@@ -49,20 +51,23 @@
                 id="password"
                 name="password"
                 class="campo"
-                placeholder="Ingrese su contraseña"
+                placeholder="****"
                 [(ngModel)]="loginData.password"
                 required
               />
             </div>
             <button type="submit" class="login-button">Ingresar</button>
           </form>
+
           <div *ngIf="errorMessages.length > 0" class="error-popup">
             <ul>
               <li *ngFor="let msg of errorMessages">{{ msg }}</li>
             </ul>
           </div>
+
           <div class="login-options">
-            <p>¿No tienes cuenta? <a routerLink="/register" class="register-click">Regístrate</a></p>
+            ¿No tienes cuenta?
+            <a href="/register" class="register-click">Regístrate aquí</a>
           </div>
         </div>
       </div>
@@ -74,7 +79,6 @@
           <h4 class="titulo-pie">Sobre Nosotros</h4>
           <ul class="lista-pie">
             <li><a href="#">Quiénes somos</a></li>
-
           </ul>
         </div>
         <div class="seccion-pie">
@@ -96,8 +100,7 @@
           <h4 class="titulo-pie">Contacto</h4>
           <p class="contacto-pie">Teléfono: +34 0000000000</p>
           <p class="contacto-pie">
-            Email:
-            <a href="mailto:clickshop@gmail.com">clickshop&#64;gmail.com</a>
+            Email: <a href="mailto:clickshopgmail.com">clickshopgmail.com</a>
           </p>
         </div>
       </div>
