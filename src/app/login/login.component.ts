@@ -5,13 +5,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth-service.service';
 
 @Component({
-  selector: 'app-principal',
+  selector: 'app-login',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.scss']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class PrincipalComponent {
+export class LoginComponent {
   loginData = {
     usuario: '',
     password: ''
