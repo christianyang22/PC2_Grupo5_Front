@@ -1,1 +1,67 @@
-<p>admin-panel works!</p>
+<header>
+    <div class="contenedor">
+      <nav class="barra navegacion">
+        <div class="contenedor_fluid">
+          <img src="img/carrito.png" alt="carrito" width="30" height="30" class="margen_derecho" />
+          <a class="marca" routerLink="/home">Click&Shop</a>
+          <div class="colapsar" id="menu">
+            <ul class="lista_navegacion">
+              <li class="elemento_navegacion"><a class="enlace_navegacion" routerLink="/home">Inicio</a></li>
+  
+              <li *ngIf="rolUsuario === 1" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/admin-panel">Panel Admin</a>
+              </li>
+  
+              <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
+                <button class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+              </li>
+  
+              <li *ngIf="!usuarioAutenticado" class="elemento_navegacion">
+                <a class="enlace_navegacion" routerLink="/login">Iniciar Sesión</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="contenido-admin">
+    <h1>Bienvenido al Panel de Administración</h1>
+    <p>Desde aquí podrás gestionar usuarios, productos y más funciones del sistema.</p>
+  </main>
+  
+  <footer class="pie-pagina">
+    <div class="contenedor-pie">
+      <div class="seccion-pie">
+        <h4 class="titulo-pie">Sobre Nosotros</h4>
+        <ul class="lista-pie">
+          <li><a href="#">Quiénes somos</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="seccion-pie">
+        <h4 class="titulo-pie">Ayuda</h4>
+        <ul class="lista-pie">
+          <li><a href="#">Preguntas frecuentes</a></li>
+          <li><a href="#">Soporte</a></li>
+        </ul>
+      </div>
+      <div class="seccion-pie">
+        <h4 class="titulo-pie">Redes Sociales</h4>
+        <div class="iconos-redes">
+          <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
+          <a href="#"><img src="img/x.png" alt="Twitter" /></a>
+          <a href="#"><img src="img/instagram.png" alt="Instagram" /></a>
+        </div>
+      </div>
+      <div class="seccion-pie">
+        <h4 class="titulo-pie">Contacto</h4>
+        <p class="contacto-pie">Teléfono: +34 0000000000</p>
+        <p class="contacto-pie">Email: <a href="mailto:clickshop@gmail.com">clickshopgmail.com</a></p>
+      </div>
+    </div>
+    <div class="pie-inferior">
+      <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
+    </div>
+  </footer>  
