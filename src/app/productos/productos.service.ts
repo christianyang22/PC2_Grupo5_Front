@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface Producto {
@@ -19,6 +19,12 @@ export class ProductosService {
   constructor(private http: HttpClient) {}
 
   obtenerProductos(page: number = 1): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?page=${page}`);
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.apiUrl}?page=${page}`, { headers });
   }
 }

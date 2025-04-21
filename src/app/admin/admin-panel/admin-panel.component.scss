@@ -1,0 +1,150 @@
+header {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contenedor {
+    width: 100%;
+    padding: 10px 20px;
+  }
+  
+  .barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+  
+  .contenedor_fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .margen_derecho {
+    margin-right: 10px;
+  }
+  
+  .marca {
+    margin-right: auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+  }
+  
+  .lista_navegacion {
+    display: flex;
+    list-style: none;
+  }
+  
+  .elemento_navegacion {
+    margin: 0 10px;
+  }
+  
+  .enlace_navegacion {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .enlace_navegacion:hover {
+    color: #007bff;
+  }
+  
+  .enlace_navegacion.cerrar-sesion {
+    color: #dc3545;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .enlace_navegacion.cerrar-sesion:hover {
+    color: #a71d2a;
+  }
+  
+  .contenido-admin {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    min-height: 70vh;
+  }
+  
+  .contenido-admin h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .contenido-admin p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  /* Footer reutilizado */
+  .pie-pagina {
+    width: 100%;
+    background: white;
+    padding: 30px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    margin-top: 50px;
+  }
+  
+  .contenedor-pie {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: auto;
+    flex-wrap: wrap;
+  }
+  
+  .seccion-pie {
+    width: 25%;
+    padding: 10px;
+  }
+  
+  .titulo-pie {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .lista-pie li {
+    margin-bottom: 5px;
+  }
+  
+  .lista-pie li a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s ease;
+  }
+  
+  .lista-pie li a:hover {
+    color: #007bff;
+  }
+  
+  .iconos-redes {
+    display: flex;
+    gap: 25px;
+  }
+  
+  .iconos-redes a img {
+    width: 28px;
+    height: 28px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .iconos-redes a img:hover {
+    opacity: 0.7;
+  }
+  
+  .pie-inferior {
+    text-align: center;
+    margin-top: 15px;
+    opacity: 0.7;
+  }
+  
