@@ -6,8 +6,8 @@ body {
   background: url("/img/1.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: 'Arial', sans-serif;
-  height: 100%; 
-  overflow-x: hidden; 
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .fondo-desenfocado::before {
@@ -24,17 +24,17 @@ body {
 }
 
 .encabezado {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; 
-  background: rgba(255, 255, 255, 0.85); 
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  z-index: 1000; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .logo-usuario {
@@ -56,7 +56,7 @@ body {
 }
 
 .contenido-principal-principal {
-  padding-top: 120px; 
+  padding-top: 120px;
   text-align: center;
   min-height: 65vh;
 }
@@ -93,12 +93,17 @@ body {
   width: 100%;
   padding: 20px 0;
   margin-bottom: 40px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
 }
 
 .carrusel-track {
   display: flex;
-  animation: slide-left 40s linear infinite;
   gap: 16px;
+  transition: transform 0.6s ease-in-out;
 }
 
 .carrusel-item {
@@ -110,6 +115,33 @@ body {
   text-align: center;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInRight 0.6s ease forwards;
+}
+
+.carrusel-item.fade-out {
+  animation: slideOutLeft 0.6s ease forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 
 .carrusel-item:hover {
@@ -138,19 +170,6 @@ body {
   font-size: 1rem;
   color: #444;
   margin-top: 4px;
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.carrusel-productos:hover .carrusel-track {
-  animation-play-state: paused;
 }
 
 .pie-pagina {
@@ -250,7 +269,7 @@ body {
   .carrusel-item {
     width: 160px;
   }
-  
+
   .logo-usuario {
     flex-direction: column;
     align-items: center;

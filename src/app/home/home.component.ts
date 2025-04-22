@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
 import { HomeService } from './home.service';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-principal',
@@ -9,9 +10,13 @@ import { HomeService } from './home.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
 
+
+export class HomeComponent implements OnInit, OnDestroy {
+  todosLosProductos: any[] = [];
   productosCarrusel: any[] = [];
+  animando: boolean = false;
+  private intervalSub?: Subscription;
 
   constructor(private productosService: HomeService) {}
 
@@ -19,23 +24,44 @@ export class HomeComponent implements OnInit {
     this.cargarProductosParaCarrusel();
   }
 
+  ngOnDestroy(): void {
+    this.intervalSub?.unsubscribe();
+  }
+
   cargarProductosParaCarrusel() {
     this.productosService.obtenerProductos(1).subscribe({
       next: (data: any) => {
-        console.log("Productos del carrusel:", data);
-
         if (data && data.data && Array.isArray(data.data)) {
-          const mezclados = data.data.sort(() => Math.random() - 0.5);
-          this.productosCarrusel = mezclados.slice(0, 10);
+          this.todosLosProductos = data.data;
+          this.actualizarCarrusel();
+
+          this.intervalSub = interval(5000).subscribe(() => {
+            this.iniciarAnimacion();
+          });
         } else {
-          console.warn('No se han encontrado productos válidos.');
-          this.productosCarrusel = []; 
+          this.productosCarrusel = [];
         }
       },
       error: (err) => {
-        console.error('❌ Error al cargar productos del carrusel:', err);
-        this.productosCarrusel = []; 
+        console.error('❌ Error:', err);
+        this.productosCarrusel = [];
       }
     });
+  }
+
+  iniciarAnimacion() {
+    this.animando = true;
+
+    setTimeout(() => {
+      this.actualizarCarrusel();
+      this.animando = false;
+    }, 600); // Tiempo de duración
+  }
+
+  actualizarCarrusel() {
+    const copia = [...this.todosLosProductos];
+    const mezclados = copia.sort(() => Math.random() - 0.5);
+    const cantidad = Math.floor(Math.random() * 2) + 3;
+    this.productosCarrusel = mezclados.slice(0, cantidad);
   }
 }
