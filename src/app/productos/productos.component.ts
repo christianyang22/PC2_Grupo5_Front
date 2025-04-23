@@ -45,29 +45,27 @@ export class ProductosComponent implements OnInit {
   ngOnInit(): void {
     this.verificarSesion();
   }
-
+  
   verificarSesion() {
     const token = this.authService.getToken();
     this.usuarioAutenticado = !!token;
   
-    this.authService.getUser().subscribe(user => {
-      if (!user) {
-        this.router.navigate(['/principal']);
-      } else {
-        this.rolUsuario = user.rol;
-        this.cargarProductos();
+    const user = this.authService.getUser();
+  
+    user.subscribe(data => {
+      if (data) {
+        this.rolUsuario = data.rol;
       }
+      this.cargarProductos();
     });
   }
   
-
   cerrarSesion() {
     this.authService.logout();
     this.usuarioAutenticado = false;
     this.rolUsuario = null;
   }
   
-
   cargarProductos() {
     this.productos = []; 
     this.productosFiltrados = [];
@@ -96,9 +94,6 @@ export class ProductosComponent implements OnInit {
     });
   }
   
-  
-  
-  
   buscar(event?: Event) {
     if (event) {
       event.preventDefault();
@@ -116,15 +111,12 @@ export class ProductosComponent implements OnInit {
       this.productosFiltrados = [...this.productos]; 
     }
   
-    console.log("✅ Resultados encontrados:", this.productosFiltrados.length);
+    console.log("Resultados encontrados:", this.productosFiltrados.length);
   
     this.currentPage = 1;
     this.actualizarPaginacion();
   }
   
-  
-  
-
   actualizarPaginacion() {
     this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);
   }
@@ -145,7 +137,5 @@ export class ProductosComponent implements OnInit {
       this.currentPage--;
     }
   }
-  
-  
 }
  

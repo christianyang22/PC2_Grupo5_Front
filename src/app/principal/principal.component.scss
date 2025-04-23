@@ -35,19 +35,32 @@ body::before {
 .logo-usuario {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 10px;
 }
 
-.icono-carrito {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+.logo-usuario img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-usuario .titulo {
+  margin: 0;
+  font-size: 24px;
 }
 
 .titulo {
   font-size: 1.5rem;
-  color: #333;
+  color: #007bff;
   font-weight: bold;
   margin: 0;
+}
+
+.icono-carrito {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
 }
 
 .navegacion a {

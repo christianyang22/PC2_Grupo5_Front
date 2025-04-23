@@ -13,7 +13,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'productos', component: ProductosComponent, canActivate: [ClienteGuard] },
+  { path: 'productos', component: ProductosComponent},
   { path: 'supermercados', component: SupermercadosComponent },
   { path: 'register', component: RegisterComponent },
   // Ruta solo visible para admins (ejemplo)

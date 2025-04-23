@@ -19,21 +19,41 @@ body {
   z-index: 1000;
 }
 
+.logo-usuario {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 10px;
+}
+
+.logo-usuario img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-usuario .titulo {
+  margin: 0;
+  font-size: 24px;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  color: #007bff;
+  font-weight: bold;
+  margin: 0;
+}
+
 .icono-carrito {
-  width: 40px;
-  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
 }
 
 .icono-login {
   width: 30px;
   height: 30px;
   cursor: pointer;
-}
-
-.titulo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #007bff;
 }
 
 .fondo-desenfocado,

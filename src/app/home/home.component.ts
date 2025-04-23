@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       },
       error: (err) => {
-        console.error('❌ Error:', err);
+        console.error('Error:', err);
         this.productosCarrusel = [];
       }
     });
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.actualizarCarrusel();
       this.animando = false;
-    }, 600); // Tiempo de duración
+    }, 600);
   }
 
   actualizarCarrusel() {
