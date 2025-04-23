@@ -7,11 +7,11 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .contenedor {
-  flex: 1 0 auto; 
+  flex: 1 0 auto;
   padding: 20px;
 }
 
@@ -79,7 +79,6 @@ body::before {
 .fila_supermercados {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 30px;
   margin-top: 50px;
@@ -87,18 +86,41 @@ body::before {
 }
 
 .columna_supermercado {
-  flex: 1 1 30%;
-  max-width: 30%; 
-  min-width: 160px; 
-  height: 140px; 
-  background-color: rgba(255, 255, 255, 0.85);
+  flex: 1 1 220px;
+  max-width: 220px;
+  min-width: 180px;
+  height: 260px;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 20px 10px;
+  text-align: center;
   transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.columna_supermercado p {
+  margin: 0;
+  padding: 0 5px;
+  word-wrap: break-word;
+}
+
+.columna_supermercado:nth-child(-n+3) {
+  flex: 1 1 25%;
+  max-width: 25%;
+}
+
+.columna_supermercado:nth-child(n+4) {
+  flex: 1 1 25%;
+  max-width: 25%;
 }
 
 .columna_supermercado:hover {
@@ -106,23 +128,45 @@ body::before {
   cursor: pointer;
 }
 
+.carrefour {
+  border: 3px solid #0078C4;
+}
+
+.amazon {
+  border: 3px solid #00B373;
+}
+
+.alcampo {
+  border: 3px solid #E30613;
+}
+
+.mercadona {
+  border: 3px solid #007E33;
+}
+
+.dia {
+  border: 3px solid #E30613;
+}
+
 .logo_supermercado {
+  max-height: 100px;
   max-width: 100%;
-  max-height: 90px;
   object-fit: contain;
-  display: block;
+  margin-top: 25px;
+  margin-bottom: 55px;
 }
 
 .pie-pagina {
-  flex-shrink: 0;
+  width: 100%;
   background: rgba(255, 255, 255, 0.9);
   color: #000;
+  padding: 20px 0;
+  margin-top: 130px;
   text-align: center;
-  padding: 20px 20px 10px;
-  width: 100%;
-  font-size: 0.8rem;
+  position: relative;
+  bottom: 0;
+  left: 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  margin-top: auto;
 }
 
 .contenedor-pie {
@@ -134,19 +178,24 @@ body::before {
 }
 
 .seccion-pie {
-  width: 22%;
-  min-width: 150px;
-  padding: 5px;
+  width: 25%;
+  padding: 10px;
   text-align: left;
 }
 
 .titulo-pie {
-  font-size: 1rem;
-  margin-bottom: 5px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.lista-pie {
+  list-style: none;
+  padding: 0;
 }
 
 .lista-pie li {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .lista-pie li a {
@@ -183,13 +232,19 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  .contenedor-pie {
-    flex-direction: column;
-    align-items: center;
+  .fila_supermercados {
+    gap: 20px;
   }
-  .seccion-pie {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 15px;
+
+  .columna_supermercado {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .columna_supermercado {
+    flex: 1 1 90%;
+    max-width: 90%;
   }
 }
