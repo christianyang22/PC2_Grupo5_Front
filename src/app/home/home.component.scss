@@ -82,7 +82,7 @@ body {
 
 .titulo {
   font-size: 1.5rem;
-  color: #007bff;
+  color: black;
   font-weight: bold;
   margin: 0;
 }
@@ -186,7 +186,8 @@ body {
 
   h3 {
     font-size: 1.8rem;
-    color: #007bff;
+    font-weight: bold;
+    color: black;
     margin-bottom: 30px;
   }
 
@@ -226,8 +227,8 @@ body {
 /* FOOTER */
 
 .pie-pagina {
-  background-color: rgba(34, 34, 34, 0.9);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: black;
   font-size: 0.9rem;
   padding: 40px 20px;
   margin-top: auto;
@@ -251,12 +252,12 @@ body {
 }
 
 .lista-pie li a {
-  color: #ccc;
+  color: black;
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
-    color: white;
+    color: black;
   }
 }
 
