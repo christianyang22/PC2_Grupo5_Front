@@ -1,11 +1,59 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
 
-body {
-  font-family: 'Segoe UI', sans-serif;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
 }
+
+body {
+  position: relative;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.fondo-desenfocado {
+  background: url('/img/1.jpg') center/cover no-repeat;
+  filter: blur(0px); // <--- Menos desenfoque
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.superposicion-fondo {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+/* CONTENIDO */
+
+.contenido-principal-principal {
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* HEADER */
 
 .encabezado {
   background-color: #fff;
@@ -32,22 +80,11 @@ body {
   height: 50px;
 }
 
-.logo-usuario .titulo {
-  margin: 0;
-  font-size: 24px;
-}
-
 .titulo {
   font-size: 1.5rem;
   color: #007bff;
   font-weight: bold;
   margin: 0;
-}
-
-.icono-carrito {
-  width: 36px;
-  height: 36px;
-  margin-right: 8px;
 }
 
 .icono-login {
@@ -56,173 +93,144 @@ body {
   cursor: pointer;
 }
 
-.fondo-desenfocado,
-.superposicion-fondo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-}
+/* TARJETAS */
 
-.fondo-desenfocado {
-  background: url('/img/fondoverduras.jpg') center/cover no-repeat;
-  filter: blur(10px);
-}
-
-.superposicion-fondo {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.fondo-transparente {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px;
+.bienvenida,
+.carrusel-productos,
+.beneficios-cards {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 50px 30px;
   border-radius: 20px;
-  max-width: 800px;
-  margin: 30px auto;
-  color: #333;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.bienvenida {
   text-align: center;
-}
 
-.descripcion {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+  }
 
-.lema {
-  font-style: italic;
-  font-weight: 600;
-  color: #007bff;
-  margin-bottom: 20px;
-}
+  p {
+    font-size: 1.1rem;
+    color: #444;
+    margin: 15px 0;
+  }
 
-.btn-productos {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
+  .btn-destacado {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
 
-.btn-productos:hover {
-  background-color: #218838;
+    &:hover {
+      background-color: #218838;
+    }
+  }
 }
 
 .carrusel-productos {
-  margin: 40px auto;
-  padding: 40px 20px;
-  background: url('/img/fondoverduras.jpg') center/cover no-repeat;
-  border-radius: 20px;
+  .seccion-titulo {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #007bff;
+    margin-bottom: 25px;
+  }
+
+  .carrusel-track {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .carrusel-item {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .nombre {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .precio {
+      color: #28a745;
+      font-weight: 600;
+    }
+  }
 }
 
-.carrusel-track {
-  display: flex;
-  overflow-x: auto;
-  gap: 20px;
-  justify-content: center;
-  padding: 10px;
-}
-
-.carrusel-item {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 180px;
-  flex: 0 0 auto;
+.beneficios-cards {
   text-align: center;
+
+  h3 {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 30px;
+  }
+
+  .beneficio-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      width: 200px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
+
+      i {
+        font-size: 2rem;
+        color: #28a745;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #333;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
 }
 
-.carrusel-item img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.nombre {
-  font-weight: bold;
-}
-
-.precio {
-  color: #28a745;
-}
-
-.seccion-lateral {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  gap: 30px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.seccion-invertida {
-  flex-direction: row-reverse;
-}
-
-.seccion-lateral img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 10px;
-}
-
-.titulo-seccion {
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-
-.descripcion-seccion,
-.lista-consejos li {
-  font-size: 1rem;
-  color: #555;
-}
-
-.seccion-beneficio-extra {
-  background: #fff;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.titulo-extra {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.texto-extra {
-  font-size: 1rem;
-  color: #444;
-  margin-bottom: 30px;
-}
-
-.iconos-extra {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.iconos-extra div {
-  text-align: center;
-  max-width: 120px;
-}
-
-.iconos-extra img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-}
+/* FOOTER */
 
 .pie-pagina {
-  background: #222;
+  background-color: rgba(34, 34, 34, 0.9);
   color: white;
-  padding: 40px 20px;
   font-size: 0.9rem;
+  padding: 40px 20px;
+  margin-top: auto;
 }
 
 .contenedor-pie {
@@ -245,11 +253,11 @@ body {
 .lista-pie li a {
   color: #ccc;
   text-decoration: none;
-}
 
-.lista-pie li a:hover {
-  text-decoration: underline;
-  color: white;
+  &:hover {
+    text-decoration: underline;
+    color: white;
+  }
 }
 
 .iconos-redes img {
@@ -264,18 +272,24 @@ body {
   font-size: 0.8rem;
 }
 
+/* RESPONSIVE */
+
 @media (max-width: 768px) {
-  .contenido-principal-principal,
-  .seccion-lateral {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .seccion-lateral img {
-    max-width: 100%;
-  }
-
-  .fondo-transparente {
+  .contenido-principal-principal {
     padding: 20px;
+  }
+
+  .carrusel-track {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carrusel-item {
+    width: 90%;
+  }
+
+  .beneficio-cards {
+    flex-direction: column;
+    align-items: center;
   }
 }

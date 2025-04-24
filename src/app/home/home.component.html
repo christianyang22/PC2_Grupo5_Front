@@ -1,141 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Click&Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
   <div class="fondo-desenfocado"></div>
   <div class="superposicion-fondo"></div>
 
-  <header class="encabezado">
-    <div class="logo-usuario">
-      <a href="/home" class="logo-usuario">
-        <img src="img/carrito.png" alt="carro" />
-        <h1 class="titulo">Click&Shop</h1>
-      </a>
-    </div>
-    <nav class="navegacion">
-      <a href="/login">
-        <img src="img/profile.png" alt="Login" class="icono-login" />
-      </a>
-    </nav>
-  </header>
+  <div class="contenido-global">
+    <header class="encabezado">
+      <div class="logo-usuario">
+        <a href="/home" class="logo-usuario">
+          <img src="img/carrito.png" alt="carro" />
+          <h1 class="titulo">Click&Shop</h1>
+        </a>
+      </div>
+      <nav class="navegacion">
+        <a href="/login">
+          <img src="img/profile.png" alt="Login" class="icono-login" />
+        </a>
+      </nav>
+    </header>
 
-  <main class="contenido-principal-principal">
-    <div class="fondo-transparente">
-      <section class="info-principal">
-        <p class="descripcion">
-          Simplifica tus compras con comparación de precios, filtros por supermercado,
-          información nutricional y recomendaciones personalizadas.
-        </p>
-        <p class="lema">
-          "De la lista a la mesa con tan sólo un click"
-        </p>
-        <div class="buscador mt-4">
-          <a href="/productos">
-            <button class="btn-productos">Productos</button>
-          </a>
+    <main class="contenido-principal-principal">
+      <section class="bienvenida">
+        <h2>¡Bienvenido a tu comparador de compras favorito!</h2>
+        <p>Encuentra productos, compáralos, descubre ofertas y mucho más.</p>
+        <a href="/productos" class="btn-destacado">Explorar productos</a>
+      </section>
+
+      <section class="carrusel-productos" *ngIf="productosCarrusel.length > 0">
+        <h3 class="seccion-titulo">Productos destacados</h3>
+        <div class="carrusel-track">
+          <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
+            <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}">
+            <p class="nombre">{{ producto.nombre }}</p>
+            <p class="precio">{{ producto.precio }} €</p>
+          </div>
         </div>
       </section>
-    </div>
 
-    <section class="carrusel-productos seccion-carrusel-fondo" *ngIf="productosCarrusel.length > 0">
-      <div class="carrusel-track">
-        <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
-          <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}">
-          <p class="nombre">{{ producto.nombre }}</p>
-          <p class="precio">{{ producto.precio }} €</p>
+      <section class="beneficios-cards">
+        <h3>¿Por qué usar Click&Shop?</h3>
+        <div class="beneficio-cards">
+          <div class="card">
+            <i class="fas fa-clock"></i>
+            <p>Ahorra tiempo en cada compra</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-euro-sign"></i>
+            <p>Compara precios y ahorra</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-heart"></i>
+            <p>Recomendaciones personalizadas</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-shopping-basket"></i>
+            <p>Todo tu súper en un solo lugar</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Sobre Nosotros</h4>
+          <ul class="lista-pie">
+            <li><a href="#">Quiénes somos</a></li>
+          </ul>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Ayuda</h4>
+          <ul class="lista-pie">
+            <li><a href="#">Preguntas frecuentes</a></li>
+            <li><a href="#">Soporte</a></li>
+          </ul>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Redes Sociales</h4>
+          <div class="iconos-redes">
+            <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="img/x.png" alt="Twitter" /></a>
+            <a href="#"><img src="img/instagram.png" alt="Instagram" /></a>
+          </div>
+        </div>
+        <div class="seccion-pie">
+          <h4 class="titulo-pie">Contacto</h4>
+          <p class="contacto-pie">Teléfono: +34 0000000000</p>
+          <p class="contacto-pie">Email: <a href="mailto:clickshopgmail.com">clickshopgmail.com</a></p>
         </div>
       </div>
-    </section>
-  </main>
-
-  <section class="seccion-lateral espaciado-seccion">
-    <div class="contenido-lateral">
-      <h3 class="titulo-seccion">Compara online</h3>
-      <p class="descripcion-seccion">
-        Encuentra los mejores precios de tus productos favoritos en un sólo lugar.
-      </p>
-    </div>
-    <div class="imagen-lateral">
-      <img src="img/comparar-precios.jpg" alt="comparar" />
-    </div>
-  </section>
-
-  <section class="seccion-lateral espaciado-seccion seccion-invertida">
-    <div class="imagen-lateral">
-      <img src="img/compra-inteligente.jpg" alt="Compra inteligente" />
-    </div>
-    <div class="contenido-lateral">
-      <h3 class="titulo-seccion">Consejos para comprar inteligentemente</h3>
-      <ul class="lista-consejos">
-        <li>Ahorro de dinero al encontrar el mejor precio disponible.</li>
-        <li>Ahorro de tiempo al evitar visitar múltiples sitios.</li>
-        <li>Acceso a reseñas y calificaciones de productos.</li>
-        <li>Información clara sobre costos de envío y disponibilidad.</li>
-        <li>Posibilidad de configurar alertas de precio.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="seccion-beneficio-extra">
-    <div class="contenido-extra">
-      <h3 class="titulo-extra">¿Por qué elegirnos?</h3>
-      <p class="texto-extra">Miles de usuarios ahorran con Click&Shop cada día. Sé parte de la revolución de las compras inteligentes.</p>
-      <div class="iconos-extra">
-        <div>
-          <img src="img/rapido.png" alt="Rápido" />
-          <p>Rápido y fácil</p>
-        </div>
-        <div>
-          <img src="img/ahorro.png" alt="Ahorro" />
-          <p>Grandes ahorros</p>
-        </div>
-        <div>
-          <img src="img/seguro.png" alt="Seguro" />
-          <p>Compra segura</p>
-        </div>
+      <div class="pie-inferior">
+        <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
       </div>
-    </div>
-  </section>
-
-  <footer class="pie-pagina">
-    <div class="contenedor-pie">
-      <div class="seccion-pie">
-        <h4 class="titulo-pie">Sobre Nosotros</h4>
-        <ul class="lista-pie">
-          <li><a href="#">Quiénes somos</a></li>
-        </ul>
-      </div>
-      <div class="seccion-pie">
-        <h4 class="titulo-pie">Ayuda</h4>
-        <ul class="lista-pie">
-          <li><a href="#">Preguntas frecuentes</a></li>
-          <li><a href="#">Soporte</a></li>
-        </ul>
-      </div>
-      <div class="seccion-pie">
-        <h4 class="titulo-pie">Redes Sociales</h4>
-        <div class="iconos-redes">
-          <a href="#"><img src="img/facebook.png" alt="Facebook" /></a>
-          <a href="#"><img src="img/x.png" alt="Twitter" /></a>
-          <a href="#"><img src="img/instagram.png" alt="Instagram" /></a>
-        </div>
-      </div>
-      <div class="seccion-pie">
-        <h4 class="titulo-pie">Contacto</h4>
-        <p class="contacto-pie">Teléfono: +34 0000000000</p>
-        <p class="contacto-pie">Email: <a href="mailto:clickshopgmail.com">clickshopgmail.com</a></p>
-      </div>
-    </div>
-    <div class="pie-inferior">
-      <p>&copy; 2024 Click&Shop. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+    </footer>
+  </div>
 </body>
-
 </html>
