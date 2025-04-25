@@ -41,6 +41,23 @@ body {
   z-index: -1;
 }
 
+.login-registro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+#texto-login {
+  margin: 4px 0 0 0;
+  font-weight: bold;
+  font-size: 0.9rem; 
+}
+
+
+
+
 /* CONTENIDO */
 
 .contenido-principal-principal {
@@ -112,12 +129,12 @@ body {
   h2 {
     font-size: 2rem;
     font-weight: bold;
-    color: #222;
+    color: black;
   }
 
   p {
     font-size: 1.1rem;
-    color: #444;
+    color: black;
     margin: 15px 0;
   }
 
@@ -143,10 +160,16 @@ body {
 .carrusel-productos {
   .seccion-titulo {
     text-align: center;
+    font-weight: bold;
     font-size: 1.6rem;
-    color: #007bff;
+    color: black;
     margin-bottom: 25px;
   }
+
+  .parrafo-carrusel {
+    text-align: center;
+  }
+  
 
   .carrusel-track {
     display: flex;
@@ -154,7 +177,6 @@ body {
     flex-wrap: wrap;
     gap: 20px;
   }
-
   .carrusel-item {
     background: white;
     padding: 15px;
@@ -162,23 +184,39 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 200px;
     text-align: center;
-
+    height: 320px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
     img {
       width: 100%;
+      height: 160px; 
+      object-fit: contain; 
       border-radius: 8px;
       margin-bottom: 10px;
     }
-
+    
     .nombre {
+      font-weight: normal;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 0.85rem; 
+      min-height: 36px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.2;
     }
-
+    
+  
     .precio {
       color: #28a745;
       font-weight: 600;
+      margin-top: 10px;
     }
   }
+  
 }
 
 .beneficios-cards {
@@ -214,7 +252,7 @@ body {
 
       p {
         font-size: 1rem;
-        color: #333;
+        color: black;
       }
 
       &:hover {

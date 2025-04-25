@@ -19,7 +19,8 @@
         </a>
       </div>
       <nav class="navegacion">
-        <a href="/login">
+        <a href="/login" class="login-registro">
+          <p id="texto-login">Login / Registro</p>
           <img src="img/profile.png" alt="Login" class="icono-login" />
         </a>
       </nav>
@@ -29,11 +30,13 @@
       <section class="bienvenida">
         <h2>¡Bienvenido a tu comparador de compras favorito!</h2>
         <p>Encuentra productos, compáralos, descubre ofertas y mucho más.</p>
+        <p>¡Regístrate gratis y empieza a ahorrar desde hoy!</p>
         <a href="/productos" class="btn-destacado">Explorar productos</a>
       </section>
 
       <section class="carrusel-productos" *ngIf="productosCarrusel.length > 0">
         <h3 class="seccion-titulo">Productos destacados</h3>
+        <p class="parrafo-carrusel">Descubre algunos de los productos catalogados de los distintos supermercados con los que trabajamos</p>
         <div class="carrusel-track">
           <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
             <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}">

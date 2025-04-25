@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   actualizarCarrusel() {
     const copia = [...this.todosLosProductos];
     const mezclados = copia.sort(() => Math.random() - 0.5);
-    const cantidad = Math.floor(Math.random() * 2) + 3;
+    const cantidad = 4;
     this.productosCarrusel = mezclados.slice(0, cantidad);
   }
 }
