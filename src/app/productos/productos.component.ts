@@ -116,6 +116,12 @@ export class ProductosComponent implements OnInit {
     this.currentPage = 1;
     this.actualizarPaginacion();
   }
+  limpiarBusqueda(): void {
+    this.terminoBusqueda = '';
+    this.productosFiltrados = [...this.productos];
+    this.currentPage = 1;
+    this.actualizarPaginacion();
+  }
   
   actualizarPaginacion() {
     this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);

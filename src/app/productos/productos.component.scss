@@ -156,12 +156,13 @@ main {
 }
 
 .paginacion {
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 30px;
-}
+    gap: 1rem;
+    position: relative;
+    z-index: 1; 
+  }
 
 .paginacion button {
     padding: 8px 16px;
@@ -243,7 +244,43 @@ main {
     margin-top: 15px;
     opacity: 0.7;
 }
+:host {
+    display: block;
+    min-height: 100vh;          
+    background: url('img/fondo-productos.webp') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  
+  .cuadrícula-productos {
+    background: url('/assets/fondo-productos.webp') no-repeat center center;
+    background-size: cover;
+    padding: 2rem;            
+  }
 
+.spinner-heading {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    width: 4rem;
+    height: 4rem;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .spinner-gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4rem;
+    height: 4rem;
+  }
+  
 @media (max-width: 768px) {
     .contenedor-pie {
         flex-direction: column;

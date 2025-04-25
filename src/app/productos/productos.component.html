@@ -60,31 +60,50 @@
       placeholder="Escribe tu búsqueda aquí..."
       [(ngModel)]="terminoBusqueda">
     <button class="boton-buscar" (click)="buscar()">Buscar</button>
+    <button class="boton-buscar" (click)="limpiarBusqueda()">Limpiar</button>
   </div>
   
   <p *ngIf="terminoBusqueda">Buscando: "{{ terminoBusqueda }}"</p>
   
-  
-  <section class="cuadrícula-productos">
-    <div *ngIf="productosFiltrados.length === 0">No se encontraron productos.</div>
-  
-    <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
-      <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" 
-           alt="{{ producto.nombre }}" 
-           width="150">
-      <h3>{{ producto.nombre }}</h3>
-      <p>Supermercado: {{ producto.supermercado }}</p>
-      <p>Precio: {{ producto.precio }} €</p>
+
+    <section class="cuadrícula-productos position-relative">
+      <div *ngIf="productosFiltrados.length === 0"class="position-fixed top-0 start-0 w-100 vh-100 d-flex justify-content-center align-items-center"
+      style="background-color: rgba(255, 255, 255, 0.5); z-index: 1050;"
+    >
+      <div class="spinner-border text-light" role="status">
+        <h1 class="spinner-heading mb-4">Cargando productos...</h1>
+        <img src="img/spinner.gif" alt="Cargando..." class="spinner-gif" />
+        </div>
     </div>
-  </section>
+      <div
+        *ngFor="let producto of obtenerProductosPaginaActual()"
+        class="tarjeta-producto"
+      >
+        <img
+          [src]="producto.link_imagen || 'assets/placeholder.jpg'"
+          [alt]="producto.nombre"
+          width="150"
+        />
+        <h3>{{ producto.nombre }}</h3>
+        <p>Supermercado: {{ producto.supermercado }}</p>
+        <p>Precio: {{ producto.precio }} €</p>
+      </div>
+    </section>
   
-  <div class="paginacion">
-    <button (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
-    <span>Página {{ currentPage }} de {{ totalPages }}</span>
-    <button (click)="siguientePagina()" [disabled]="currentPage === totalPages">Siguiente</button>
-  </div>
+    <div class="paginacion" *ngIf="productosFiltrados.length != 0">
+      <button (click)="anteriorPagina()" [disabled]="currentPage === 1">
+        Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button
+        (click)="siguientePagina()"
+        [disabled]="currentPage === totalPages"
+      >
+        Siguiente
+      </button>
+    </div>
+  </main>
   
-</main>
 
 <footer class="pie-pagina">
   <div class="contenedor-pie">
