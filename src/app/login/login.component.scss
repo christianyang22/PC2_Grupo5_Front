@@ -79,14 +79,12 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
-  padding-top: 50px;
-  min-height: 65vh;
+  height: 100vh;
 }
 
 .login-container {
   display: flex;
-  width: 600px;
+  width: 400px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   overflow: hidden;
@@ -94,6 +92,9 @@ body::before {
   margin-top: 80px;
   height: auto;
   transition: all 0.3s ease;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-image {
