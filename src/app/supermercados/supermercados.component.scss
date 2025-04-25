@@ -1,37 +1,26 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .contenedor {
   flex: 1 0 auto;
   padding: 20px;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("/img/fondopantalla.jpg") no-repeat center center fixed;
-  background-size: cover;
-  opacity: 0.6;
-  z-index: -3;
+body {
+  position: relative;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
+.enunciado{
 
+  font-weight: bold;
+}
 .barra {
   background-color: #f8f9fa;
   padding: 10px;
+  
 }
+
 
 .contenedor_fluid {
   display: flex;
@@ -64,7 +53,7 @@ body::before {
 
 .titulo {
   font-size: 1.5rem;
-  color: #007bff;
+  color: black;
   font-weight: bold;
   margin: 0;
 }
@@ -178,36 +167,23 @@ body::before {
 }
 
 .pie-pagina {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-  padding: 20px 0;
-  margin-top: 130px;
-  text-align: center;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  color: black;
+  font-size: 0.9rem;
+  padding: 40px 20px;
+  margin-top: auto;
 }
 
 .contenedor-pie {
   display: flex;
-  justify-content: space-between;
-  max-width: 1100px;
-  margin: 0 auto;
   flex-wrap: wrap;
-}
-
-.seccion-pie {
-  width: 25%;
-  padding: 10px;
-  text-align: left;
+  justify-content: space-around;
+  gap: 20px;
 }
 
 .titulo-pie {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .lista-pie {
@@ -215,41 +191,26 @@ body::before {
   padding: 0;
 }
 
-.lista-pie li {
-  margin-bottom: 8px;
-}
-
 .lista-pie li a {
+  color: black;
   text-decoration: none;
-  color: #000;
-  transition: color 0.3s ease;
 }
 
 .lista-pie li a:hover {
-  color: #007bff;
+  text-decoration: underline;
+  color: black;
 }
 
-.contacto-pie {
-  margin: 5px 0;
-}
-
-.iconos-redes {
-  display: flex;
-  gap: 35px;
-}
-
-.iconos-redes a img {
-  width: 20px;
-  height: 20px;
-}
-
-.iconos-redes a img:hover {
-  opacity: 0.7;
+.iconos-redes img {
+  width: 24px;
+  margin-right: 10px;
 }
 
 .pie-inferior {
-  margin-top: 10px;
-  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.6;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
