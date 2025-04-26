@@ -42,22 +42,8 @@ export class ProductosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.checkSessionAndLoadProducts();
+    this.cargarTodosLosProductos();
   }
-  
-  
-  checkSessionAndLoadProducts(): void {
-    const token = this.authService.getToken();
-    this.usuarioAutenticado = !!token;
-    
-    this.authService.getUser().subscribe(user => {
-      if (user) {
-        this.rolUsuario = user.rol;
-      }
-      this.cargarTodosLosProductos();
-    });
-  }
-  
   
   cargarTodosLosProductos(): void {
     this.isLoading = true;
