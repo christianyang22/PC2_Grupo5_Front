@@ -53,20 +53,27 @@
   
 
 <main>
-  <div class="contenedor-busqueda">
+  <div class="contenedor-busqueda" *ngIf="productosFiltrados.length != 0">
     <input 
       type="text"
       class="entrada-busqueda"
       placeholder="Escribe tu búsqueda aquí..."
       [(ngModel)]="terminoBusqueda">
     <button class="boton-buscar" (click)="buscar()">Buscar</button>
+    <button type="button" class="boton-buscar" (click)="limpiarBusqueda()">Limpiar</button>
   </div>
   
   <p *ngIf="terminoBusqueda">Buscando: "{{ terminoBusqueda }}"</p>
   
   
   <section class="cuadrícula-productos">
-    <div *ngIf="productosFiltrados.length === 0">No se encontraron productos.</div>
+    <div *ngIf="productosFiltrados.length === 0">
+      <div class="spinner-content">
+        <div class="spinner-border text-light" role="status"></div>
+        <h1 class="text-white mb-4">Cargando productos...</h1>
+        <img src="img/spinner.gif" alt="Cargando..." />
+      </div>
+    </div>
   
     <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
       <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" 
@@ -78,7 +85,7 @@
     </div>
   </section>
   
-  <div class="paginacion">
+  <div class="paginacion" *ngIf="productosFiltrados.length != 0">
     <button (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
     <span>Página {{ currentPage }} de {{ totalPages }}</span>
     <button (click)="siguientePagina()" [disabled]="currentPage === totalPages">Siguiente</button>

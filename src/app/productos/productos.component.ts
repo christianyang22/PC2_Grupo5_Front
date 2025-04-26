@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth-service.service';
-
+import { forkJoin, of } from 'rxjs';
+import { catchError, map, switchMap, finalize } from 'rxjs/operators';
 
 
 interface Producto {
@@ -33,7 +34,8 @@ export class ProductosComponent implements OnInit {
   totalPages: number = 999;
   itemsPorPagina: number = 30;
   usuarioAutenticado: boolean = false;
-  
+  isLoading = false;
+
   rolUsuario: number | null = null;
 
   constructor(
@@ -44,6 +46,7 @@ export class ProductosComponent implements OnInit {
   
   ngOnInit(): void {
     this.verificarSesion();
+    this.cargarPagina(1);
   }
   
   verificarSesion() {
@@ -60,6 +63,13 @@ export class ProductosComponent implements OnInit {
     });
   }
   
+  limpiarBusqueda(): void {
+    this.terminoBusqueda = '';
+    this.productosFiltrados = [...this.productos];
+    this.currentPage = 1;
+    this.actualizarPaginacion();
+  }
+
   cerrarSesion() {
     this.authService.logout();
     this.usuarioAutenticado = false;
@@ -94,28 +104,80 @@ export class ProductosComponent implements OnInit {
     });
   }
   
-  buscar(event?: Event) {
-    if (event) {
-      event.preventDefault();
-    }
-  
-    const termino = this.terminoBusqueda.trim().toLowerCase();
-    console.log("🔍 Buscando:", termino);
-  
-    if (termino) {
-      this.productosFiltrados = this.productos.filter(producto =>
-        producto.nombre.toLowerCase().includes(termino) ||
-        producto.supermercado.toLowerCase().includes(termino)
-      );
-    } else {
-      this.productosFiltrados = [...this.productos]; 
-    }
-  
-    console.log("Resultados encontrados:", this.productosFiltrados.length);
-  
-    this.currentPage = 1;
-    this.actualizarPaginacion();
+  private loadAllProducts() {
+    this.isLoading = true;
+    return this.productosService.obtenerProductos(1).pipe(
+      // 1) Obtener la primera página para saber cuántas hay
+      map(resp => ({
+        pages: [ resp ],
+        last: resp.last_page
+      })),
+      // 2) En un switchMap generamos un forkJoin con todas las páginas
+      switchMap(({ pages, last }) => {
+        const calls = pages.map(r => of(r));  // ya tenemos resp1
+        for (let p = 2; p <= last; p++) {
+          calls.push(
+            this.productosService.obtenerProductos(p)
+              .pipe(catchError(() => of({ data: [] })))
+          );
+        }
+        return forkJoin(calls);
+      }),
+      // 3) Cada elemento de la respuesta es { data: Producto[] }, lo aplanamos
+      map((allResps: any[]) =>
+        allResps
+          .map(r => r.data as Producto[])
+          .reduce((acc, arr) => acc.concat(arr), [])
+      ),
+      // 4) Al completar, desactivamos el spinner
+      finalize(() => this.isLoading = false)
+    );
   }
+
+  buscar(event?: Event): void {
+    event?.preventDefault();
+    const term = this.terminoBusqueda.trim().toLowerCase();
+  
+    if (!term) {
+      // Si borras el término, vuelves a la página actual:
+      this.productosFiltrados = [...this.productos];
+      this.currentPage = 1;
+      this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);
+      return;
+    }
+  
+    // 1) Reinicia arrays y enciende spinner
+    this.productos = [];
+    this.productosFiltrados = [];
+    this.isLoading = true;
+  
+    // 2) Baja TODO el catálogo de nuevo
+    this.loadAllProducts().subscribe({
+      next: allProducts => {
+        // 3) Asigna el catálogo completo
+        this.productos = allProducts;
+  
+        // 4) Filtra y asigna productosFiltrados
+        this.productosFiltrados = allProducts.filter(p =>
+          p.nombre.toLowerCase().includes(term) ||
+          p.supermercado.toLowerCase().includes(term)
+        );
+  
+        // 5) Reinicia paginación local
+        this.currentPage = 1;
+        this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);
+      },
+      error: err => {
+        console.error('Error al recargar catálogo en búsqueda:', err);
+      },
+      complete: () => {
+        // 6) Apaga spinner
+        this.isLoading = false;
+      }
+    });
+  }
+  
+
   
   actualizarPaginacion() {
     this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);
