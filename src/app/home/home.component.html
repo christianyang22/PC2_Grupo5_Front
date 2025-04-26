@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Click&Shop</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
   <div class="fondo-desenfocado"></div>
   <div class="superposicion-fondo"></div>
@@ -36,10 +38,17 @@
 
       <section class="carrusel-productos" *ngIf="productosCarrusel.length > 0">
         <h3 class="seccion-titulo">Productos destacados</h3>
-        <p class="parrafo-carrusel">Descubre algunos de los productos catalogados de los distintos supermercados con los que trabajamos</p>
+        <p class="parrafo-carrusel">Descubre algunos de los productos catalogados de los distintos supermercados con los
+          que trabajamos</p>
         <div class="carrusel-track">
           <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
+
+            <img [src]="ImagenSupermercado(producto.supermercado)" alt="{{ producto.nombre }}"
+              class="logo-supermercado">
+
+
             <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}">
+
             <p class="nombre">{{ producto.nombre }}</p>
             <p class="precio">{{ producto.precio }} €</p>
           </div>
@@ -68,15 +77,18 @@
         </div>
       </section>
 
-      <section class="quienes-somos">
+      <section class="quienes-somos" id="quienes-somos">
         <h3>¿Quiénes somos?</h3>
         <p>
-          Click&Shop es un proyecto académico desarrollado por estudiantes de la <strong>Universidad Europea de Madrid</strong>,
+          Click&Shop es un proyecto académico desarrollado por estudiantes de la <strong>Universidad Europea de
+            Madrid</strong>,
           en colaboración con <strong>Hewlett Packard Enterprise (HPE)</strong>. <br><br>
-          Nuestra misión es proporcionarte una plataforma ágil donde puedas comparar productos de múltiples supermercados,
+          Nuestra misión es proporcionarte una plataforma ágil donde puedas comparar productos de múltiples
+          supermercados,
           encontrando siempre la mejor opción al mejor precio.
           Este proyecto ha sido realizado como parte de nuestra formación académica en ingeniería y tecnología.<br><br>
-          <strong>Jorge Esgueva  -  José Luis Blázquez  -  Pablo Cuevas  -  Guillermo Aos  -  Álvaro Carrizosa  -  Christian Yang  -  Pep Martorell.</strong>
+          <strong>Jorge Esgueva - José Luis Blázquez - Pablo Cuevas - Guillermo Aos - Álvaro Carrizosa - Christian Yang
+            - Pep Martorell.</strong>
         </p>
       </section>
     </main>
@@ -86,7 +98,7 @@
         <div class="seccion-pie">
           <h4 class="titulo-pie">Sobre Nosotros</h4>
           <ul class="lista-pie">
-            <li><a href="#">Quiénes somos</a></li>
+            <li><a href="#quienes-somos">Quiénes somos</a></li>
           </ul>
         </div>
         <div class="seccion-pie">
@@ -116,4 +128,5 @@
     </footer>
   </div>
 </body>
+
 </html>

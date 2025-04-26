@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -52,7 +53,7 @@ body {
 #texto-login {
   margin: 4px 0 0 0;
   font-weight: bold;
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
 }
 
 /* CONTENIDO */
@@ -207,10 +208,17 @@ body {
     }
 
     .precio {
-      color: #28a745;
-      font-weight: 600;
+      color:red;
+      font-weight: bold;
       margin-top: 10px;
     }
+
+    .logo-supermercado {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
   }
 }
 

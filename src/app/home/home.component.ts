@@ -64,4 +64,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     const cantidad = 4;
     this.productosCarrusel = mezclados.slice(0, cantidad);
   }
+
+  ImagenSupermercado(supermercado: string): string {
+
+    switch (supermercado) {
+
+      case 'DIA':
+        return 'img/dia.png';
+
+      case 'MERCADONA':
+        return 'img/mercadona.png';
+
+      case 'CARREFOUR':
+        return 'img/Carrefour.png';
+
+      case 'ALCAMPO':
+        return 'img/alcampo.png';
+
+      case 'AMAZON':
+        return 'img/amazon-fresh.png';
+      default:
+        return '';
+    }
+  } 
 }
