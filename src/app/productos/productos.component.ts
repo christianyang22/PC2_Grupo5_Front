@@ -42,8 +42,19 @@ export class ProductosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cargarTodosLosProductos();
-  }
+    this.cargarTodosLosProductos(); // SIEMPRE carga los productos (log o no)
+  
+    const token = this.authService.getToken();
+    this.usuarioAutenticado = !!token; // Sabemos si hay token
+  
+    if (this.usuarioAutenticado) {
+      this.authService.getUser().subscribe(user => {
+        if (user) {
+          this.rolUsuario = user.rol;
+        }
+      });
+    }
+  }  
   
   cargarTodosLosProductos(): void {
     this.isLoading = true;
@@ -134,17 +145,16 @@ export class ProductosComponent implements OnInit {
     }
   }
   
-  
   anteriorPagina(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
   
-  
   cerrarSesion(): void {
     this.authService.logout();
     this.usuarioAutenticado = false;
     this.rolUsuario = null;
+    this.router.navigate(['/home']);
   }
 }

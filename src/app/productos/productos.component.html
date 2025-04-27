@@ -13,22 +13,22 @@
     <div class="contenedor">
       <nav class="barra navegacion">
         <div class="contenedor_fluid">
-          <div class="logo-usuario">
+          <div class="marca">
             <a href="/home" class="logo-usuario">
               <img src="img/carrito.png" alt="carro" />
-              <h1 class="logo-text">Click&Shop</h1>
+              <h1 class="titulo">Click&Shop</h1>
             </a>
           </div>
           <div class="colapsar" id="menu">
             <ul class="lista_navegacion">
               <li class="elemento_navegacion"><a class="enlace_navegacion" href="/home">Inicio</a></li>
-              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+              <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
                 <a class="enlace_navegacion" href="/productos">Productos</a>
               </li>
-              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+              <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
                 <a class="enlace_navegacion" href="/supermercados">Supermercados</a>
               </li>
-              <li *ngIf="rolUsuario === 2" class="elemento_navegacion">
+              <li *ngIf="rolUsuario === 1 || rolUsuario === 2"  class="elemento_navegacion">
                 <a class="enlace_navegacion" href="/favoritos">Favoritos</a>
               </li>
 
@@ -41,7 +41,7 @@
               </li>
 
               <li *ngIf="!usuarioAutenticado" class="elemento_navegacion">
-                <a class="enlace_navegacion" href="/home">Iniciar Sesión</a>
+                <a class="enlace_navegacion" href="/login">Iniciar Sesión</a>
               </li>
             </ul>
           </div>

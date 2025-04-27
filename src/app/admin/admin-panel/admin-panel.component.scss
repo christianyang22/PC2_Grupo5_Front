@@ -1,150 +1,224 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.lista_navegacion {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 15px;
+}
+
+.elemento_navegacion {
+  display: flex;
+  align-items: center;
+}
+
+.enlace_navegacion, .boton-cerrar-sesion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.enlace_navegacion {
+  background: transparent;
+  color: black;
+  border: none;
+}
+
+.enlace_navegacion:hover {
+  color: #007bff;
+}
+
+.boton-cerrar-sesion {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.boton-cerrar-sesion:hover {
+  background-color: #0056b3;
+}
+
 header {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
   
-  .contenedor {
-    width: 100%;
-    padding: 10px 20px;
-  }
+.contenedor {
+  width: 100%;
+  padding: 10px 20px;
+}
   
-  .barra {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f9fa;
-  }
+.barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
   
-  .contenedor_fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
+.contenedor_fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
   
-  .margen_derecho {
-    margin-right: 10px;
-  }
+.logo-usuario {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 10px;
+}
+
+.logo-usuario img {
+  width: 50px;
+  height: 50px;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+}
+
+.titulo:hover {
+  color: #007bff;
+}
+
+.margen_derecho {
+  margin-right: 10px;
+}
   
-  .marca {
-    margin-right: auto;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-  }
+.marca {
+  margin-right: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+}
   
-  .lista_navegacion {
-    display: flex;
-    list-style: none;
-  }
+.lista_navegacion {
+  display: flex;
+  list-style: none;
+}
   
-  .elemento_navegacion {
-    margin: 0 10px;
-  }
+.elemento_navegacion {
+  margin: 0 10px;
+}
   
-  .enlace_navegacion {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-    transition: color 0.3s ease;
-  }
+.enlace_navegacion {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
   
-  .enlace_navegacion:hover {
-    color: #007bff;
-  }
+.enlace_navegacion:hover {
+  color: #007bff;
+}
   
-  .enlace_navegacion.cerrar-sesion {
-    color: #dc3545;
-    font-weight: 500;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
+.enlace_navegacion.cerrar-sesion {
+  color: #dc3545;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
   
-  .enlace_navegacion.cerrar-sesion:hover {
-    color: #a71d2a;
-  }
+.enlace_navegacion.cerrar-sesion:hover {
+  color: #a71d2a;
+}
   
-  .contenido-admin {
-    padding: 60px 20px;
-    text-align: center;
-    background-color: #f8f9fa;
-    min-height: 70vh;
-  }
+.contenido-admin {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+  min-height: 70vh;
+}
   
-  .contenido-admin h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #333;
-  }
+.contenido-admin h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
   
-  .contenido-admin p {
-    font-size: 1.1rem;
-    color: #555;
-  }
+.contenido-admin p {
+  font-size: 1.1rem;
+  color: #555;
+}
   
-  /* Footer reutilizado */
-  .pie-pagina {
-    width: 100%;
-    background: white;
-    padding: 30px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 0.9rem;
-    margin-top: 50px;
-  }
+.pie-pagina {
+  width: 100%;
+  background: white;
+  padding: 30px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  margin-top: 50px;
+}
   
-  .contenedor-pie {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1100px;
-    margin: auto;
-    flex-wrap: wrap;
-  }
+.contenedor-pie {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+  flex-wrap: wrap;
+}
   
-  .seccion-pie {
-    width: 25%;
-    padding: 10px;
-  }
+.seccion-pie {
+  width: 25%;
+  padding: 10px;
+}
   
-  .titulo-pie {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
+.titulo-pie {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
   
-  .lista-pie li {
-    margin-bottom: 5px;
-  }
+.lista-pie li {
+  margin-bottom: 5px;
+}
   
-  .lista-pie li a {
-    text-decoration: none;
-    color: #000;
-    transition: color 0.3s ease;
-  }
+.lista-pie li a {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s ease;
+}
   
-  .lista-pie li a:hover {
-    color: #007bff;
-  }
+.lista-pie li a:hover {
+  color: #007bff;
+}
   
-  .iconos-redes {
-    display: flex;
-    gap: 25px;
-  }
+.iconos-redes {
+  display: flex;
+  gap: 25px;
+}
   
-  .iconos-redes a img {
-    width: 28px;
-    height: 28px;
-    transition: opacity 0.3s ease;
-  }
+.iconos-redes a img {
+  width: 28px;
+  height: 28px;
+  transition: opacity 0.3s ease;
+}
   
-  .iconos-redes a img:hover {
-    opacity: 0.7;
-  }
+.iconos-redes a img:hover {
+  opacity: 0.7;
+}
   
-  .pie-inferior {
-    text-align: center;
-    margin-top: 15px;
-    opacity: 0.7;
-  }
-  
+.pie-inferior {
+  text-align: center;
+  margin-top: 15px;
+  opacity: 0.7;
+}  
