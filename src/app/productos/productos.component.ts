@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth-service.service';
 
-
-
 interface Producto {
   id: number;
   nombre: string;
@@ -25,7 +23,7 @@ interface Producto {
 })
 
 export class ProductosComponent implements OnInit {
-
+  
   productos: any[] = [];
   productosFiltrados: any[] = [];
   terminoBusqueda: string = '';
@@ -33,19 +31,27 @@ export class ProductosComponent implements OnInit {
   totalPages: number = 999;
   itemsPorPagina: number = 30;
   usuarioAutenticado: boolean = false;
-  
   rolUsuario: number | null = null;
+
+  // Propiedades de filtro
+  precioMin: number = 0;
+  precioMax: number = 1000;
+  grasaMin: number = 0;
+  grasaMax: number = 100;
+  hidratosMin: number = 0;
+  hidratosMax: number = 100;
+  azucarMax: number = 100;
 
   constructor(
     private productosService: ProductosService,
     private router: Router,
     private authService: AuthService
   ) {}
-  
+
   ngOnInit(): void {
     this.verificarSesion();
   }
-  
+
   verificarSesion() {
     const token = this.authService.getToken();
     this.usuarioAutenticado = !!token;
@@ -59,30 +65,29 @@ export class ProductosComponent implements OnInit {
       this.cargarProductos();
     });
   }
-  
+
+  // Método para cerrar sesión
   cerrarSesion() {
     this.authService.logout();
     this.usuarioAutenticado = false;
     this.rolUsuario = null;
   }
-  
+
   cargarProductos() {
     this.productos = []; 
     this.productosFiltrados = [];
     this.currentPage = 1;
     this.cargarPagina(1);
   }
-  
+
   cargarPagina(pagina: number) {
     this.productosService.obtenerProductos(pagina).subscribe({
       next: (data: any) => {
         console.log(`Cargando página ${pagina}:`, data);
-  
-        this.productos = [...this.productos, ...data.data]; 
+        this.productos = [...this.productos, ...data.data];
         this.productosFiltrados = [...this.productos];
-  
         if (pagina < data.last_page) {
-          this.cargarPagina(pagina + 1); 
+          this.cargarPagina(pagina + 1);
         } else {
           console.log("Todos los productos cargados.");
           this.actualizarPaginacion();
@@ -93,15 +98,15 @@ export class ProductosComponent implements OnInit {
       }
     });
   }
-  
+
   buscar(event?: Event) {
     if (event) {
       event.preventDefault();
     }
-  
+
     const termino = this.terminoBusqueda.trim().toLowerCase();
     console.log("🔍 Buscando:", termino);
-  
+
     if (termino) {
       this.productosFiltrados = this.productos.filter(producto =>
         producto.nombre.toLowerCase().includes(termino) ||
@@ -110,32 +115,58 @@ export class ProductosComponent implements OnInit {
     } else {
       this.productosFiltrados = [...this.productos]; 
     }
-  
+
     console.log("Resultados encontrados:", this.productosFiltrados.length);
-  
+
     this.currentPage = 1;
     this.actualizarPaginacion();
   }
-  
+
   actualizarPaginacion() {
     this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);
   }
-  
+
   obtenerProductosPaginaActual() {
     const inicio = (this.currentPage - 1) * this.itemsPorPagina;
     return this.productosFiltrados.slice(inicio, inicio + this.itemsPorPagina);
   }
-  
+
   siguientePagina() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
   }
-  
+
   anteriorPagina() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
+
+  // Método de filtrado
+  filtrarProductos() {
+    this.productosFiltrados = this.productos.filter(producto => 
+      producto.precio >= this.precioMin &&
+      producto.precio <= this.precioMax &&
+      producto.grasas >= this.grasaMin &&
+      producto.grasas <= this.grasaMax &&
+      producto.hidratos_carbono >= this.hidratosMin &&
+      producto.hidratos_carbono <= this.hidratosMax &&
+      producto.azúcar <= this.azucarMax
+    );
+    this.actualizarPaginacion();
+  }
+
+  limpiarBusqueda() {
+    this.terminoBusqueda = '';
+    this.precioMin = 0;
+    this.precioMax = 1000;
+    this.grasaMin = 0;
+    this.grasaMax = 100;
+    this.hidratosMin = 0;
+    this.hidratosMax = 100;
+    this.azucarMax = 100;
+    this.productosFiltrados = [...this.productos];
+    this.actualizarPaginacion();
+  }
 }
- 
