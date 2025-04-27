@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from './productos.service';
-import { AuthService } from '../servicios/auth-service.service';
-import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { forkJoin, of } from 'rxjs';
-import { catchError, map, switchMap, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { AuthService } from '../servicios/auth-service.service';
+
+
 
 interface Producto {
   id: number;
   nombre: string;
   link_imagen: string;
   supermercado: string;
-  precio: number;
+  precio: DoubleRange;
 }
 
 @Component({
@@ -25,136 +26,116 @@ interface Producto {
 
 export class ProductosComponent implements OnInit {
 
-  productos: Producto[] = [];
-  productosFiltrados: Producto[] = [];
+  productos: any[] = [];
+  productosFiltrados: any[] = [];
   terminoBusqueda: string = '';
   currentPage: number = 1;
-  totalPages: number = 0;
+  totalPages: number = 999;
   itemsPorPagina: number = 30;
-  isLoading: boolean = false;
   usuarioAutenticado: boolean = false;
+  
   rolUsuario: number | null = null;
 
   constructor(
     private productosService: ProductosService,
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
-
+  
   ngOnInit(): void {
-    this.cargarTodosLosProductos(); // SIEMPRE carga los productos (log o no)
+    this.verificarSesion();
+  }
   
+  verificarSesion() {
     const token = this.authService.getToken();
-    this.usuarioAutenticado = !!token; // Sabemos si hay token
+    this.usuarioAutenticado = !!token;
   
-    if (this.usuarioAutenticado) {
-      this.authService.getUser().subscribe(user => {
-        if (user) {
-          this.rolUsuario = user.rol;
-        }
-      });
-    }
-  }  
+    const user = this.authService.getUser();
   
-  cargarTodosLosProductos(): void {
-    this.isLoading = true;
-
-    this.productosService.obtenerProductos(1).pipe(
-      switchMap(resp => {
-        const totalPaginas = resp.last_page;
-        const llamadas = [ of(resp) ]; 
-
-
-        for (let pagina = 2; pagina <= totalPaginas; pagina++) {
-          llamadas.push(
-            this.productosService.obtenerProductos(pagina)
-              .pipe(catchError(error => {
-                console.error(`Error cargando la página ${pagina}:`, error);
-                return of({ data: [] });
-              }))
-          );
-        }
-        return forkJoin(llamadas);
-      }),
-      map((respuestas: any[]) => {
-        return respuestas.reduce((acumulado, resp) => acumulado.concat(resp.data), [] as Producto[]);
-      }),
-      finalize(() => {
-        this.isLoading = false;
-        this.aplicarFiltroBusqueda();
-      })
-    ).subscribe({
-      next: (allProducts: Producto[]) => {
-        this.productos = allProducts;
-      },
-      error: err => {
-        console.error('Error al cargar productos:', err);
+    user.subscribe(data => {
+      if (data) {
+        this.rolUsuario = data.rol;
       }
+      this.cargarProductos();
     });
   }
-
-  limpiarBusqueda(): void {
-    this.terminoBusqueda = '';
-    this.aplicarFiltroBusqueda();
+  
+  cerrarSesion() {
+    this.authService.logout();
+    this.usuarioAutenticado = false;
+    this.rolUsuario = null;
   }
   
-
-  aplicarFiltroBusqueda(): void {
-    const term = this.terminoBusqueda.trim().toLowerCase();
-    let filtrados: Producto[];
-
-    if (term === '') {
-      filtrados = [...this.productos];
-    } else {
-      const regex = new RegExp(`\\b${term}\\b`, 'i');
-      filtrados = this.productos.filter(p =>
-        regex.test(p.nombre) || regex.test(p.supermercado)
-      );
-    }
-
-    const uniqueMap = new Map<string, Producto>();
-    filtrados.forEach(prod => {
-      const nombre = prod.nombre.toLowerCase();
-      if (!uniqueMap.has(nombre)) {
-        uniqueMap.set(nombre, prod);
-      }
-    });
-
-    this.productosFiltrados = Array.from(uniqueMap.values());
-
+  cargarProductos() {
+    this.productos = []; 
+    this.productosFiltrados = [];
     this.currentPage = 1;
+    this.cargarPagina(1);
+  }
+  
+  cargarPagina(pagina: number) {
+    this.productosService.obtenerProductos(pagina).subscribe({
+      next: (data: any) => {
+        console.log(`Cargando página ${pagina}:`, data);
+  
+        this.productos = [...this.productos, ...data.data]; 
+        this.productosFiltrados = [...this.productos];
+  
+        if (pagina < data.last_page) {
+          this.cargarPagina(pagina + 1); 
+        } else {
+          console.log("Todos los productos cargados.");
+          this.actualizarPaginacion();
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener productos:', error);
+      }
+    });
+  }
+  
+  buscar(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+  
+    const termino = this.terminoBusqueda.trim().toLowerCase();
+    console.log("🔍 Buscando:", termino);
+  
+    if (termino) {
+      this.productosFiltrados = this.productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(termino) ||
+        producto.supermercado.toLowerCase().includes(termino)
+      );
+    } else {
+      this.productosFiltrados = [...this.productos]; 
+    }
+  
+    console.log("Resultados encontrados:", this.productosFiltrados.length);
+  
+    this.currentPage = 1;
+    this.actualizarPaginacion();
+  }
+  
+  actualizarPaginacion() {
     this.totalPages = Math.ceil(this.productosFiltrados.length / this.itemsPorPagina);
   }
-
   
-  buscar(event?: Event): void {
-    event?.preventDefault();
-    this.aplicarFiltroBusqueda();
-  }
-
-  
-  obtenerProductosPaginaActual(): Producto[] {
+  obtenerProductosPaginaActual() {
     const inicio = (this.currentPage - 1) * this.itemsPorPagina;
     return this.productosFiltrados.slice(inicio, inicio + this.itemsPorPagina);
   }
-
   
-  siguientePagina(): void {
+  siguientePagina() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
   }
   
-  anteriorPagina(): void {
+  anteriorPagina() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
-  
-  cerrarSesion(): void {
-    this.authService.logout();
-    this.usuarioAutenticado = false;
-    this.rolUsuario = null;
-    this.router.navigate(['/home']);
-  }
 }
+ 
