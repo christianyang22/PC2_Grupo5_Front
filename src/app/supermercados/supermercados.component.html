@@ -5,30 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Click&Shop</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+  <div class="fondo-desenfocado"></div>
+  <div class="superposicion-fondo"></div>
+
+  <nav class="barra">
+    <div class="encabezado">
+      <div class="logo-usuario">
+        <a href="/home" class="logo-usuario">
+          <img src="img/carrito.png" alt="carro" />
+          <h1 class="titulo">Click&Shop</h1>
+        </a>
+      </div>
+      <div class="menu">
+        <ul class="lista_navegacion">
+          <li class="elemento_navegacion"><a class="enlace_navegacion" href="/home">Inicio</a></li>
+          <li class="elemento_navegacion"><a class="enlace_navegacion" href="/productos">Productos</a></li>
+          <li class="elemento_navegacion"><a class="enlace_navegacion activo" href="/supermercado">Supermercados</a></li>
+          <li class="elemento_navegacion"><a class="enlace_navegacion" href="#">Favoritos</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <div class="contenedor">
-    <nav class="barra navegacion">
-      <div class="contenedor_fluid">
-        <div class="logo-usuario">
-          <a href="/home" class="logo-usuario">
-            <img src="img/carrito.png" alt="carro" />
-            <h1 class="titulo">Click&Shop</h1>
-          </a>
-        </div>
-        <div class="colapsar" id="menu">
-          <ul class="lista_navegacion">
-            <li class="elemento_navegacion"><a class="enlace_navegacion" href="/home">Inicio</a></li>
-            <li class="elemento_navegacion"><a class="enlace_navegacion" href="/productos">Productos</a></li>
-            <li class="elemento_navegacion"><a class="enlace_navegacion activo" href="/supermercado">Supermercados</a></li>
-            <li class="elemento_navegacion"><a class="enlace_navegacion" href="#">Favoritos</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <div class="container my-4">
       <div class="card shadow-sm text-center">
         <div class="card-body">
@@ -72,7 +73,7 @@
       <div class="seccion-pie">
         <h4 class="titulo-pie">Sobre Nosotros</h4>
         <ul class="lista-pie">
-          <li><a href="#">Quiénes somos</a></li>
+          <li><a href="#quienes-somos">Quiénes somos</a></li>
         </ul>
       </div>
       <div class="seccion-pie">

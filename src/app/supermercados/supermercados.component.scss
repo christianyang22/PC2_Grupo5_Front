@@ -1,6 +1,25 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
+
+* {
+  box-sizing: border-box;
+}
+
 .contenedor {
   flex: 1 0 auto;
   padding: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
 }
 
 body {
@@ -9,28 +28,54 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
 }
-.enunciado{
 
+.fondo-desenfocado {
+  background: url('/img/supermercado.webp') center/cover no-repeat;
+  filter: blur(0px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.superposicion-fondo {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.enunciado{
   font-weight: bold;
 }
+
 .barra {
-  background-color: #f8f9fa;
-  padding: 10px;
-  
-}
-
-
-.contenedor_fluid {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 1);
 }
 
-.margen_derecho {
-  margin-right: 10px;
+/* HEADER */
+
+.encabezado {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #ddd;
+  padding: 15px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 .logo-usuario {
@@ -39,6 +84,7 @@ body {
   text-decoration: none;
   color: inherit;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .logo-usuario img {
@@ -67,24 +113,31 @@ body {
 .lista_navegacion {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0 0 0;
   display: flex;
-  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
 }
 
 .elemento_navegacion {
-  margin: 0 10px;
+  margin: 0;
 }
 
 .enlace_navegacion {
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding: 10px 15px;
+  display: block;
+  font-size: 1rem;
 }
 
 .enlace_navegacion.activo {
   font-weight: bold;
 }
+
+/* TARJETAS */
 
 .fila_supermercados {
   display: flex;
@@ -99,10 +152,10 @@ body {
   flex: 1 1 220px;
   max-width: 220px;
   min-width: 180px;
-  height: 260px;
-  background-color: rgba(255, 255, 255, 0.9);
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,7 +224,7 @@ body {
   color: black;
   font-size: 0.9rem;
   padding: 40px 20px;
-  margin-top: auto;
+  margin-top: 70px;
 }
 
 .contenedor-pie {
@@ -202,8 +255,15 @@ body {
 }
 
 .iconos-redes img {
-  width: 24px;
+  width: 35px;
   margin-right: 10px;
+}
+
+.iconos-redes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .pie-inferior {
@@ -221,6 +281,16 @@ body {
   .columna_supermercado {
     flex: 1 1 45%;
     max-width: 45%;
+  }
+
+  .encabezado {
+    flex-wrap: nowrap;
+  }
+
+  .lista_navegacion {
+    justify-content: flex-end;
+    width: auto;
+    margin-top: 0;
   }
 }
 
