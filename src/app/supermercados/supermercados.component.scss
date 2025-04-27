@@ -151,6 +151,24 @@ body {
   border: none;
 }
 
+.boton-cerrar-sesion {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.boton-cerrar-sesion:hover {
+  background-color: #0056b3;
+}
+
 .fila_supermercados {
   display: flex;
   justify-content: center;
@@ -305,5 +323,55 @@ body {
   .columna_supermercado {
     flex: 1 1 90%;
     max-width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .logo-usuario {
+    margin: 10px 0;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .logo-usuario img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .titulo {
+    font-size: 2rem;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .menu {
+    width: 100%;
+  }
+
+  .lista_navegacion {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  .elemento_navegacion {
+    margin: 0;
+  }
+
+  .enlace_navegacion, .boton-cerrar-sesion {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
   }
 }

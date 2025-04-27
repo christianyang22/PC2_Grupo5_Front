@@ -24,6 +24,9 @@
           <li class="elemento_navegacion"><a class="enlace_navegacion" href="/productos">Productos</a></li>
           <li class="elemento_navegacion"><a class="enlace_navegacion activo" href="/supermercado">Supermercados</a></li>
           <li class="elemento_navegacion"><a class="enlace_navegacion" href="#">Favoritos</a></li>
+          <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
+            <button class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+          </li>
         </ul>
       </div>
     </div>
