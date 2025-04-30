@@ -28,7 +28,7 @@ export class ProductosComponent implements OnInit {
   productosFiltrados: any[] = [];
   terminoBusqueda: string = '';
   currentPage: number = 1;
-  totalPages: number = 999;
+  totalPages: number = 1;
   itemsPorPagina: number = 30;
   usuarioAutenticado: boolean = false;
   rolUsuario: number | null = null;
@@ -85,7 +85,10 @@ export class ProductosComponent implements OnInit {
       next: (data: any) => {
         console.log(`Cargando página ${pagina}:`, data);
         this.productos = [...this.productos, ...data.data];
-        this.productosFiltrados = [...this.productos];
+        // Si es la primera carga, sincronizamos los productos filtrados
+        if (this.productosFiltrados.length === 0) {
+          this.productosFiltrados = [...this.productos];
+        }
         if (pagina < data.last_page) {
           this.cargarPagina(pagina + 1);
         } else {
@@ -99,6 +102,7 @@ export class ProductosComponent implements OnInit {
     });
   }
 
+  // Método de búsqueda
   buscar(event?: Event) {
     if (event) {
       event.preventDefault();
@@ -107,17 +111,20 @@ export class ProductosComponent implements OnInit {
     const termino = this.terminoBusqueda.trim().toLowerCase();
     console.log("🔍 Buscando:", termino);
 
+    // Si hay un término de búsqueda, filtramos los productos
     if (termino) {
       this.productosFiltrados = this.productos.filter(producto =>
         producto.nombre.toLowerCase().includes(termino) ||
         producto.supermercado.toLowerCase().includes(termino)
       );
     } else {
-      this.productosFiltrados = [...this.productos]; 
+      // Si no hay término de búsqueda, mostramos todos los productos
+      this.productosFiltrados = [...this.productos];
     }
 
     console.log("Resultados encontrados:", this.productosFiltrados.length);
 
+    // Reiniciamos la paginación al realizar una nueva búsqueda
     this.currentPage = 1;
     this.actualizarPaginacion();
   }
@@ -168,5 +175,22 @@ export class ProductosComponent implements OnInit {
     this.azucarMax = 100;
     this.productosFiltrados = [...this.productos];
     this.actualizarPaginacion();
+  }
+
+  ImagenSupermercado(supermercado: string): string {
+    switch (supermercado) {
+      case 'DIA':
+        return 'img/dia.png';
+      case 'MERCADONA':
+        return 'img/mercadona.png';
+      case 'Carrefour':
+        return 'img/Carrefour.png';
+      case 'ALCAMPO':
+        return 'img/alcampo.png';
+      case 'AMAZON':
+        return 'img/amazon-fresh.png';
+      default:
+        return '';
+    }
   }
 }

@@ -96,6 +96,11 @@
       </div>
     
       <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
+        <img [src]="ImagenSupermercado(producto.supermercado)" 
+        alt="{{ producto.nombre }}" 
+        class="logo-supermercado" 
+        style="width: 40px; height: auto;">
+   
         <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" 
              alt="{{ producto.nombre }}" 
              width="150">
