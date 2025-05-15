@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth-service.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-supermercados',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,HeaderComponent],
   templateUrl: './supermercados.component.html',
   styleUrls: ['./supermercados.component.scss']
 })

@@ -1,0 +1,56 @@
+.pie-pagina {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: black;
+    font-size: 1.1rem;
+    padding: 40px 20px;
+    margin-top: auto;
+}
+  
+.contenedor-pie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+  
+.titulo-pie {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+  
+.lista-pie {
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+  
+.lista-pie li a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+  
+.lista-pie li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+  
+.iconos-redes img {
+    width: 40px;
+    margin-right: 10px;
+}
+  
+.iconos-redes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+  
+.pie-inferior {
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0.6;
+    font-size: 1rem;
+}

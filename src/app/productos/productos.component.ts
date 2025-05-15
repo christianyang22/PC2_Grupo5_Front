@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth-service.service';
+import { HeaderComponent } from '../header/header.component';
 
 interface Producto {
   id: number;
@@ -17,7 +18,7 @@ interface Producto {
 @Component({
   selector: 'app-productos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,HeaderComponent],
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.scss']
 })
