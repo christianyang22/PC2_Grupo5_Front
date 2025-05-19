@@ -30,19 +30,28 @@ header {
     width: 100%;
     padding: 10px 20px;
 }
-  
-.barra {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-  
 .contenedor_fluid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 2rem; 
+  box-sizing: border-box;
 }
+
+  
+.barra_navegacion {
+  background-color: white;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+  
   
 .logo-usuario {
     display: flex;

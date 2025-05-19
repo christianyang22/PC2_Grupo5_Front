@@ -1,6 +1,6 @@
 <!--Header para /login y /register -->
 <div *ngIf="rutaActual === '/login' || rutaActual === '/register'" class="contenedor">
-  <nav class="barra navegacion">
+  <nav class="barra_navegacion">
     <div class="contenedor_fluid">
       <div class="logo-usuario">
         <a href="/home" class="logo-usuario">
@@ -24,7 +24,7 @@
 
 <!-- Header  para productos, supermercados, admin-panel -->
 <div *ngIf="rutaActual !== '/home' && rutaActual !== '/login' && rutaActual !== '/register'" class="contenedor">
-  <nav class="barra navegacion">
+  <nav class="barra_navegacion">
     <div class="contenedor_fluid">
       <div class="logo-usuario">
         <a href="/home" class="logo-usuario">
