@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-weight: bold;
 }
 :host {
   display: block;
@@ -109,4 +110,65 @@ header {
   
 .boton-cerrar-sesion:hover {
     background-color: #0056b3;
+}
+.login-registro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+#texto-login {
+  margin: 4px 0 0 0;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.contenido-principal-principal {
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.encabezado {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-usuario {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 10px;
+}
+
+.logo-usuario img {
+  width: 50px;
+  height: 50px;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+}
+
+.icono-login {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }

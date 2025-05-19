@@ -1,38 +1,86 @@
-  <div class="contenedor">
-      <nav class="barra navegacion">
-        <div class="contenedor_fluid">
-          <div class="logo-usuario">
-            <a href="/home" class="logo-usuario">
-              <img src="img/carrito.png" alt="carro" />
-              <h1 class="titulo">Click&Shop</h1>
-            </a>
-          </div>
-          <div class="colapsar" id="menu">
-            <ul class="lista_navegacion">
-              <li class="elemento_navegacion"><a class="enlace_navegacion" href="/home">Inicio</a></li>
-              <li *ngIf="rolUsuario == 1 || rolUsuario === 2" class="elemento_navegacion">
-                <a class="enlace_navegacion" href="/productos">Productos</a>
-              </li>
-              <li *ngIf="rolUsuario == 1 || rolUsuario === 2" class="elemento_navegacion">
-                <a class="enlace_navegacion" href="/supermercados">Supermercados</a>
-              </li>
-              <li *ngIf="rolUsuario == 1 || rolUsuario === 2" class="elemento_navegacion">
-                <a class="enlace_navegacion" href="/favoritos">Favoritos</a>
-              </li>
-
-              <li *ngIf="rolUsuario === 1" class="elemento_navegacion">
-                <a class="enlace_navegacion" href="/admin-panel">Panel Admin</a>
-              </li>
-  
-              <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
-                <button class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
-              </li>
-
-              <li *ngIf="!usuarioAutenticado" class="elemento_navegacion">
-                <a class="enlace_navegacion" href="/login">Iniciar Sesión</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+<!--Header para /login y /register -->
+<div *ngIf="rutaActual === '/login' || rutaActual === '/register'" class="contenedor">
+  <nav class="barra navegacion">
+    <div class="contenedor_fluid">
+      <div class="logo-usuario">
+        <a href="/home" class="logo-usuario">
+          <img src="img/carrito.png" alt="carro" />
+          <h1 class="titulo">Click&Shop</h1>
+        </a>
+      </div>
+      <div class="colapsar" id="menu">
+        <ul class="lista_navegacion">
+          <li class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/home">Inicio</a>
+          </li>
+          <li class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/productos">Productos</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+</div>
+
+<!-- Header  para productos, supermercados, admin-panel -->
+<div *ngIf="rutaActual !== '/home' && rutaActual !== '/login' && rutaActual !== '/register'" class="contenedor">
+  <nav class="barra navegacion">
+    <div class="contenedor_fluid">
+      <div class="logo-usuario">
+        <a href="/home" class="logo-usuario">
+          <img src="img/carrito.png" alt="carro" />
+          <h1 class="titulo">Click&Shop</h1>
+        </a>
+      </div>
+      <div class="colapsar" id="menu">
+        <ul class="lista_navegacion">
+          <li class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/home">Inicio</a>
+          </li>
+
+          <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/productos">Productos</a>
+          </li>
+
+          <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/supermercados">Supermercados</a>
+          </li>
+
+          <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/favoritos">Favoritos</a>
+          </li>
+
+          <li *ngIf="rolUsuario === 1" class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/admin-panel">Panel Admin</a>
+          </li>
+
+          <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
+            <button class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+          </li>
+
+          <li *ngIf="!usuarioAutenticado" class="elemento_navegacion">
+            <a class="enlace_navegacion" href="/principal">Iniciar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!--  Header para /home -->
+<div *ngIf="rutaActual === '/home'" class="contenido-global">
+  <header class="encabezado">
+    <div class="marca">
+      <a href="/home" class="logo-usuario">
+        <img src="img/carrito.png" alt="carro" />
+        <h1 class="titulo">Click&Shop</h1>
+      </a>
+    </div>
+    <nav class="navegacion">
+      <a href="/login" class="login-registro">
+        <p id="texto-login">Login / Registro</p>
+        <img src="img/profile.png" alt="Login" class="icono-login" />
+      </a>
+    </nav>
+  </header>
+</div>

@@ -7,7 +7,7 @@ import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-supermercados',
   standalone: true,
-  imports: [CommonModule,HeaderComponent],
+  imports: [CommonModule],
   templateUrl: './supermercados.component.html',
   styleUrls: ['./supermercados.component.scss']
 })
