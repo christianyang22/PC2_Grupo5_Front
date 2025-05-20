@@ -1,0 +1,59 @@
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.spinner-wrapper img {
+  width: 60px;
+  height: 60px;
+}
+
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;    
+  -webkit-box-orient: vertical;
+  height: 4.5em;             
+  line-height: 1.5em;
+  white-space: normal;
+}
+
+
+.buscador-input {
+  max-width: 500px;     
+  width: 100%;
+}
+
+.border-verde-claro {
+  border: 2px solid blue; 
+}
+
+
+.logo-supermercado {
+  width: 40px;
+}
+
+.imagen-producto {
+  height: 140px;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+
+.btn-verde-claro {
+  background-color: rgb(84, 153, 226);
+  color: black;
+  border: none;
+}
+
+.btn-verde-claro:hover {
+    background-color: rgb(84, 153, 226);
+    color: black;
+  }

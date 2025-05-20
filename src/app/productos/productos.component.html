@@ -1,0 +1,89 @@
+      <!-- Falta añadir footer y header -->
+<div *ngIf="productos.length === 0" class="spinner-wrapper">
+  <img src="img/spinner.gif" class="spinner-gif-top" alt="Cargando..." />
+</div>
+
+<header>
+
+</header>
+
+<main class="contenido-principal">
+  <aside class="menu-filtros ancho">
+    <form (submit)="aplicarFiltrosYBusqueda(); $event.preventDefault();">
+      <h3 class="titulo-filtros">Filtros Avanzados</h3>
+
+      <div class="campo">
+        <input type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" class="entrada-busqueda" placeholder="🔍 Buscar productos" />
+      </div>
+
+      <!-- Filtro Precio -->
+      <div class="grupo-filtro">
+        <label>Precio (€)</label>
+        <div class="slider-fila">
+          <input type="number" [(ngModel)]="precioMin" name="precioMin" min="0" max="1000" />
+          <ngx-slider [(value)]="precioMin" [(highValue)]="precioMax" [options]="optionsPrecio"></ngx-slider>
+          <input type="number" [(ngModel)]="precioMax" name="precioMax" min="0" max="1000" />
+        </div>
+      </div>
+
+      <!-- Filtro Grasas -->
+      <div class="grupo-filtro">
+        <label>Grasas (g)</label>
+        <div class="slider-fila">
+          <input type="number" [(ngModel)]="grasaMin" name="grasaMin" min="0" max="1000" />
+          <ngx-slider [(value)]="grasaMin" [(highValue)]="grasaMax" [options]="optionsGrasa"></ngx-slider>
+          <input type="number" [(ngModel)]="grasaMax" name="grasaMax" min="0" max="1000" />
+        </div>
+      </div>
+
+      <!-- Filtro Hidratos -->
+      <div class="grupo-filtro">
+        <label>Hidratos (g)</label>
+        <div class="slider-fila">
+          <input type="number" [(ngModel)]="hidratosMin" name="hidratosMin" min="0" max="1000" />
+          <ngx-slider [(value)]="hidratosMin" [(highValue)]="hidratosMax" [options]="optionsHidratos"></ngx-slider>
+          <input type="number" [(ngModel)]="hidratosMax" name="hidratosMax" min="0" max="1000" />
+        </div>
+      </div>
+
+      <!-- Filtro Azúcar -->
+      <div class="grupo-filtro">
+        <label>Azúcar (g)</label>
+        <div class="slider-fila">
+          <input type="number" [(ngModel)]="azucarMin" name="azucarMin" min="0" max="1000" />
+          <ngx-slider [(value)]="azucarMin" [(highValue)]="azucarMax" [options]="optionsAzucar"></ngx-slider>
+          <input type="number" [(ngModel)]="azucarMax" name="azucarMax" min="0" max="1000" />
+        </div>
+      </div>
+
+      <div class="botones-filtros">
+        <button type="submit" class="boton-buscar">Buscar</button>
+        <button type="button" class="boton-limpiar" (click)="limpiarBusqueda()">Limpiar</button>
+      </div>
+    </form>
+  </aside>
+
+  <!-- Cuadrícula de productos -->
+  <section *ngIf="productosFiltrados.length > 0" class="cuadrícula-productos">
+    <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
+      <img [src]="ImagenSupermercado(producto.supermercado)" alt="Logo supermercado" width="40" />
+      <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}" width="150" />
+      <h3>{{ producto.nombre }}</h3>
+      <p>Supermercado: {{ producto.supermercado }}</p>
+      <p>Precio: {{ producto.precio }} €</p>
+    </div>
+  </section>
+
+  <!-- Si no se encuentran productos con los filtros solicitados -->
+  <section *ngIf="productosFiltrados.length === 0 && productos.length > 0" class="mensaje-sin-resultados">
+    <p>No se encontraron productos con los filtros aplicados.</p>
+    <button (click)="limpiarBusqueda()">Limpiar filtros</button>
+  </section>
+</main>
+
+<!-- Paginación -->
+<div *ngIf="totalPages > 1 && productosFiltrados.length > 0" class="paginacion">
+  <button (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
+  <span>Página {{ currentPage }} de {{ totalPages }}</span>
+  <button (click)="siguientePagina()" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
