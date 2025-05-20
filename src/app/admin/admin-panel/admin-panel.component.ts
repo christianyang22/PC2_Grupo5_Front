@@ -42,19 +42,15 @@ export class AdminPanelComponent implements OnInit {
 
   cargarUsuarios(): void {
     this.usuarioService.getUsuarios().subscribe({
-      next: (usuarios) => {
-        this.usuarios = usuarios ?? [];
-      },
-      error: (err) => console.error('Error al cargar usuarios:', err)
+      next: usuarios => this.usuarios = usuarios ?? [],
+      error: err => console.error('Error al cargar usuarios:', err)
     });
   }
 
   cargarProductos(): void {
     this.productoService.getProductos().subscribe({
-      next: (productos) => {
-        this.productos = productos.data ?? [];
-      },
-      error: (err) => console.error('Error al cargar productos:', err)
+      next: productos => this.productos = productos.data ?? [],
+      error: err => console.error('Error al cargar productos:', err)
     });
   }
 
@@ -65,7 +61,7 @@ export class AdminPanelComponent implements OnInit {
           this.cargarUsuarios();
           alert('Usuario eliminado correctamente.');
         },
-        error: (err) => console.error('Error eliminando usuario:', err)
+        error: err => console.error('Error eliminando usuario:', err)
       });
     }
   }
@@ -77,7 +73,7 @@ export class AdminPanelComponent implements OnInit {
           this.cargarProductos();
           alert('Producto eliminado correctamente.');
         },
-        error: (err) => console.error('Error eliminando producto:', err)
+        error: err => console.error('Error eliminando producto:', err)
       });
     }
   }

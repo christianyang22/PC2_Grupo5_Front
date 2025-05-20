@@ -1,5 +1,4 @@
-<!--Header para /login y /register -->
-<div *ngIf="rutaActual === '/login' || rutaActual === '/register'" class="contenedor">
+<div class="contenedor">
   <nav class="barra_navegacion">
     <div class="contenedor_fluid">
       <div class="logo-usuario">
@@ -11,55 +10,30 @@
       <div class="colapsar" id="menu">
         <ul class="lista_navegacion">
           <li class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/home">Inicio</a>
+            <a href="/home" class="enlace_navegacion" [class.active]="rutaActual === '/home'">Inicio</a>
           </li>
-          <li class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/productos">Productos</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-
-<!-- Header  para productos, supermercados, admin-panel -->
-<div *ngIf="rutaActual !== '/home' && rutaActual !== '/login' && rutaActual !== '/register'" class="contenedor">
-  <nav class="barra_navegacion">
-    <div class="contenedor_fluid">
-      <div class="logo-usuario">
-        <a href="/home" class="logo-usuario">
-          <img src="img/carrito.png" alt="carro" />
-          <h1 class="titulo">Click&Shop</h1>
-        </a>
-      </div>
-      <div class="colapsar" id="menu">
-        <ul class="lista_navegacion">
-          <li class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/home">Inicio</a>
-          </li>
-
           <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/productos">Productos</a>
+            <a href="/productos" class="enlace_navegacion" [class.active]="rutaActual === '/productos'">Productos</a>
           </li>
-
           <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/supermercados">Supermercados</a>
+            <a href="/supermercados" class="enlace_navegacion" [class.active]="rutaActual === '/supermercados'">Supermercados</a>
           </li>
-
           <li *ngIf="rolUsuario === 1 || rolUsuario === 2" class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/favoritos">Favoritos</a>
+            <a href="/favoritos" class="enlace_navegacion" [class.active]="rutaActual === '/favoritos'">Favoritos</a>
           </li>
-
           <li *ngIf="rolUsuario === 1" class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/admin-panel">Panel Admin</a>
+            <a href="/admin-panel" class="enlace_navegacion" [class.active]="rutaActual === '/admin-panel'">Panel Admin</a>
           </li>
-
-          <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
-            <button class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+          <li *ngIf="rolUsuario === 1" class="elemento_navegacion">
+            <button type="button" class="enlace_navegacion" (click)="abrirConfig()">Configuración</button>
           </li>
-
           <li *ngIf="!usuarioAutenticado" class="elemento_navegacion">
-            <a class="enlace_navegacion" href="/principal">Iniciar Sesión</a>
+            <a href="/login" class="enlace_navegacion login-registro" [class.active]="rutaActual === '/login'">
+              <img src="img/profile.png" alt="Perfil" class="icono-login" /><span>Login / Registro</span>
+            </a>
+          </li>
+          <li *ngIf="usuarioAutenticado" class="elemento_navegacion">
+            <button type="button" class="boton-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
           </li>
         </ul>
       </div>
@@ -67,20 +41,28 @@
   </nav>
 </div>
 
-<!--  Header para /home -->
-<div *ngIf="rutaActual === '/home'" class="contenido-global">
-  <header class="encabezado">
-    <div class="marca">
-      <a href="/home" class="logo-usuario">
-        <img src="img/carrito.png" alt="carro" />
-        <h1 class="titulo">Click&Shop</h1>
-      </a>
-    </div>
-    <nav class="navegacion">
-      <a href="/login" class="login-registro">
-        <p id="texto-login">Login / Registro</p>
-        <img src="img/profile.png" alt="Login" class="icono-login" />
-      </a>
-    </nav>
-  </header>
+<div *ngIf="configOpen" class="modal-backdrop" (click)="cerrarConfig()"></div>
+<div *ngIf="configOpen" class="config-modal">
+  <h2>Configuración</h2>
+  <div class="config-item">
+    <label>Fondo de la app</label>
+    <input type="color" [(ngModel)]="backgroundColor" />
+  </div>
+  <div class="config-item">
+    <label>Fondo del header</label>
+    <input type="color" [(ngModel)]="headerColor" />
+  </div>
+  <div class="config-item">
+    <label>Color de botones</label>
+    <input type="color" [(ngModel)]="buttonColor" />
+  </div>
+  <div class="config-item">
+    <label>Color hover</label>
+    <input type="color" [(ngModel)]="hoverColor" />
+  </div>
+  <div class="actions">
+    <button type="button" (click)="applySettings()">Aplicar</button>
+    <button type="button" (click)="cerrarConfig()">Cerrar</button>
+  </div>
+  <button type="button" class="reset-button" (click)="resetDefaults()">Restablecer valores predeterminados</button>
 </div>

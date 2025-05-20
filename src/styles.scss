@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --header-height: 60px;
+  --header-bg-color: #ffffff;
+  --app-bg-color: #ffffff;
+  --app-button-color: #007bff;
+  --app-hover-color: #0056b3;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding-top: var(--header-height);
+  background-color: var(--app-bg-color);
+}

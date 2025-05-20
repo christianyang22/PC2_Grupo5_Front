@@ -1,167 +1,50 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-weight: bold;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: bold;
 }
+
 :host {
   display: block;
   position: relative;
   z-index: 9999;
 }
 
-header {
+.barra_navegacion {
+  background-color: var(--header-bg-color) !important;
+  border-bottom: 1px solid #ddd;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 0.5rem 1.5rem;  
-  height: 60px;            
+  height: var(--header-height);
+  padding: 0 1.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  isolation: isolate;
+  z-index: 1000;
 }
-  
+
 .contenedor {
-    width: 100%;
-    padding: 10px 20px;
+  width: 100%;
+  padding: 0 1.5rem;
 }
+
 .contenedor_fluid {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 2rem; 
-  box-sizing: border-box;
-}
-
-  
-.barra_navegacion {
-  background-color: white;
-  position: fixed; 
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 10;
-  margin: 0;
   padding: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-}
-  
-  
-.logo-usuario {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    gap: 10px;
-}
-  
-.logo-usuario img {
-    width: 50px;
-    height: 50px;
-}
-  
-.titulo {
-    font-size: 1.5rem;
-    color: black;
-    font-weight: bold;
-    margin: 0;
-}
-  
-.titulo:hover {
-    color: #007bff;
-}
-  
-.lista_navegacion {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-}
-  
-.elemento_navegacion {
-    display: flex;
-    align-items: center;
-}
-  
-.enlace_navegacion, .boton-cerrar-sesion {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-  
-.enlace_navegacion {
-    background: transparent;
-    color: black;
-    border: none;
-}
-  
-.enlace_navegacion:hover {
-    color: #007bff;
-}
-  
-.boton-cerrar-sesion {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-  
-.boton-cerrar-sesion:hover {
-    background-color: #0056b3;
-}
-.login-registro {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: inherit;
-}
-
-#texto-login {
-  margin: 4px 0 0 0;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.contenido-principal-principal {
-  padding: 40px 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  flex: 1;
-}
-
-.encabezado {
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
 .logo-usuario {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: inherit;
   gap: 10px;
+  text-decoration: none !important;
+  color: inherit;
 }
 
 .logo-usuario img {
@@ -173,11 +56,146 @@ header {
   font-size: 1.5rem;
   color: black;
   font-weight: bold;
-  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.logo-usuario:hover .titulo {
+  color: var(--app-button-color);
+}
+
+.lista_navegacion {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+.elemento_navegacion {
+  display: flex;
+  align-items: center;
+}
+
+.enlace_navegacion {
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: transparent;
+  color: black;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.enlace_navegacion:hover,
+.enlace_navegacion.active {
+  color: var(--app-hover-color);
+}
+
+.boton-cerrar-sesion {
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--app-button-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton-cerrar-sesion:hover {
+  background-color: var(--app-hover-color);
+}
+
+.login-registro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .icono-login {
   width: 30px;
   height: 30px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.config-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  z-index: 1001;
+}
+
+.config-modal h2 {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.config-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.config-item label {
+  font-size: 1rem;
+}
+
+.config-item input[type="color"] {
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.actions button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--app-button-color);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.reset-button {
+  align-self: center;
+  background: none;
+  border: none;
+  color: var(--app-button-color);
+  text-decoration: underline;
   cursor: pointer;
 }
