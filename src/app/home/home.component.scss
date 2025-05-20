@@ -1,7 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
 
 .fondo-desenfocado {
-  background: url('/img/1.jpg') no-repeat center center fixed;
+  background: url('/img/fondo7.jpg') no-repeat center center fixed;
   background-size: cover;
   position: fixed;
   top: 0;
@@ -9,181 +9,122 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-
-}
-
-.superposicion-fondo {
-  background-color: rgba(0, 0, 0, 0.25);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-}
-
-.encabezado {
-  background-color: #fff;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.logo-usuario {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: inherit;
-
-  img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .titulo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #222;
-  }
-}
-
-.login-registro {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: inherit;
-
-  #texto-login {
-    margin: 4px 0 0 0;
-    font-weight: bold;
-    font-size: 0.95rem;
-  }
-
-  .icono-login {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
+  /*filter: blur(2px) brightness(0.85);*/
 }
 
 .contenido-principal-principal {
-  padding: 40px 20px;
+  padding: 60px 20px 40px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  flex: 1;
 }
 
-.bienvenida,
-.carrusel-productos,
-.beneficios-cards,
-.quienes-somos {
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  padding: 50px 30px;
+/* ANIMACIONES */
+.animacion-entrada {
+  animation: fadeInUp 1s ease both;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SECCIONES BASE */
+section {
+  background-color: rgba(255, 255, 255, 0.92);
   border-radius: 20px;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  margin-bottom: 50px;
+  padding: 50px 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* BIENVENIDA */
 .bienvenida {
   text-align: center;
 
   h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: black;
+    font-size: 2.5rem;
+    font-weight: 800;
   }
 
   p {
-    font-size: 1.1rem;
-    color: black;
-    margin: 15px 0;
+    font-size: 1.2rem;
+    margin-top: 20px;
   }
 
   .btn-destacado {
     background-color: #28a745;
     color: white;
-    padding: 12px 30px;
-    border: none;
+    padding: 14px 35px;
     border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 600;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
+    margin-top: 25px;
     display: inline-block;
-    margin-top: 20px;
+    transition: all 0.3s ease;
 
     &:hover {
       background-color: #218838;
+      transform: scale(1.05);
     }
   }
 }
 
+/* CARRUSEL */
 .carrusel-productos {
   .seccion-titulo {
-    text-align: center;
+    font-size: 2rem;
     font-weight: bold;
-    font-size: 1.6rem;
-    color: black;
-    margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   .parrafo-carrusel {
     text-align: center;
-    font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .carrusel-track {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
   }
 
   .carrusel-item {
-    background: white;
+    background: #fff;
     padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     width: 200px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
     text-align: center;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
 
     img {
       width: 100%;
-      height: 160px;
+      height: 150px;
       object-fit: contain;
-      border-radius: 8px;
       margin-bottom: 10px;
     }
 
     .nombre {
       font-weight: bold;
-      font-size: 0.85rem;
-      min-height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      line-height: 1.2;
+      font-size: 0.95rem;
     }
 
     .precio {
-      color: red;
+      color: #e53935;
       font-weight: bold;
       margin-top: 10px;
     }
@@ -191,102 +132,61 @@
     .logo-supermercado {
       width: 40px;
       height: 40px;
-      object-fit: contain;
+      margin-bottom: 10px;
     }
   }
 }
 
+/* BENEFICIOS */
 .beneficios-cards {
   text-align: center;
 
   h3 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: black;
+    font-size: 2rem;
     margin-bottom: 30px;
   }
 
   .beneficio-cards {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
 
     .card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 15px;
       width: 200px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
-      text-align: center;
 
       i {
         font-size: 2rem;
         color: #28a745;
-        margin-bottom: 15px;
-      }
-
-      p {
-        font-size: 1rem;
-        color: black;
+        margin-bottom: 10px;
       }
 
       &:hover {
-        transform: translateY(-5px);
+        transform: translateY(-6px);
       }
     }
   }
 }
 
-.quienes-somos {
-  text-align: center;
-
-  h3 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-size: 1.1rem;
-    color: black;
-    margin-bottom: 10px;
-  }
-}
-
-
-/* NUEVAS SECCIONES DE TARJETAS DE INFORMACIÓN */
-
-.info-seccion {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 50px 30px;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
-
-  h3 {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    color: #222;
-  }
-
-  .info-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-  }
+/* INFO GENERAL Y TARJETAS */
+.info-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
 
   .info-card {
-    background-color: #f9f9f9;
-    border-radius: 12px;
+    background-color: #f8f9fa;
     padding: 30px;
+    border-radius: 15px;
     max-width: 300px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
 
     i {
       font-size: 2rem;
@@ -296,43 +196,77 @@
 
     h4 {
       font-size: 1.2rem;
-      margin-bottom: 10px;
+      font-weight: bold;
     }
 
     p {
       font-size: 1rem;
       color: #555;
     }
+  }
+}
 
-    &:hover {
-      transform: translateY(-5px);
+/* TESTIMONIOS */
+.testimonios {
+  text-align: center;
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .testimonios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+
+    .testimonio {
+      background: #fff;
+      border-left: 4px solid #28a745;
+      padding: 25px;
+      max-width: 300px;
+      border-radius: 10px;
+      font-style: italic;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+      span {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+        font-style: normal;
+      }
     }
   }
 }
 
-/* RESPONSIVE */
+/* QUIÉNES SOMOS */
+.quienes-somos {
+  text-align: center;
 
-@media (max-width: 768px) {
-  .contenido-principal-principal {
-    padding: 20px;
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
 
-  .carrusel-track {
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .carrusel-track,
+  .beneficio-cards,
+  .info-grid,
+  .testimonios-grid {
     flex-direction: column;
     align-items: center;
   }
 
   .carrusel-item {
     width: 90%;
-  }
-
-  .beneficio-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .info-grid {
-    flex-direction: column;
-    align-items: center;
   }
 }
