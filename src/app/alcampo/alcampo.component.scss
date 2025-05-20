@@ -10,7 +10,6 @@
 }
 
 
-
 .card-title {
   font-size: 1rem;
   font-weight: 600;
@@ -25,7 +24,35 @@
   white-space: normal;
 }
 
+
 .buscador-input {
   max-width: 500px;     
   width: 100%;
+}
+
+.border-verde-claro {
+  border: 2px solid #e21010; 
+}
+
+
+.logo-supermercado {
+  width: 80px;
+}
+
+.imagen-producto {
+  height: 140px;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+
+.btn-verde-claro {
+  background-color: #ec4747;
+  color: black;
+  border: none;
+}
+
+.btn-verde-claro:hover {
+    background-color: #ec4747;
+    color: black;
 }
