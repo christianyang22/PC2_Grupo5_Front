@@ -42,19 +42,15 @@ export class AdminPanelComponent implements OnInit {
 
   cargarUsuarios(): void {
     this.usuarioService.getUsuarios().subscribe({
-      next: (usuarios) => {
-        this.usuarios = usuarios ?? [];
-      },
-      error: (err) => console.error('Error al cargar usuarios:', err)
+      next: usuarios => this.usuarios = usuarios ?? [],
+      error: err => console.error('Error al cargar usuarios:', err)
     });
   }
 
   cargarProductos(): void {
     this.productoService.getProductos().subscribe({
-      next: (productos) => {
-        this.productos = productos.data ?? [];
-      },
-      error: (err) => console.error('Error al cargar productos:', err)
+      next: productos => this.productos = productos.data ?? [],
+      error: err => console.error('Error al cargar productos:', err)
     });
   }
 
@@ -65,7 +61,7 @@ export class AdminPanelComponent implements OnInit {
           this.cargarUsuarios();
           alert('Usuario eliminado correctamente.');
         },
-        error: (err) => console.error('Error eliminando usuario:', err)
+        error: err => console.error('Error eliminando usuario:', err)
       });
     }
   }
@@ -77,10 +73,75 @@ export class AdminPanelComponent implements OnInit {
           this.cargarProductos();
           alert('Producto eliminado correctamente.');
         },
-        error: (err) => console.error('Error eliminando producto:', err)
+        error: err => console.error('Error eliminando producto:', err)
       });
     }
   }
+
+editarUsuario(usuario: any): void {
+  try {
+    const nuevoUsuario = prompt('Nuevo nombre de usuario:', usuario.usuario);
+    const nuevoNombre = prompt('Nuevo nombre completo:', usuario.nombre);
+    const nuevoCorreo = prompt('Nuevo correo electrónico:', usuario.email);
+    const rolPorDefecto = usuario.rol !== undefined && usuario.rol !== null ? usuario.rol.toString() : '2';
+    const nuevoRolStr = prompt('Nuevo rol (1 = Admin, 2 = Usuario):', rolPorDefecto);
+    const nuevaPassword = prompt('Nueva contraseña (opcional):');
+
+    if (
+      nuevoUsuario === null ||
+      nuevoNombre === null ||
+      nuevoCorreo === null ||
+      nuevoRolStr === null
+    ) {
+      alert('Edición cancelada.');
+      return;
+    }
+
+    const nuevoRol = parseInt(nuevoRolStr, 10);
+    if (isNaN(nuevoRol) || (nuevoRol !== 1 && nuevoRol !== 2)) {
+      alert('Rol inválido. Usa 1 para Admin o 2 para Usuario.');
+      return;
+    }
+
+    const confirmacion = confirm(
+      `¿Confirmas editar al usuario con estos datos?\n\n` +
+      `Usuario: ${nuevoUsuario}\nNombre: ${nuevoNombre}\nEmail: ${nuevoCorreo}\nRol: ${nuevoRol === 1 ? 'Admin' : 'Usuario'}\nContraseña: ${nuevaPassword ? 'Sí' : 'No'}`
+    );
+
+    if (!confirmacion) {
+      alert('Edición cancelada.');
+      return;
+    }
+
+    const datosActualizados: any = {
+      usuario: nuevoUsuario,
+      nombre: nuevoNombre,
+      email: nuevoCorreo,
+      rol: nuevoRol
+    };
+
+    if (nuevaPassword && nuevaPassword.trim() !== '') {
+      datosActualizados.password = nuevaPassword;
+    }
+
+    this.usuarioService.editarUsuarioPorId(usuario.id_usuario, datosActualizados).subscribe({
+      next: () => {
+        this.cargarUsuarios();
+        alert('Usuario editado correctamente.');
+      },
+      error: err => {
+        console.error('Error al editar usuario:', err);
+        alert(
+          'Hubo un error al editar el usuario.\n\n' +
+          (err?.error?.message || err.message || 'Error desconocido')
+        );
+      }
+    });
+  } catch (e) {
+    console.error('Error inesperado durante la edición:', e);
+    alert('Ocurrió un error inesperado.');
+  }
+}
 
   cerrarSesion(): void {
     this.authService.logout();

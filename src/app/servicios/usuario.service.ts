@@ -21,11 +21,19 @@ export class UsuarioService {
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
 
+  editarUsuarioPorId(id: number, datos: any): Observable<any> {
+  const headers = this.createAuthorizationHeader();
+  return this.http.put(`${this.apiUrl}/${id}`, datos, { headers });
+}
+
+
   private createAuthorizationHeader(): HttpHeaders {
     const token = this.authService.getToken();
     if (!token) {
       console.warn('No token encontrado, no se puede autenticar la solicitud');
     }
+
+    
 
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`,
