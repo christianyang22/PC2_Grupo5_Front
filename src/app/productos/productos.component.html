@@ -1,62 +1,47 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-5">
   <div class="row">
     <!-- Filtros a la izquierda -->
-    <div class="col-lg-3 mb-4" style="margin-top: 4rem;">
-      <div class="bg-white p-3 rounded shadow">
-        <h5 class="fw-bold mb-3" style="color: black;">Filtros Avanzados</h5>
+    <div class="col-lg-3 mb-4">
+      <div class="bg-white p-4 rounded shadow-sm">
+        <h5 class="fw-bold mb-3 text-dark">Filtros Avanzados</h5>
 
         <!-- Buscador -->
         <div class="mb-3">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="terminoBusqueda"
-            name="terminoBusqueda"
-            placeholder="🔍 Buscar productos"
-          />
+          <input type="text" class="form-control" [(ngModel)]="terminoBusqueda" name="terminoBusqueda"
+            placeholder="🔍 Buscar productos" />
         </div>
 
-        <!-- Precio -->
+        <!-- Sliders -->
         <div class="mb-3">
-          <label class="form-label" style="color: black;">Precio (€)</label>
-          <div class="d-flex align-items-center gap-2">
-            <input type="number" class="form-control" [(ngModel)]="precioMin" name="precioMin" />
-            <ngx-slider [(value)]="precioMin" [(highValue)]="precioMax" [options]="optionsPrecio"></ngx-slider>
-            <input type="number" class="form-control" [(ngModel)]="precioMax" name="precioMax" />
-          </div>
+          <label class="form-label text-dark">
+            Precio (€): {{ precioMin }} - {{ precioMax }}
+          </label>
+          <ngx-slider [(value)]="precioMin" [(highValue)]="precioMax" [options]="optionsPrecio"></ngx-slider>
         </div>
 
-        <!-- Grasas -->
         <div class="mb-3">
-          <label class="form-label" style="color: black;">Grasas (g)</label>
-          <div class="d-flex align-items-center gap-2">
-            <input type="number" class="form-control" [(ngModel)]="grasaMin" name="grasaMin" />
-            <ngx-slider [(value)]="grasaMin" [(highValue)]="grasaMax" [options]="optionsGrasa"></ngx-slider>
-            <input type="number" class="form-control" [(ngModel)]="grasaMax" name="grasaMax" />
-          </div>
+          <label class="form-label text-dark">
+            Grasas (g): {{ grasaMin }} - {{ grasaMax }}
+          </label>
+          <ngx-slider [(value)]="grasaMin" [(highValue)]="grasaMax" [options]="optionsGrasa"></ngx-slider>
         </div>
 
-        <!-- Hidratos -->
         <div class="mb-3">
-          <label class="form-label" style="color: black;">Hidratos (g)</label>
-          <div class="d-flex align-items-center gap-2">
-            <input type="number" class="form-control" [(ngModel)]="hidratosMin" name="hidratosMin" />
-            <ngx-slider [(value)]="hidratosMin" [(highValue)]="hidratosMax" [options]="optionsHidratos"></ngx-slider>
-            <input type="number" class="form-control" [(ngModel)]="hidratosMax" name="hidratosMax" />
-          </div>
+          <label class="form-label text-dark">
+            Hidratos (g): {{ hidratosMin }} - {{ hidratosMax }}
+          </label>
+          <ngx-slider [(value)]="hidratosMin" [(highValue)]="hidratosMax" [options]="optionsHidratos"></ngx-slider>
         </div>
 
-        <!-- Azúcar -->
-        <div class="mb-3">
-          <label class="form-label" style="color: black;">Azúcar (g)</label>
-          <div class="d-flex align-items-center gap-2">
-            <input type="number" class="form-control" [(ngModel)]="azucarMin" name="azucarMin" />
-            <ngx-slider [(value)]="azucarMin" [(highValue)]="azucarMax" [options]="optionsAzucar"></ngx-slider>
-            <input type="number" class="form-control" [(ngModel)]="azucarMax" name="azucarMax" />
-          </div>
+        <div class="mb-4">
+          <label class="form-label text-dark">
+            Azúcar (g): {{ azucarMin }} - {{ azucarMax }}
+          </label>
+          <ngx-slider [(value)]="azucarMin" [(highValue)]="azucarMax" [options]="optionsAzucar"></ngx-slider>
         </div>
+
 
         <!-- Botones -->
         <div class="d-grid gap-2">
@@ -67,48 +52,48 @@
     </div>
 
     <!-- Productos a la derecha -->
-    <div class="col-lg-9" style="margin-top: 4rem;">
-
+    <div class="col-lg-9">
       <!-- Spinner -->
       <div *ngIf="productos.length === 0" class="text-center my-4">
         <img src="img/spinner.gif" alt="Cargando..." class="spinner-gif-top" />
       </div>
 
-      <!-- Paginación (SUBIDA) -->
-      <div *ngIf="totalPages > 1 && productosFiltrados.length > 0" class="d-flex justify-content-center align-items-center mb-4">
-        <button class="btn btn-primary me-2" (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
-        <span class="fw-bold" style="color: black;">Página {{ currentPage }} de {{ totalPages }}</span>
-        <button class="btn btn-primary ms-2" (click)="siguientePagina()" [disabled]="currentPage === totalPages">Siguiente</button>
-      </div>
-
-      <!-- Resultados -->
-      <div class="row g-3" *ngIf="productosFiltrados.length > 0">
+      <!-- Productos -->
+      <div class="row g-4" *ngIf="productosFiltrados.length > 0">
         <div class="col-md-6 col-lg-4" *ngFor="let producto of obtenerProductosPaginaActual()">
-          <div class="card h-100 shadow-sm border border-dark position-relative">
+          <div class="card h-100 border-0 shadow-sm rounded-3 position-relative">
 
             <!-- Logo supermercado -->
-            <img
-              [src]="ImagenSupermercado(producto.supermercado)"
-              [alt]="producto.supermercado"
-              class="position-absolute"
-              style="top: 0.5rem; left: 0.5rem; height: 32px; z-index: 10;"
-            />
+            <img [src]="ImagenSupermercado(producto.supermercado)" [alt]="producto.supermercado"
+              class="position-absolute" style="top: 0.5rem; left: 0.5rem; height: 28px; z-index: 10;" />
 
-            <!-- Imagen producto -->
-            <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" class="card-img-top" [alt]="producto.nombre" />
+            <!-- Imagen del producto -->
+            <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" class="card-img-top img-fluid p-3"
+              [alt]="producto.nombre" style="height: 150px; object-fit: contain;" />
 
-            <div class="card-body text-center text-black">
-              <h6 class="fw-bold" style="color: black;">{{ producto.nombre }}</h6>
-              <p class="fw-bold mb-1" style="color: black;">Supermercado: {{ producto.supermercado }}</p>
-              <p class="fw-bold" style="color: black;">Precio: {{ producto.precio }} €</p>
+            <div class="card-body text-center">
+              <h6 class="card-title fw-semibold text-dark" style="min-height: 48px;">
+                {{ producto.nombre }}
+              </h6>
+              <p class="card-text text-muted mb-1">Supermercado: {{ producto.supermercado }}</p>
+              <p class="card-text fw-bold text-dark">Precio: {{ producto.precio }} €</p>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Paginación (ahora abajo) -->
+      <div *ngIf="totalPages > 1 && productosFiltrados.length > 0"
+        class="d-flex justify-content-center align-items-center my-4">
+        <button class="btn btn-primary me-2" (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
+        <span class="fw-bold text-dark">Página {{ currentPage }} de {{ totalPages }}</span>
+        <button class="btn btn-primary ms-2" (click)="siguientePagina()"
+          [disabled]="currentPage === totalPages">Siguiente</button>
+      </div>
+
       <!-- Sin resultados -->
       <div *ngIf="productosFiltrados.length === 0 && productos.length > 0" class="alert alert-warning mt-3">
-        No se encontraron productos con los filtros aplicados, aplica otros filtros
+        No se encontraron productos con los filtros aplicados.
       </div>
     </div>
   </div>
