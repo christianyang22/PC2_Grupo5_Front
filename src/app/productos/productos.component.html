@@ -1,89 +1,120 @@
-      <!-- Falta añadir footer y header -->
-<div *ngIf="productos.length === 0" class="spinner-wrapper">
-  <img src="img/spinner.gif" class="spinner-gif-top" alt="Cargando..." />
-</div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<header>
 
-</header>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Filtros a la izquierda -->
+    <div class="col-lg-3 mb-4" style="margin-top: 4rem;">
+      <div class="bg-white p-3 rounded shadow">
+        <h5 class="fw-bold mb-3" style="color: black;">Filtros Avanzados</h5>
 
-<main class="contenido-principal">
-  <aside class="menu-filtros ancho">
-    <form (submit)="aplicarFiltrosYBusqueda(); $event.preventDefault();">
-      <h3 class="titulo-filtros">Filtros Avanzados</h3>
+        <!-- Buscador -->
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="terminoBusqueda"
+            name="terminoBusqueda"
+            placeholder="🔍 Buscar productos"
+          />
+        </div>
 
-      <div class="campo">
-        <input type="text" [(ngModel)]="terminoBusqueda" name="terminoBusqueda" class="entrada-busqueda" placeholder="🔍 Buscar productos" />
-      </div>
+        <!-- Precio -->
+        <div class="mb-3">
+          <label class="form-label" style="color: black;">Precio (€)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="number" class="form-control" [(ngModel)]="precioMin" name="precioMin" />
+            <ngx-slider [(value)]="precioMin" [(highValue)]="precioMax" [options]="optionsPrecio"></ngx-slider>
+            <input type="number" class="form-control" [(ngModel)]="precioMax" name="precioMax" />
+          </div>
+        </div>
 
-      <!-- Filtro Precio -->
-      <div class="grupo-filtro">
-        <label>Precio (€)</label>
-        <div class="slider-fila">
-          <input type="number" [(ngModel)]="precioMin" name="precioMin" min="0" max="1000" />
-          <ngx-slider [(value)]="precioMin" [(highValue)]="precioMax" [options]="optionsPrecio"></ngx-slider>
-          <input type="number" [(ngModel)]="precioMax" name="precioMax" min="0" max="1000" />
+        <!-- Grasas -->
+        <div class="mb-3">
+          <label class="form-label" style="color: black;">Grasas (g)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="number" class="form-control" [(ngModel)]="grasaMin" name="grasaMin" />
+            <ngx-slider [(value)]="grasaMin" [(highValue)]="grasaMax" [options]="optionsGrasa"></ngx-slider>
+            <input type="number" class="form-control" [(ngModel)]="grasaMax" name="grasaMax" />
+          </div>
+        </div>
+
+        <!-- Hidratos -->
+        <div class="mb-3">
+          <label class="form-label" style="color: black;">Hidratos (g)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="number" class="form-control" [(ngModel)]="hidratosMin" name="hidratosMin" />
+            <ngx-slider [(value)]="hidratosMin" [(highValue)]="hidratosMax" [options]="optionsHidratos"></ngx-slider>
+            <input type="number" class="form-control" [(ngModel)]="hidratosMax" name="hidratosMax" />
+          </div>
+        </div>
+
+        <!-- Azúcar -->
+        <div class="mb-3">
+          <label class="form-label" style="color: black;">Azúcar (g)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="number" class="form-control" [(ngModel)]="azucarMin" name="azucarMin" />
+            <ngx-slider [(value)]="azucarMin" [(highValue)]="azucarMax" [options]="optionsAzucar"></ngx-slider>
+            <input type="number" class="form-control" [(ngModel)]="azucarMax" name="azucarMax" />
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" (click)="aplicarFiltrosYBusqueda()">Buscar</button>
+          <button class="btn btn-outline-secondary" (click)="limpiarBusqueda()">Limpiar</button>
         </div>
       </div>
-
-      <!-- Filtro Grasas -->
-      <div class="grupo-filtro">
-        <label>Grasas (g)</label>
-        <div class="slider-fila">
-          <input type="number" [(ngModel)]="grasaMin" name="grasaMin" min="0" max="1000" />
-          <ngx-slider [(value)]="grasaMin" [(highValue)]="grasaMax" [options]="optionsGrasa"></ngx-slider>
-          <input type="number" [(ngModel)]="grasaMax" name="grasaMax" min="0" max="1000" />
-        </div>
-      </div>
-
-      <!-- Filtro Hidratos -->
-      <div class="grupo-filtro">
-        <label>Hidratos (g)</label>
-        <div class="slider-fila">
-          <input type="number" [(ngModel)]="hidratosMin" name="hidratosMin" min="0" max="1000" />
-          <ngx-slider [(value)]="hidratosMin" [(highValue)]="hidratosMax" [options]="optionsHidratos"></ngx-slider>
-          <input type="number" [(ngModel)]="hidratosMax" name="hidratosMax" min="0" max="1000" />
-        </div>
-      </div>
-
-      <!-- Filtro Azúcar -->
-      <div class="grupo-filtro">
-        <label>Azúcar (g)</label>
-        <div class="slider-fila">
-          <input type="number" [(ngModel)]="azucarMin" name="azucarMin" min="0" max="1000" />
-          <ngx-slider [(value)]="azucarMin" [(highValue)]="azucarMax" [options]="optionsAzucar"></ngx-slider>
-          <input type="number" [(ngModel)]="azucarMax" name="azucarMax" min="0" max="1000" />
-        </div>
-      </div>
-
-      <div class="botones-filtros">
-        <button type="submit" class="boton-buscar">Buscar</button>
-        <button type="button" class="boton-limpiar" (click)="limpiarBusqueda()">Limpiar</button>
-      </div>
-    </form>
-  </aside>
-
-  <!-- Cuadrícula de productos -->
-  <section *ngIf="productosFiltrados.length > 0" class="cuadrícula-productos">
-    <div *ngFor="let producto of obtenerProductosPaginaActual()" class="tarjeta-producto">
-      <img [src]="ImagenSupermercado(producto.supermercado)" alt="Logo supermercado" width="40" />
-      <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}" width="150" />
-      <h3>{{ producto.nombre }}</h3>
-      <p>Supermercado: {{ producto.supermercado }}</p>
-      <p>Precio: {{ producto.precio }} €</p>
     </div>
-  </section>
 
-  <!-- Si no se encuentran productos con los filtros solicitados -->
-  <section *ngIf="productosFiltrados.length === 0 && productos.length > 0" class="mensaje-sin-resultados">
-    <p>No se encontraron productos con los filtros aplicados.</p>
-    <button (click)="limpiarBusqueda()">Limpiar filtros</button>
-  </section>
-</main>
+    <!-- Productos a la derecha -->
+    <div class="col-lg-9" style="margin-top: 4rem;">
+      <!-- Spinner -->
+      <div *ngIf="productos.length === 0" class="text-center my-4">
+        <img src="img/spinner.gif" alt="Cargando..." class="spinner-gif-top" />
+      </div>
 
-<!-- Paginación -->
-<div *ngIf="totalPages > 1 && productosFiltrados.length > 0" class="paginacion">
-  <button (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
-  <span>Página {{ currentPage }} de {{ totalPages }}</span>
-  <button (click)="siguientePagina()" [disabled]="currentPage === totalPages">Siguiente</button>
+      <!-- Resultados -->
+      <div class="row g-3" *ngIf="productosFiltrados.length > 0">
+        <div class="col-md-6 col-lg-4" *ngFor="let producto of obtenerProductosPaginaActual()">
+          <div class="card h-100 shadow-sm border border-dark position-relative">
+
+            <!-- Logo supermercado en esquina superior izquierda -->
+            <img
+              [src]="ImagenSupermercado(producto.supermercado)"
+              [alt]="producto.supermercado"
+              class="position-absolute"
+              style="top: 0.5rem; left: 0.5rem; height: 32px; z-index: 10;"
+            />
+
+            <!-- Imagen principal del producto -->
+            <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" class="card-img-top" [alt]="producto.nombre" />
+
+            <div class="card-body text-center text-black">
+              <!-- Nombre producto -->
+              <h6 class="fw-bold" style="color: black;">{{ producto.nombre }}</h6>
+
+              <!-- Supermercado -->
+              <p class="fw-bold mb-1" style="color: black;">Supermercado: {{ producto.supermercado }}</p>
+
+              <!-- Precio -->
+              <p class="fw-bold" style="color: black;">Precio: {{ producto.precio }} €</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sin resultados -->
+      <div *ngIf="productosFiltrados.length === 0 && productos.length > 0" class="alert alert-warning mt-3">
+        No se encontraron productos con los filtros aplicados, aplica otros filtros
+      </div>
+
+      <!-- Paginación -->
+      <div *ngIf="totalPages > 1 && productosFiltrados.length > 0" class="d-flex justify-content-center align-items-center mt-4">
+        <button class="btn btn-primary me-2" (click)="anteriorPagina()" [disabled]="currentPage === 1">Anterior</button>
+        <span class="fw-bold" style="color: black;">Página {{ currentPage }} de {{ totalPages }}</span>
+        <button class="btn btn-primary ms-2" (click)="siguientePagina()" [disabled]="currentPage === totalPages">Siguiente</button>
+      </div>
+    </div>
+  </div>
 </div>

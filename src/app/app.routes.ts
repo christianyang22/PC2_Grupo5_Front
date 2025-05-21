@@ -15,7 +15,6 @@ import { MercadonaComponent } from './mercadona/mercadona.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
-
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
@@ -28,7 +27,8 @@ export const routes: Routes = [
   { path: 'dia', component: DiaComponent },
   { path: 'mercadona', component: MercadonaComponent },
   { path: 'footer', component: FooterComponent },
-   { path: 'header', component: HeaderComponent },
+  { path: 'header', component: HeaderComponent },
+
 
   // Ruta solo visible para admins (ejemplo)
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AdminGuard] },
