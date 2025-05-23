@@ -4,16 +4,15 @@
   height: 60px;
 }
 
-/* Tamaño y estilo del slider */
+/* Slider personalizado */
 ::ng-deep .ngx-slider .ngx-slider-pointer {
   width: 16px !important;
   height: 16px !important;
   top: -6px !important;
-  background-color: #0d6efd !important; /* Azul Bootstrap */
+  background-color: #198754 !important; /* Verde Bootstrap */
   border: none !important;
 }
 
-/* Elimina burbujas flotantes de valor */
 ::ng-deep .ngx-slider .ngx-slider-bubble,
 ::ng-deep .ngx-slider .ngx-slider-model-value,
 ::ng-deep .ngx-slider .ngx-slider-limit,
@@ -21,25 +20,29 @@
   display: none !important;
 }
 
-/* Elimina cualquier pointer duplicado o marcador innecesario */
 ::ng-deep .ngx-slider .ngx-slider-pointer:nth-child(4),
 ::ng-deep .ngx-slider .ngx-slider-pointer:after {
   display: none !important;
 }
 
-/* Línea de progreso */
 ::ng-deep .ngx-slider .ngx-slider-selection {
-  background-color: #0d6efd !important;
+  background-color: #198754 !important;
 }
 
-/* Línea base del slider */
 ::ng-deep .ngx-slider .ngx-slider-bar {
   height: 4px !important;
 }
 
-/* Quitar efecto de foco */
 ::ng-deep .ngx-slider .ngx-slider-pointer:focus {
   outline: none !important;
   box-shadow: none !important;
 }
 
+/* Efecto de hover para tarjetas */
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
