@@ -1,0 +1,66 @@
+
+
+/* Estilo para la sección de las tarjetas */
+.tabla-admin {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Tarjetas */
+.card {
+  border-radius: 1rem;
+}
+
+/* Encabezados de las tablas */
+.table thead th {
+  background-color: #f1f3f5;
+  color: #212529;
+  font-weight: 600;
+
+}
+
+/* Centrar tablas */
+.table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Estilo rayado para filas impares */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+/* Botones de acción */
+.btn i {
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tabla-admin .card-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 4px 10px;
+  }
+
+  .btn i {
+    margin-right: 0.25rem;
+  }
+}

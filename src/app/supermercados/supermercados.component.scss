@@ -1,0 +1,361 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
+
+
+
+.contenedor {
+  flex: 1 0 auto;
+  padding: 90px;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.fondo-desenfocado {
+  background: url('/img/supermercado.webp') center/cover no-repeat;
+  filter: blur(0px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.superposicion-fondo {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.enunciado {
+  font-weight: bold;
+}
+
+.barra {
+  width: 100%;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.encabezado {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #ddd;
+  padding: 15px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.logo-usuario {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 10px;
+}
+
+.logo-usuario img {
+  width: 50px;
+  height: 50px;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+}
+
+.titulo:hover {
+  color: #007bff;
+}
+
+.icono-carrito {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+}
+
+.lista_navegacion {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.elemento_navegacion {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.enlace_navegacion,
+.enlace_navegacion.activo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  height: 100%;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.enlace_navegacion {
+  background: transparent;
+  color: black;
+  border: none;
+}
+
+.enlace_navegacion:hover {
+  color: #007bff;
+}
+
+.enlace_navegacion.activo {
+  font-weight: bold;
+  color: #007bff;
+  border: none;
+}
+
+.boton-cerrar-sesion {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.boton-cerrar-sesion:hover {
+  background-color: #0056b3;
+}
+
+.fila_supermercados {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.columna_supermercado {
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 220px;
+  max-width: 220px;
+  min-width: 180px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.columna_supermercado p {
+  margin: 0;
+  padding: 0 5px;
+  word-wrap: break-word;
+}
+
+.columna_supermercado:nth-child(-n+3),
+.columna_supermercado:nth-child(n+4) {
+  flex: 1 1 25%;
+  max-width: 25%;
+}
+
+.columna_supermercado:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.carrefour {
+  border: 3px solid #0078C4;
+}
+
+.amazon {
+  border: 3px solid #00B373;
+}
+
+.alcampo {
+  border: 3px solid #E30613;
+}
+
+.mercadona {
+  border: 3px solid #007E33;
+}
+
+.dia {
+  border: 3px solid #E30613;
+}
+
+.logo_supermercado {
+  max-height: 100px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-top: 25px;
+  margin-bottom: 55px;
+}
+
+.pie-pagina {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: black;
+  font-size: 0.9rem;
+  padding: 40px 20px;
+  margin-top: 70px;
+}
+
+.contenedor-pie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.titulo-pie {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.lista-pie {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-pie li a {
+  color: black;
+  text-decoration: none;
+}
+
+.lista-pie li a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.iconos-redes img {
+  width: 35px;
+  margin-right: 10px;
+}
+
+.iconos-redes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.pie-inferior {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .fila_supermercados {
+    gap: 20px;
+  }
+
+  .columna_supermercado {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+
+  .encabezado {
+    flex-wrap: nowrap;
+  }
+
+  .lista_navegacion {
+    justify-content: flex-end;
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .columna_supermercado {
+    flex: 1 1 90%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .logo-usuario {
+    margin: 10px 0;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .logo-usuario img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .titulo {
+    font-size: 2rem;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .menu {
+    width: 100%;
+  }
+
+  .lista_navegacion {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  .elemento_navegacion {
+    margin: 0;
+  }
+
+  .enlace_navegacion, .boton-cerrar-sesion {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: auto;
+    height: auto;
+  }
+}

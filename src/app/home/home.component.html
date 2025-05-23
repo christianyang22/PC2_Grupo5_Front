@@ -1,0 +1,114 @@
+<div class="fondo-desenfocado"></div>
+
+<main class="contenido-principal-principal">
+
+  <!-- HERO / BIENVENIDA -->
+  <section class="bienvenida animacion-entrada">
+    <h2>¡Bienvenido a Click&Shop!</h2>
+    <p>Tu comparador inteligente de supermercados. Encuentra productos, compara precios, descubre ofertas y ahorra tiempo y dinero.</p>
+    <a href="/productos" class="btn-destacado">Explorar productos</a>
+  </section>
+
+  <!-- CARRUSEL DE PRODUCTOS DESTACADOS -->
+  <section class="carrusel-productos animacion-entrada" *ngIf="productosCarrusel.length > 0">
+    <h3 class="seccion-titulo">Productos destacados</h3>
+    <p class="parrafo-carrusel">Explora productos catalogados de diferentes supermercados con los que trabajamos.</p>
+    <div class="carrusel-track">
+      <div class="carrusel-item" *ngFor="let producto of productosCarrusel">
+        <img [src]="ImagenSupermercado(producto.supermercado)" alt="{{ producto.nombre }}" class="logo-supermercado" />
+        <img [src]="producto.link_imagen || 'assets/placeholder.jpg'" alt="{{ producto.nombre }}" />
+        <p class="nombre">{{ producto.nombre }}</p>
+        <p class="precio">{{ producto.precio }} €</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios-cards animacion-entrada">
+    <h3>¿Por qué elegirnos?</h3>
+    <div class="beneficio-cards">
+      <div class="card">
+        <i class="fas fa-clock"></i>
+        <p>Ahorra tiempo</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-balance-scale"></i>
+        <p>Compara precios fácilmente</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-heart"></i>
+        <p>Productos recomendados para ti</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-store-alt"></i>
+        <p>Todo en una sola plataforma</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE CONFIANZA -->
+  <section class="info-seccion animacion-entrada">
+    <h3>Tu seguridad es prioridad</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <i class="fas fa-shield-alt"></i>
+        <h4>Datos protegidos</h4>
+        <p>Tus datos están protegidos mediante cifrado y protocolos seguros.</p>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-user-secret"></i>
+        <h4>Privacidad garantizada</h4>
+        <p>No compartimos tu información personal con terceros.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE TECNOLOGÍA -->
+  <section class="info-seccion animacion-entrada">
+    <h3>Impulsado por tecnología</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <i class="fas fa-robot"></i>
+        <h4>Inteligencia Artificial</h4>
+        <p>Recomendaciones según tus hábitos y preferencias de compra.</p>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-sync-alt"></i>
+        <h4>Actualización constante</h4>
+        <p>Precios y catálogos actualizados diariamente en tiempo real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: TESTIMONIOS -->
+  <section class="testimonios animacion-entrada">
+    <h3>Lo que dicen nuestros usuarios</h3>
+    <div class="testimonios-grid">
+      <div class="testimonio">
+        <p>"¡Me ha ahorrado mucho tiempo y dinero! Súper útil."</p>
+        <span>— Laura G.</span>
+      </div>
+      <div class="testimonio">
+        <p>"Encuentro las mejores ofertas sin tener que ir de tienda en tienda."</p>
+        <span>— Marcos P.</span>
+      </div>
+      <div class="testimonio">
+        <p>"Una app imprescindible si haces la compra online."</p>
+        <span>— Andrea V.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
+  <section class="quienes-somos animacion-entrada" id="quienes-somos">
+    <h3>¿Quiénes somos?</h3>
+    <p>
+      Click&Shop es un proyecto académico de la <strong>Universidad Europea de Madrid</strong>, en colaboración con <strong>Hewlett Packard Enterprise (HPE)</strong>.
+    </p>
+    <p>
+      Nuestra misión es brindarte una plataforma donde comparar productos de múltiples supermercados y encontrar la mejor opción.
+    </p>
+    <p><strong>Jorge Esgueva, José Luis Blázquez, Pablo Cuevas, Guillermo Aos, Álvaro Carrizosa, Christian Yang, Pep Martorell.</strong></p>
+  </section>
+
+</main>
