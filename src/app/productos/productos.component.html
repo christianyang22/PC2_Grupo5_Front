@@ -63,7 +63,7 @@
         <div class="col-md-6 col-lg-4" *ngFor="let producto of obtenerProductosPaginaActual()">
           <div class="card h-100 border-0 shadow-sm rounded-3 position-relative">
 
-            <!-- Estrella de favoritos -->
+            <!-- Estrella para asignar al producto que es favorito -->
           <div class="position-absolute top-0 end-0 m-2" (click)="toggleFavorito(producto)">
             <i class="bi" 
               [ngClass]="esFavorito(producto.id_producto) ? 'bi-star-fill text-warning' : 'bi-star text-secondary'"
