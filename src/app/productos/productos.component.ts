@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FavoritosService } from '../favoritos/favoritos.service';
 
 @Component({
   selector: 'app-productos',
@@ -17,6 +18,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 export class ProductosComponent implements OnInit {
   productos: any[] = [];
   productosFiltrados: any[] = [];
+  favoritos: any[] = [];
   terminoBusqueda: string = '';
 
   currentPage: number = 1;
@@ -25,6 +27,7 @@ export class ProductosComponent implements OnInit {
 
   usuarioAutenticado: boolean = false;
   rolUsuario: number | null = null;
+  idUsuario: number | null = null;
 
   // Filtros
   precioMin = 0;
@@ -68,7 +71,8 @@ export class ProductosComponent implements OnInit {
   constructor(
     private productosService: ProductosService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private favoritosService: FavoritosService
   ) {}
 
   ngOnInit(): void {
@@ -83,6 +87,8 @@ export class ProductosComponent implements OnInit {
     user.subscribe(data => {
       if (data) {
         this.rolUsuario = data.rol;
+        this.idUsuario = data.id;
+        this.cargarFavoritos();
       }
       this.cargarProductos();
     });
@@ -193,6 +199,64 @@ export class ProductosComponent implements OnInit {
       case 'ALCAMPO': return 'img/alcampo.png';
       case 'AMAZON': return 'img/amazon-fresh.png';
       default: return 'assets/placeholder-logo.png';
+    }
+  }
+
+  // FAVORITOS
+  cargarFavoritos(): void {
+  if (!this.idUsuario) return;
+    this.favoritosService.obtenerFavoritosUsuario().subscribe({
+      next: (res) => {
+        // Asegura estructura uniforme
+        this.favoritos = res.map(f => ({
+          id_favorito: f.id_favorito,
+          id_producto: f.id_producto,
+          id_usuario: f.id_usuario
+        }));
+      },
+      error: (err) => {
+        console.error('Error al cargar favoritos:', err);
+      }
+    });
+  }
+
+  esFavorito(idProducto: number): boolean {
+    return this.favoritos.some(f => f.id_producto === idProducto);
+  }
+
+  toggleFavorito(producto: any): void {
+    if (!producto?.id_producto) { return; }
+
+    const favExistente = this.favoritos.find(f => f.id_producto === producto.id_producto);
+
+    if (favExistente) {
+      // Quitar visualmente
+      this.favoritos = this.favoritos.filter(f => f.id_producto !== producto.id_producto);
+
+      this.favoritosService.eliminarFavorito(favExistente.id_favorito).subscribe({
+        next : () => console.log('✅ eliminado'),
+        error: err => {
+          console.error('❌ error al eliminar', err);
+          this.favoritos.push(favExistente);            // rollback
+        }
+      });
+
+    } else {
+      const temp = { id_producto: producto.id_producto, id_favorito: Date.now() };
+      this.favoritos.push(temp);                        // optimista
+
+      this.favoritosService.agregarFavorito({ id_producto: producto.id_producto }).subscribe({
+        next : res => {
+          const idx = this.favoritos.findIndex(f => f.id_favorito === temp.id_favorito);
+          if (idx !== -1 && res?.favourite?.id_favorito) {
+            this.favoritos[idx].id_favorito = res.favourite.id_favorito;
+          }
+        },
+        error: err => {
+          console.error('❌ error al agregar', err);
+          this.favoritos = this.favoritos.filter(f => f.id_favorito !== temp.id_favorito); // rollback
+        }
+      });
     }
   }
 }

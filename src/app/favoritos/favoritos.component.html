@@ -1,0 +1,49 @@
+<!-- favoritos.component.html -->
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="fw-bold text-dark mb-4">Mis Productos Favoritos</h4>
+
+      <!-- Spinner si no hay favoritos cargados aún -->
+      <div *ngIf="favoritos.length === 0" class="text-center my-5">
+        <img src="assets/spinner.gif" alt="Cargando..." class="spinner-gif-top" />
+        <p class="mt-3 text-muted">Cargando favoritos...</p>
+      </div>
+
+      <!-- Tarjetas de productos favoritos -->
+      <div class="row g-4" *ngIf="favoritos.length > 0">
+        <div class="col-md-6 col-lg-4" *ngFor="let favorito of favoritos">
+          <div class="card h-100 border-0 shadow-sm rounded-3 position-relative">
+
+            <!-- Botón para quitar de favoritos -->
+            <div class="position-absolute top-0 end-0 m-2" (click)="eliminarFavorito(favorito)">
+              <i class="bi bi-star-fill text-warning" style="font-size: 1.5rem; cursor: pointer;"></i>
+            </div>
+
+            <!-- Logo supermercado -->
+            <img [src]="ImagenSupermercado(favorito.product.supermercado)" [alt]="favorito.product.supermercado"
+              class="position-absolute" style="top: 0.5rem; left: 0.5rem; height: 28px; z-index: 10;" />
+
+            <!-- Imagen del producto -->
+            <img [src]="favorito.product.link_imagen || 'assets/placeholder.jpg'"
+              class="card-img-top img-fluid p-3" [alt]="favorito.product.nombre"
+              style="height: 150px; object-fit: contain;" />
+
+            <div class="card-body text-center">
+              <h6 class="card-title fw-semibold text-dark" style="min-height: 48px;">
+                {{ favorito.product.nombre }}
+              </h6>
+              <p class="card-text text-muted mb-1">Supermercado: {{ favorito.product.supermercado }}</p>
+              <p class="card-text fw-bold text-dark">Precio: {{ favorito.product.precio }} €</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="favoritos.length === 0 && cargado" class="alert alert-info mt-4">
+        No tienes productos en favoritos.
+      </div>
+    </div>
+  </div>
+</div>
