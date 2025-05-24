@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PasswordService } from './recuperacion-password/password.service';
 import { RecuperacionPasswordComponent } from './recuperacion-password/recuperacion-password.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,12 +31,11 @@ export const routes: Routes = [
   { path: 'mercadona', component: MercadonaComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'header', component: HeaderComponent },
-    { path: 'recuperacion-password', component: RecuperacionPasswordComponent },
-
+  { path: 'recuperacion-password', component: RecuperacionPasswordComponent },
+  { path: 'favoritos', component: FavoritosComponent},
 
   // Ruta solo visible para admins (ejemplo)
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AdminGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  
   
 ];

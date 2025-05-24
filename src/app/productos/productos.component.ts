@@ -24,6 +24,7 @@ export class ProductosComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
   itemsPorPagina: number = 30;
+  
 
   usuarioAutenticado: boolean = false;
   rolUsuario: number | null = null;
@@ -180,10 +181,11 @@ export class ProductosComponent implements OnInit {
   }
 
   siguientePagina(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-    }
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.cargarPagina(this.currentPage);
   }
+}
 
   anteriorPagina(): void {
     if (this.currentPage > 1) {
@@ -234,16 +236,16 @@ export class ProductosComponent implements OnInit {
       this.favoritos = this.favoritos.filter(f => f.id_producto !== producto.id_producto);
 
       this.favoritosService.eliminarFavorito(favExistente.id_favorito).subscribe({
-        next : () => console.log('✅ eliminado'),
+        next : () => console.log('Eliminado'),
         error: err => {
-          console.error('❌ error al eliminar', err);
-          this.favoritos.push(favExistente);            // rollback
+          console.error('Error al eliminar', err);
+          this.favoritos.push(favExistente);
         }
       });
 
     } else {
       const temp = { id_producto: producto.id_producto, id_favorito: Date.now() };
-      this.favoritos.push(temp);                        // optimista
+      this.favoritos.push(temp);
 
       this.favoritosService.agregarFavorito({ id_producto: producto.id_producto }).subscribe({
         next : res => {
@@ -253,8 +255,8 @@ export class ProductosComponent implements OnInit {
           }
         },
         error: err => {
-          console.error('❌ error al agregar', err);
-          this.favoritos = this.favoritos.filter(f => f.id_favorito !== temp.id_favorito); // rollback
+          console.error('Error al agregar', err);
+          this.favoritos = this.favoritos.filter(f => f.id_favorito !== temp.id_favorito);
         }
       });
     }

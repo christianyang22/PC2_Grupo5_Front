@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../servicios/auth-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritosService {
-  private baseUrl = 'http://127.0.0.1:8000/api/favourites'; // Ajusta si cambia tu backend
+  private baseUrl = 'http://127.0.0.1:8000/api/favourites';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  // Obtener todos los favoritos del usuario autenticado
+  private headers() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.auth.getToken()}`
+      })
+    };
+  }
+
   obtenerFavoritosUsuario(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/list`);
+    return this.http.get<any[]>(`${this.baseUrl}/list`, this.headers());
   }
 
-  // Agregar un producto a favoritos (solo se necesita el id del producto)
   agregarFavorito(data: { id_producto: number }): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/add`, data);
+    return this.http.post<any>(`${this.baseUrl}/add`, data, this.headers());
   }
 
-  // Eliminar un producto de favoritos
   eliminarFavorito(idFavorito: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/remove/${idFavorito}`);
+    return this.http.delete<any>(`${this.baseUrl}/remove/${idFavorito}`, this.headers());
   }
 }
