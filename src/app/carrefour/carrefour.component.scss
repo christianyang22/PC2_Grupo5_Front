@@ -48,12 +48,12 @@
 
 
 .btn-verde-claro {
-  background-color: rgb(84, 153, 226);
-  color: black;
+  background-color: var(--app-button-color);
+  color: white;
   border: none;
 }
 
 .btn-verde-claro:hover {
-    background-color: rgb(84, 153, 226);
-    color: black;
+    background-color: var(--app-hover-color);
+    color: white;
   }

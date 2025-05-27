@@ -37,7 +37,7 @@ body {
 .login-heading {
   font-size: 24px;
   margin-bottom: 25px;
-  color: #66bb6a; /* Verde claro */
+  color: #66bb6a;
 }
 
 .login-form .form-group {
@@ -86,12 +86,12 @@ body {
 
 .forgot-password:hover {
   text-decoration: underline;
-  color: #66bb6a;
+  color: var(--app-hover-color);
 }
 
 .btn-login {
   width: 100%;
-  background: #66bb6a;
+  background: var(--app-button-color);
   color: white;
   padding: 12px;
   font-size: 16px;
@@ -102,7 +102,7 @@ body {
 }
 
 .btn-login:hover {
-  background: #558b2f;
+  background: var(--app-hover-color);
 }
 
 .register-option {
@@ -118,4 +118,5 @@ body {
 
 .register-option a:hover {
   text-decoration: underline;
+  color: var(--app-hover-color);
 }

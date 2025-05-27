@@ -47,12 +47,12 @@
 
 
 .btn-verde-claro {
-  background-color: #ec4747;
-  color: black;
+  background-color: var(--app-button-color);
+  color: white;
   border: none;
 }
 
 .btn-verde-claro:hover {
-    background-color: #ec4747;
-    color: black;
+    background-color: var(--app-hover-color);
+    color: white;
 }

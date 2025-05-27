@@ -26,12 +26,24 @@
   animation: fadeSlideDown 0.5s ease-out;
 }
 
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .contenedor_fluid {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .logo-usuario {
@@ -58,6 +70,39 @@
   }
 }
 
+.hamburger {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  z-index: 1100;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  span {
+    display: block;
+    height: 3px;
+    border-radius: 2px;
+    background: #333;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  &:hover {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &:hover span {
+    background: var(--app-hover-color);
+  }
+}
+
 .lista_navegacion {
   display: flex;
   align-items: center;
@@ -66,6 +111,7 @@
 }
 
 .enlace_navegacion {
+  position: relative;
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 0.95rem;
@@ -108,7 +154,7 @@
   padding: 8px 16px;
   border-radius: 25px;
   background-color: var(--app-button-color);
-  color: white;
+  color: #fff;
   border: none;
   font-size: 0.95rem;
   font-weight: 600;
@@ -118,21 +164,6 @@
   &:hover {
     background-color: var(--app-hover-color);
   }
-  @keyframes fadeSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.barra_navegacion {
-  animation: fadeSlideDown 0.5s ease-out;
-}
-
 }
 
 .modal-backdrop {
@@ -144,7 +175,8 @@
 
 .config-modal {
   position: fixed;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 400px;
@@ -153,49 +185,124 @@
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   z-index: 1001;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .config-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      background-color: var(--app-button-color);
+      color: #fff;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--app-hover-color);
+      }
+    }
+  }
+
+  .reset-button {
+    display: block;
+    text-align: center;
+    margin: 1.5rem auto 0;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    color: var(--app-button-color);
+    cursor: pointer;
+  }
 }
 
-.config-modal h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+@media (max-width: 1024px) {
+  .logo-usuario img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .titulo {
+    font-size: 1.4rem;
+  }
 }
 
-.config-modal .config-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+@media (max-width: 910px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .lista_navegacion {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--header-bg-color);
+    border-top: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+  }
+
+  .colapsar.active .lista_navegacion {
+    display: flex;
+  }
+
+  .enlace_navegacion {
+    width: calc(100% - 2rem);
+    margin: 0.5rem 1rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 30px;
+  }
 }
 
-.config-modal .actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+@media (max-width: 1128px) and (min-width: 910px) {
+  .barra_navegacion {
+    height: auto;
+    padding: 1rem 2rem;
+  }
 
-.config-modal .actions button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  background-color: var(--app-button-color);
-  color: #fff;
-  transition: background-color 0.3s ease;
-}
+  .contenedor_fluid {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-.config-modal .actions button:hover {
-  background-color: var(--app-hover-color);
-}
+  .logo-usuario {
+    margin-bottom: 0.75rem;
+  }
 
-.config-modal .reset-button {
-  display: block;
-  text-align: center;
-  margin: 1.5rem auto 0;
-  background: transparent;
-  border: none;
-  text-decoration: underline;
-  color: #28a745;
-  cursor: pointer;
+  .colapsar {
+    width: 100%;
+  }
+
+  .lista_navegacion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .enlace_navegacion {
+    white-space: nowrap;
+  }
 }
