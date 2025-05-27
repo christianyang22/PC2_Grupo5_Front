@@ -69,6 +69,10 @@
   <div class="row">
     <!-- Productos -->
     <div class="col-12">
+      <div *ngIf="mensajeCarrito" class="alert alert-success text-center w-75 mx-auto mt-2 shadow-sm">
+        {{ mensajeCarrito }}
+      </div>
+
       <div *ngIf="productos.length === 0" class="text-center my-4">
         <img src="img/spinner.gif" alt="Cargando..." class="spinner-gif-top" />
       </div>
@@ -94,6 +98,9 @@
               </h6>
               <p class="card-text text-muted mb-1">Supermercado: {{ producto.supermercado }}</p>
               <p class="card-text fw-bold text-success">Precio: {{ producto.precio }} €</p>
+              <button class="btn btn-outline-primary btn-sm mt-2" (click)="agregarAlCarrito(producto)">
+                <i class="bi bi-cart-plus"></i> Añadir al carrito
+              </button>
             </div>
           </div>
         </div>

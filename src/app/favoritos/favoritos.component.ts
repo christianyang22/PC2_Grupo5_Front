@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FavoritosService } from './favoritos.service';
 import { FormsModule } from '@angular/forms';
+import { CarritoService } from '../servicios/carrito.service';
+
 
 @Component({
   selector: 'app-favoritos',
@@ -15,12 +17,17 @@ export class FavoritosComponent implements OnInit {
   favoritosFiltrados: any[] = [];
   terminoBusqueda: string = '';
   cargado: boolean = false;
+  mensajeCarrito: string = '';
+
 
   currentPage: number = 1;
   totalPages: number = 1;
   itemsPorPagina: number = 30;
 
-  constructor(private favoritosService: FavoritosService) {}
+  constructor(
+    private favoritosService: FavoritosService,
+    public carritoService: CarritoService
+  ) {}
 
   ngOnInit(): void {
     this.cargarFavoritos();
@@ -39,6 +46,8 @@ export class FavoritosComponent implements OnInit {
         this.cargado = true;
       }
     });
+    console.log('🧠 Favoritos cargados:', this.favoritos);
+
   }
 
   aplicarBusqueda(): void {
@@ -132,4 +141,39 @@ export class FavoritosComponent implements OnInit {
       });
     }
   }
+
+agregarAlCarrito(producto: any): void {
+  if (producto?.nombre && producto?.precio) {
+    const productoFormateado = {
+      id_producto: producto.id_producto || Date.now(),
+      nombre: producto.nombre,
+      precio: parseFloat(producto.precio),
+      link_imagen: producto.link_imagen || 'assets/placeholder.jpg'
+    };
+
+    this.carritoService.agregarProducto(productoFormateado);
+
+    // ✅ Mostrar mensaje
+    this.mensajeCarrito = `"${producto.nombre}" añadido al carrito ✅`;
+    setTimeout(() => this.mensajeCarrito = '', 3000); // Oculta después de 3s
+  } else {
+    console.warn('❌ Producto incompleto o inválido:', producto);
+  }
+}
+
+
+
+
+
+
+eliminarDelCarrito(index: number): void {
+  this.carritoService.eliminarProducto(index);
+}
+
+obtenerTotalCarrito(): number {
+  return this.carritoService.obtenerProductos()
+    .reduce((total, prod) => total + (prod.precio || 0), 0);
+}
+
+
 }

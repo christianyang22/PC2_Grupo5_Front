@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { PasswordService } from './recuperacion-password/password.service';
 import { RecuperacionPasswordComponent } from './recuperacion-password/recuperacion-password.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -33,6 +34,7 @@ export const routes: Routes = [
   { path: 'header', component: HeaderComponent },
   { path: 'recuperacion-password', component: RecuperacionPasswordComponent },
   { path: 'favoritos', component: FavoritosComponent},
+  { path: 'carrito', component: CarritoComponent},
 
   // Ruta solo visible para admins (ejemplo)
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AdminGuard] },

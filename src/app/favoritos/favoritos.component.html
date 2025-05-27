@@ -16,6 +16,11 @@
   </div>
 </div>
 
+<div *ngIf="mensajeCarrito" class="alert alert-success text-center w-75 mx-auto mt-2 shadow-sm">
+  {{ mensajeCarrito }}
+</div>
+
+
 <!-- Favoritos -->
 <div class="container pb-5" style="padding-top: 100px;">
   <div *ngIf="!cargado" class="text-center my-4">
@@ -48,10 +53,17 @@
           </h6>
           <p class="card-text text-muted mb-1">Supermercado: {{ favorito.product?.supermercado }}</p>
           <p class="card-text fw-bold text-success">Precio: {{ favorito.product?.precio }} €</p>
+          <button class="btn btn-outline-primary btn-sm mt-2" (click)="agregarAlCarrito(favorito.product)">
+            <i class="bi bi-cart-plus"></i> Añadir al carrito
+          </button>
+
         </div>
       </div>
     </div>
   </div>
+
+ 
+
 
   <!-- Paginación -->
   <div *ngIf="totalPages > 1" class="d-flex justify-content-center align-items-center my-5">

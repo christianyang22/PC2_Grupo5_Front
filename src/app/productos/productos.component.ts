@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FavoritosService } from '../favoritos/favoritos.service';
+import { CarritoService } from '../servicios/carrito.service';
 
 @Component({
   selector: 'app-productos',
@@ -20,6 +21,8 @@ export class ProductosComponent implements OnInit {
   productosFiltrados: any[] = [];
   favoritos: any[] = [];
   terminoBusqueda: string = '';
+  mensajeCarrito: string = '';
+
 
   currentPage: number = 1;
   totalPages: number = 1;
@@ -73,7 +76,8 @@ export class ProductosComponent implements OnInit {
     private productosService: ProductosService,
     private router: Router,
     private authService: AuthService,
-    private favoritosService: FavoritosService
+    private favoritosService: FavoritosService,
+    public carritoService: CarritoService
   ) {}
 
   ngOnInit(): void {
@@ -261,4 +265,25 @@ export class ProductosComponent implements OnInit {
       });
     }
   }
+
+  agregarAlCarrito(producto: any): void {
+    if (producto?.nombre && producto?.precio) {
+      const productoFormateado = {
+        id_producto: producto.id_producto || Date.now(),
+        nombre: producto.nombre,
+        precio: parseFloat(producto.precio),
+        link_imagen: producto.link_imagen || 'assets/placeholder.jpg'
+      };
+
+      this.carritoService.agregarProducto(productoFormateado);
+
+      // ✅ Mensaje temporal
+      this.mensajeCarrito = `"${producto.nombre}" añadido al carrito ✅`;
+      setTimeout(() => this.mensajeCarrito = '', 3000);
+    } else {
+      console.warn('❌ Producto incompleto o inválido:', producto);
+    }
+  }
+
+
 }

@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../servicios/auth-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CarritoService } from '../servicios/carrito.service';
 
 @Component({
   selector: 'app-header',
@@ -21,10 +22,11 @@ export class HeaderComponent {
   buttonColor = '#007bff';
   hoverColor = '#0056b3';
 
-  constructor(public router: Router, private authService: AuthService) {
+  constructor(public router: Router, private authService: AuthService, public carritoService: CarritoService) {
     this.authService.usuario$.subscribe(user => {
       this.usuarioAutenticado = !!user;
       this.rolUsuario = user?.rol ?? null;
+      
     });
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
