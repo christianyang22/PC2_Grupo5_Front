@@ -1,0 +1,16 @@
+:root {
+  --app-bg-color:     #ffffff;
+  --header-bg-color:  rgba(255, 255, 255, 0.9);
+  --app-button-color: #28a745;
+  --app-hover-color:  #218838;
+  --header-height:    70px;
+}
+
+html,
+body,
+app-root {
+  min-height: 100%;
+  margin: 0;
+  padding-top: var(--header-height);
+  background-color: var(--app-bg-color) !important;
+}

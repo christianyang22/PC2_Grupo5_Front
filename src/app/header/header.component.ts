@@ -16,7 +16,7 @@ export class HeaderComponent {
   rolUsuario: number | null = null;
   rutaActual = '';
   configOpen = false;
-  backgroundColor = '#ffffff';
+  backgroundColor = 'var(--app-bg-color, #ffffff)';
   headerColor = '#ffffff';
   buttonColor = '#007bff';
   hoverColor = '#0056b3';
@@ -55,20 +55,25 @@ export class HeaderComponent {
     document.documentElement.style.setProperty('--header-bg-color', this.headerColor);
     document.documentElement.style.setProperty('--app-button-color', this.buttonColor);
     document.documentElement.style.setProperty('--app-hover-color', this.hoverColor);
+
+    document.body.style.backgroundColor = this.backgroundColor;
+
     localStorage.setItem('appConfig', JSON.stringify({
       backgroundColor: this.backgroundColor,
       headerColor:     this.headerColor,
       buttonColor:     this.buttonColor,
       hoverColor:      this.hoverColor
     }));
+
     this.configOpen = false;
   }
 
+
   resetDefaults() {
     this.backgroundColor = '#ffffff';
-    this.headerColor     = '#ffffff';
-    this.buttonColor     = '#007bff';
-    this.hoverColor      = '#0056b3';
+    this.headerColor     = 'rgba(255, 255, 255, 0.9)';
+    this.buttonColor     = '#28a745';
+    this.hoverColor      = '#218838';
     this.applySettings();
   }
 
