@@ -43,3 +43,13 @@
 .card:hover {
   transform: scale(1.02);
 }
+
+.btn-success {
+  background-color: var(--app-button-color);
+  color: white;
+
+  &:hover {
+    background-color: var(--app-hover-color);
+    color: white;
+  }
+}

@@ -1,5 +1,9 @@
 :root {
-  --header-height: 0px;
+    --header-height: 0px;
+    --app-bg-color:     #ffffff;
+    --header-bg-color:  rgba(255, 255, 255, 0.9);
+    --app-button-color: #28a745;
+    --app-hover-color:  #218838;
 }
 
 html,
@@ -7,6 +11,7 @@ body,
 app-root {
   margin: 0;
   padding: 0;
+  background-color: var(--app-bg-color) !important;
 }
 
 app-header + * {

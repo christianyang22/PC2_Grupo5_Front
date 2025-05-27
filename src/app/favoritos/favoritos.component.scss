@@ -56,6 +56,16 @@
   padding: 1rem;
 }
 
+.btn-success {
+  background-color: var(--app-button-color);
+  color: white;
+
+  &:hover {
+    background-color: var(--app-hover-color);
+    color: white;
+  }
+}
+
 .paginacion {
   display: flex;
   justify-content: center;
