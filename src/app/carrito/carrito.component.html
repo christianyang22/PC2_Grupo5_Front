@@ -32,8 +32,28 @@
       </li>
     </ul>
 
-    <div class="text-end fw-bold">
+    <!--<div class="text-end fw-bold">
       Total: {{ obtenerTotalCarrito() | number:'1.2-2' }} €
     </div>
-  </div>
+  </div>-->
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class=" text-center fw-bold text-center mb-4">
+            Total: {{ obtenerTotalCarrito() | number:'1.2-2' }} €
+        </div>
+
+        <div class="ms-3">
+            <button class="btn btn-success btn-lg px-5 shadow-sm" (click)="finalizarCompra()">
+            <i class="bi bi-credit-card-fill me-2"></i>Finalizar compra
+            </button>
+        </div>
+    </div>
+
+
+
+    <!-- Alerta de confirmación -->
+    <div *ngIf="mensajeConfirmacion" class="alert alert-success text-center mt-4">
+        {{ mensajeConfirmacion }}
+    </div>
+
 </div>
