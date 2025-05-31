@@ -1,13 +1,19 @@
 <div class="contenedor">
   <nav class="barra_navegacion">
     <div class="contenedor_fluid">
-      <div class="logo-usuario">
-        <a href="/home" class="logo-usuario">
-          <img src="img/carrito.png" alt="carro" />
-          <h1 class="titulo">Click&Shop</h1>
-        </a>
-      </div>
-      <div class="colapsar" id="menu">
+
+      <a href="/home" class="logo-usuario">
+        <img src="img/carrito.png" alt="carro" />
+        <h1 class="titulo">Click&Shop</h1>
+      </a>
+
+      <button class="hamburger" (click)="menuOpen = !menuOpen" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="colapsar" [class.active]="menuOpen" id="menu">
         <ul class="lista_navegacion">
           <li class="elemento_navegacion">
             <a href="/home" class="enlace_navegacion" [class.active]="rutaActual === '/home'">Inicio</a>
@@ -46,6 +52,7 @@
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
 </div>

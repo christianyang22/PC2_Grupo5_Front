@@ -1,15 +1,13 @@
-/* Spinner */
 .spinner-gif-top {
   width: 60px;
   height: 60px;
 }
 
-/* Slider personalizado */
 ::ng-deep .ngx-slider .ngx-slider-pointer {
   width: 16px !important;
   height: 16px !important;
   top: -6px !important;
-  background-color: #198754 !important; /* Verde Bootstrap */
+  background-color: #198754 !important;
   border: none !important;
 }
 
@@ -38,11 +36,20 @@
   box-shadow: none !important;
 }
 
-/* Efecto de hover para tarjetas */
 .card {
   transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
   transform: scale(1.02);
+}
+
+.btn-success {
+  background-color: var(--app-button-color);
+  color: white;
+
+  &:hover {
+    background-color: var(--app-hover-color);
+    color: white;
+  }
 }

@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --header-height: 0px;
+}
+
+html,
+body,
+app-root {
+  margin: 0;
+  padding: 0;
+}
+
+app-header + * {
+  margin-top: var(--header-height) !important;
+}
+
+@media (max-width: 1128px) and (min-width: 910px) {
+  app-header + * {
+    margin-top: calc(70px) !important;
+  }
+}

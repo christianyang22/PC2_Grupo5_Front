@@ -1,15 +1,12 @@
-/* Estilo para el buscador */
 .input-group {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-/* Spinner de carga */
 .spinner-gif-top {
   width: 60px;
   height: 60px;
 }
 
-/* Estilo de tarjetas */
 .card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   border-radius: 1rem;
@@ -40,12 +37,11 @@
     color: #ffc107;
 
     &:hover {
-      color: #e0a800;
+      color: var(--app-hover-color);
     }
   }
 }
 
-/* Imagen supermercado (logo esquina superior) */
 .card img.logo-super {
   position: absolute;
   top: 0.5rem;
@@ -54,14 +50,22 @@
   z-index: 10;
 }
 
-/* Imagen del producto */
 .card-img-top {
   height: 150px;
   object-fit: contain;
   padding: 1rem;
 }
 
-/* Paginación */
+.btn-success {
+  background-color: var(--app-button-color);
+  color: white;
+
+  &:hover {
+    background-color: var(--app-hover-color);
+    color: white;
+  }
+}
+
 .paginacion {
   display: flex;
   justify-content: center;
@@ -73,6 +77,10 @@
     padding: 0.5rem 1.5rem;
     border-radius: 50rem;
   }
+
+  button:hover{
+    background-color: var(--app-hover-color);
+  }
 }
 
 input:focus {
@@ -80,7 +88,6 @@ input:focus {
   box-shadow: none !important;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .card-title {
     font-size: 1rem;

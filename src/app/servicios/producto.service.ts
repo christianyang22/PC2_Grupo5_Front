@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth-service.service';
+import { environment } from '../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/products';
+  private apiUrl = `${environment.rutaApi}/products`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -20,6 +21,11 @@ export class ProductoService {
   eliminarProducto(id: number): Observable<any> {
     const headers = this.getHeaders();
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  }
+
+  editarProductoPorId(id: number, datos: any): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put(`${this.apiUrl}/${id}`, datos, { headers });
   }
 
   private getHeaders(): HttpHeaders {

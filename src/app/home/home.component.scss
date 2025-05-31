@@ -9,7 +9,6 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  /*filter: blur(2px) brightness(0.85);*/
 }
 
 .contenido-principal-principal {
@@ -22,7 +21,6 @@
   z-index: 1;
 }
 
-/* ANIMACIONES */
 .animacion-entrada {
   animation: fadeInUp 1s ease both;
 }
@@ -37,7 +35,6 @@
   }
 }
 
-/* SECCIONES BASE */
 section {
   background-color: rgba(255, 255, 255, 0.92);
   border-radius: 20px;
@@ -46,7 +43,6 @@ section {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* BIENVENIDA */
 .bienvenida {
   text-align: center;
 
@@ -61,7 +57,7 @@ section {
   }
 
   .btn-destacado {
-    background-color: #28a745;
+    background-color: var(--app-button-color);
     color: white;
     padding: 14px 35px;
     border-radius: 30px;
@@ -72,13 +68,12 @@ section {
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: #218838;
+      background-color: var(--app-hover-color);
       transform: scale(1.05);
     }
   }
 }
 
-/* CARRUSEL */
 .carrusel-productos {
   .seccion-titulo {
     font-size: 2rem;
@@ -138,7 +133,6 @@ section {
   }
 }
 
-/* BENEFICIOS */
 .beneficios-cards {
   text-align: center;
 
@@ -174,7 +168,6 @@ section {
   }
 }
 
-/* INFO GENERAL Y TARJETAS */
 .info-grid {
   display: flex;
   justify-content: center;
@@ -207,7 +200,6 @@ section {
   }
 }
 
-/* TESTIMONIOS */
 .testimonios {
   text-align: center;
 
@@ -242,7 +234,6 @@ section {
   }
 }
 
-/* QUIÉNES SOMOS */
 .quienes-somos {
   text-align: center;
 
@@ -257,7 +248,6 @@ section {
   }
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .carrusel-track,
   .beneficio-cards,

@@ -66,82 +66,131 @@ export class AdminPanelComponent implements OnInit {
     }
   }
 
-  eliminarProducto(id: number): void {
-    if (confirm('¿Estás seguro de eliminar este producto?')) {
-      this.productoService.eliminarProducto(id).subscribe({
-        next: () => {
-          this.cargarProductos();
-          alert('Producto eliminado correctamente.');
-        },
-        error: err => console.error('Error eliminando producto:', err)
-      });
-    }
-  }
-
-editarUsuario(usuario: any): void {
-  try {
-    const nuevoUsuario = prompt('Nuevo nombre de usuario:', usuario.usuario);
-    const nuevoNombre = prompt('Nuevo nombre completo:', usuario.nombre);
-    const nuevoCorreo = prompt('Nuevo correo electrónico:', usuario.email);
-    const rolPorDefecto = usuario.rol !== undefined && usuario.rol !== null ? usuario.rol.toString() : '2';
-    const nuevoRolStr = prompt('Nuevo rol (1 = Admin, 2 = Usuario):', rolPorDefecto);
-    const nuevaPassword = prompt('Nueva contraseña (opcional):');
-
-    if (
-      nuevoUsuario === null ||
-      nuevoNombre === null ||
-      nuevoCorreo === null ||
-      nuevoRolStr === null
-    ) {
-      alert('Edición cancelada.');
-      return;
-    }
-
-    const nuevoRol = parseInt(nuevoRolStr, 10);
-    if (isNaN(nuevoRol) || (nuevoRol !== 1 && nuevoRol !== 2)) {
-      alert('Rol inválido. Usa 1 para Admin o 2 para Usuario.');
-      return;
-    }
-
-    const confirmacion = confirm(
-      `¿Confirmas editar al usuario con estos datos?\n\n` +
-      `Usuario: ${nuevoUsuario}\nNombre: ${nuevoNombre}\nEmail: ${nuevoCorreo}\nRol: ${nuevoRol === 1 ? 'Admin' : 'Usuario'}\nContraseña: ${nuevaPassword ? 'Sí' : 'No'}`
-    );
-
-    if (!confirmacion) {
-      alert('Edición cancelada.');
-      return;
-    }
-
-    const datosActualizados: any = {
-      usuario: nuevoUsuario,
-      nombre: nuevoNombre,
-      email: nuevoCorreo,
-      rol: nuevoRol
-    };
-
-    if (nuevaPassword && nuevaPassword.trim() !== '') {
-      datosActualizados.password = nuevaPassword;
-    }
-
-    this.usuarioService.editarUsuarioPorId(usuario.id_usuario, datosActualizados).subscribe({
+  eliminarProducto(id_producto : number): void {
+    if (!confirm('¿Estás seguro de eliminar este producto?')) return;
+    this.productoService.eliminarProducto(id_producto).subscribe({
       next: () => {
-        this.cargarUsuarios();
-        alert('Usuario editado correctamente.');
+        this.cargarProductos();
+        alert('Producto eliminado correctamente.');
       },
-      error: err => {
-        console.error('Error al editar usuario:', err);
-        alert(
-          'Hubo un error al editar el usuario.\n\n' +
-          (err?.error?.message || err.message || 'Error desconocido')
-        );
-      }
+      error: (err: any) => console.error('Error eliminando producto:', err)
     });
-  } catch (e) {
-    console.error('Error inesperado durante la edición:', e);
-    alert('Ocurrió un error inesperado.');
   }
+
+editarProducto(product: any): void {
+  const nuevoNombre = prompt('Nuevo nombre de producto:', product.nombre);
+  if (nuevoNombre === null) return;
+
+  const nuevoPrecioStr = prompt('Nuevo precio (€):', String(product.precio));
+  if (nuevoPrecioStr === null) return;
+  const nuevoPrecio = parseFloat(nuevoPrecioStr);
+  if (isNaN(nuevoPrecio)) {
+    alert('Precio inválido');
+    return;
+  }
+
+  const nuevoSuper = prompt('Nuevo supermercado:', product.supermercado);
+  if (nuevoSuper === null) return;
+  if (nuevoSuper.trim() === '') {
+    alert('Supermercado no puede estar vacío');
+    return;
+  }
+
+  if (!confirm(
+    `¿Actualizar producto?\n\n` +
+    `Nombre: ${nuevoNombre}\n` +
+    `Precio: ${nuevoPrecio} €\n` +
+    `Supermercado: ${nuevoSuper}`
+  )) {
+    return;
+  }
+
+  this.productoService.editarProductoPorId(
+    product.id_producto ,
+    {
+      nombre: nuevoNombre,
+      precio: nuevoPrecio,
+      supermercado: nuevoSuper
+    }
+  ).subscribe({
+    next: () => {
+      this.cargarProductos();
+      alert('Producto actualizado correctamente.');
+    },
+    error: (err: any) => {
+      console.error('Error actualizando producto:', err);
+      alert('No se pudo actualizar el producto.');
+    }
+  });
 }
+
+  editarUsuario(usuario: any): void {
+    try {
+      const nuevoUsuario = prompt('Nuevo nombre de usuario:', usuario.usuario);
+      const nuevoNombre = prompt('Nuevo nombre completo:', usuario.nombre);
+      const nuevoCorreo = prompt('Nuevo correo electrónico:', usuario.email);
+      const rolPorDefecto = usuario.rol !== undefined && usuario.rol !== null
+        ? usuario.rol.toString()
+        : '2';
+      const nuevoRolStr = prompt('Nuevo rol (1 = Admin, 2 = Usuario):', rolPorDefecto);
+      const nuevaPassword = prompt('Nueva contraseña (opcional):');
+
+      if (
+        nuevoUsuario === null ||
+        nuevoNombre === null ||
+        nuevoCorreo === null ||
+        nuevoRolStr === null
+      ) {
+        alert('Edición cancelada.');
+        return;
+      }
+
+      const nuevoRol = parseInt(nuevoRolStr, 10);
+      if (isNaN(nuevoRol) || (nuevoRol !== 1 && nuevoRol !== 2)) {
+        alert('Rol inválido. Usa 1 para Admin o 2 para Usuario.');
+        return;
+      }
+
+      const confirmacion = confirm(
+        `¿Confirmas editar al usuario con estos datos?\n\n` +
+        `Usuario: ${nuevoUsuario}\nNombre: ${nuevoNombre}\nEmail: ${nuevoCorreo}\n` +
+        `Rol: ${nuevoRol === 1 ? 'Admin' : 'Usuario'}\nContraseña: ${nuevaPassword ? 'Sí' : 'No'}`
+      );
+
+      if (!confirmacion) {
+        alert('Edición cancelada.');
+        return;
+      }
+
+      const datosActualizados: any = {
+        usuario: nuevoUsuario,
+        nombre: nuevoNombre,
+        email: nuevoCorreo,
+        rol: nuevoRol
+      };
+
+      if (nuevaPassword && nuevaPassword.trim() !== '') {
+        datosActualizados.password = nuevaPassword;
+      }
+
+      this.usuarioService.editarUsuarioPorId(usuario.id_usuario, datosActualizados).subscribe({
+        next: () => {
+          this.cargarUsuarios();
+          alert('Usuario editado correctamente.');
+        },
+        error: err => {
+          console.error('Error al editar usuario:', err);
+          alert(
+            'Hubo un error al editar el usuario.\n\n' +
+            (err?.error?.message || err.message || 'Error desconocido')
+          );
+        }
+      });
+    } catch (e) {
+      console.error('Error inesperado durante la edición:', e);
+      alert('Ocurrió un error inesperado.');
+    }
+  }
 
   cerrarSesion(): void {
     this.authService.logout();

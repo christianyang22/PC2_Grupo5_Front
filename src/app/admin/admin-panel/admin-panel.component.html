@@ -87,7 +87,7 @@
                   <td>{{ product.supermercado }}</td>
                   <td>
                     <div class="d-flex justify-content-center gap-2">
-                      <button class="btn btn-sm btn-outline-primary">
+                      <button class="btn btn-sm btn-outline-primary" (click)="editarProducto(product)">
                         <i class="bi bi-pencil-square"></i> Editar
                       </button>
                       <button class="btn btn-sm btn-outline-danger" (click)="eliminarProducto(product.id_producto)">
