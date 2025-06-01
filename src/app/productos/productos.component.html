@@ -15,7 +15,7 @@
 </div>
 
 <div class="container mb-4">
-  <button class="btn btn-success rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#filtrosModal">
+  <button *ngIf="rolUsuario === 1 || rolUsuario === 2" class="btn btn-success rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#filtrosModal">
     <i class="bi bi-funnel-fill me-2"></i>Filtros
   </button>
 </div>
